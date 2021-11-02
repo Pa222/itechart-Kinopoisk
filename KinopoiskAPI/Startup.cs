@@ -1,4 +1,7 @@
 using Data_Access_Layer;
+using Data_Access_Layer.Interfaces;
+using KinopoiskAPI.Services;
+using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +25,8 @@ namespace KinopoiskAPI
             var connection = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IMovieService, MovieService>();
 
             services.AddControllers();
         }

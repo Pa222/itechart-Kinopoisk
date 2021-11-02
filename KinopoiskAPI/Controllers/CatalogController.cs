@@ -1,14 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using KinopoiskAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace KinopoiskAPI.Controllers
 {
     public class CatalogController : Controller
     {
-        [HttpGet]
-        [Route("[controller]/get-movies")]
-        public IActionResult GetMovies()
+        private readonly IMovieService _movieService;
+
+        public CatalogController(IMovieService movieService)
         {
-            return Json("test");
+            _movieService = movieService;
+        }
+
+        [HttpGet]
+        [Route("[controller]/get")]
+        public async Task<IActionResult> Get()
+        {
+            var movies = await _movieService.GetAll();
+            var json = JsonConvert.SerializeObject(movies);
+            return Ok(json);
+        }
+
+        [HttpGet("{id:int}")]
+        [Route("[controller]/get")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var movies = await _movieService.Get(id);
+            var json = JsonConvert.SerializeObject(movies);
+            return Ok(json);
         }
     }
 }

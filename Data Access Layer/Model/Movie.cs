@@ -16,12 +16,7 @@ namespace Data_Access_Layer.Model
 
         public string Image { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy}")]
-        public DateTime CreateYear { get; set; }
-
-        [Required]
-        public Producer Producer { get; set; }
+        public string CreateYear { get; set; }
 
         [Required]
         public virtual ICollection<Genre> Genres { get; set; }
