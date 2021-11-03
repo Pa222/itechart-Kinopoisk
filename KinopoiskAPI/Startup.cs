@@ -28,6 +28,8 @@ namespace KinopoiskAPI
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IMovieService, MovieService>();
 
+            services.AddCors();
+
             services.AddControllers();
         }
 
@@ -37,6 +39,8 @@ namespace KinopoiskAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseRouting();
 

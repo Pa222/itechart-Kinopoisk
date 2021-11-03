@@ -15,7 +15,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [HttpGet]
-        [Route("[controller]/get")]
+        [Route("api/[controller]/get")]
         public async Task<IActionResult> Get()
         {
             var movies = await _movieService.GetAll();
@@ -24,7 +24,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [Route("[controller]/get")]
+        [Route("api/[controller]/get")]
         public async Task<IActionResult> Get(int id)
         {
             var movies = await _movieService.Get(id);

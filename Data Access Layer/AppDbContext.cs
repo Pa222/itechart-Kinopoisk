@@ -22,13 +22,17 @@ namespace Data_Access_Layer
                 "Фантастика", "Боевик", "Триллер", "Приключения", "Биография", "История", "Драма", "Военный", "Комедия"
             };
 
+            List<Genre> tmpGenres = new List<Genre>();
+
             for (int i = 1; i <= genres.Count; i++)
             {
-                modelBuilder.Entity<Genre>().HasData(new Genre()
+                var tmpGenre = new Genre()
                 {
                     Id = i,
                     Name = genres[i - 1],
-                });
+                };
+                tmpGenres.Add(tmpGenre);
+                modelBuilder.Entity<Genre>().HasData(tmpGenre);
             }
 
             modelBuilder.Entity<Movie>().HasData(
