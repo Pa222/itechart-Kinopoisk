@@ -82,6 +82,84 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Data_Access_Layer.Model.GenreMovie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("GenreMovies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GenreId = 1,
+                            MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GenreId = 2,
+                            MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GenreId = 3,
+                            MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GenreId = 4,
+                            MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GenreId = 6,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GenreId = 7,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            GenreId = 9,
+                            MovieId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            GenreId = 7,
+                            MovieId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            GenreId = 8,
+                            MovieId = 4
+                        });
+                });
+
             modelBuilder.Entity("Data_Access_Layer.Model.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -142,34 +220,33 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GenreMovie", b =>
+            modelBuilder.Entity("Data_Access_Layer.Model.GenreMovie", b =>
                 {
-                    b.Property<int>("GenresId")
-                        .HasColumnType("int");
+                    b.HasOne("Data_Access_Layer.Model.Genre", "Genre")
+                        .WithMany("GenreMovies")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
+                    b.HasOne("Data_Access_Layer.Model.Movie", "Movie")
+                        .WithMany("GenreMovies")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("GenresId", "MoviesId");
+                    b.Navigation("Genre");
 
-                    b.HasIndex("MoviesId");
-
-                    b.ToTable("GenreMovie");
+                    b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("GenreMovie", b =>
+            modelBuilder.Entity("Data_Access_Layer.Model.Genre", b =>
                 {
-                    b.HasOne("Data_Access_Layer.Model.Genre", null)
-                        .WithMany()
-                        .HasForeignKey("GenresId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("GenreMovies");
+                });
 
-                    b.HasOne("Data_Access_Layer.Model.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("Data_Access_Layer.Model.Movie", b =>
+                {
+                    b.Navigation("GenreMovies");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,6 @@
 using Data_Access_Layer;
 using Data_Access_Layer.Interfaces;
+using Data_Access_Layer.Repositories;
 using KinopoiskAPI.Services;
 using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,8 @@ namespace KinopoiskAPI
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IMovieService, MovieService>();
+            services.AddTransient<IMovieRepository, MovieRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
             services.AddCors();
 

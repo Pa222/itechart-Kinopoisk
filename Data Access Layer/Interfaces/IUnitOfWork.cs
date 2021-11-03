@@ -4,7 +4,7 @@ namespace Data_Access_Layer.Interfaces
 {
     public interface IUnitOfWork
     {
-        IRepository<Movie> Movies { get; }
+        IMovieRepository Movies { get; }
         IRepository<Genre> Genres { get; }
     }
 }

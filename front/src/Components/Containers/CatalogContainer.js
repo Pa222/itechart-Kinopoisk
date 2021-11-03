@@ -14,7 +14,7 @@ const CatalogContainer = () => {
             setIsLoading(false);
         })();
     }, []);
-    
+
     const catalogProps = {
         isLoading,
         movies,

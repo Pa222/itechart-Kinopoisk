@@ -8,7 +8,7 @@ namespace Data_Access_Layer
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        private readonly AppDbContext _db;
+        protected readonly AppDbContext _db;
 
         public GenericRepository(AppDbContext db)
         {

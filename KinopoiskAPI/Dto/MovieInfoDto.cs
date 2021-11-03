@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Data_Access_Layer.Model
+namespace KinopoiskAPI.Dto
 {
-    public class Movie
+    public class MovieInfoDto
     {
         public int Id { get; set; }
 
@@ -15,7 +15,7 @@ namespace Data_Access_Layer.Model
 
         public string CreateYear { get; set; }
 
-        public List<GenreMovie> GenreMovies { get; set; }
+        public List<string> GenreMovies { get; set; }
 
         public string Image { get; set; }
     }

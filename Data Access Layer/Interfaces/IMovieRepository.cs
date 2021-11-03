@@ -1,0 +1,13 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Data_Access_Layer.Model;
+
+namespace Data_Access_Layer.Interfaces
+{
+    public interface IMovieRepository : IRepository<Movie>
+    {
+        public Task<ICollection<Movie>> GetAllAsync();
+
+        public Task<Movie> GetAsync(int id);
+    }
+}

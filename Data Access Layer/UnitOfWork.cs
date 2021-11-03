@@ -1,5 +1,6 @@
 ﻿using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Model;
+using Data_Access_Layer.Repositories;
 
 namespace Data_Access_Layer
 {
@@ -12,7 +13,7 @@ namespace Data_Access_Layer
             _db = db;
         }
 
-        public IRepository<Movie> Movies => new GenericRepository<Movie>(_db);
+        public IMovieRepository Movies => new MovieRepository(_db);
         public IRepository<Genre> Genres => new GenericRepository<Genre>(_db);
     }
 }

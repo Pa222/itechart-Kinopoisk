@@ -12,6 +12,6 @@ namespace Data_Access_Layer.Model
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public virtual ICollection<Movie> Movies { get; set; }
+        public List<GenreMovie> GenreMovies { get; set; }
     }
 }

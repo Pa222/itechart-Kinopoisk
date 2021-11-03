@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Data_Access_Layer.Model;
+using KinopoiskAPI.Dto;
 
 namespace KinopoiskAPI.Services.Interfaces
 {
     public interface IMovieService
     {
-        public Task<ICollection<Movie>> GetAll();
+        public Task<List<MovieInfoDto>> GetAll();
 
-        public Task<Movie> Get(int id);
+        public Task<MovieInfoDto> Get(int id);
     }
 }
