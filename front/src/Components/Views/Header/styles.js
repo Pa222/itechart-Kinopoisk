@@ -16,10 +16,12 @@ const useStyles = makeStyles({
         alignItems: "center",
     },
     header__userImage: {
+        marginRight: "20px",
         width: "50px",
         cursor: "pointer",
     },
     header__title: {
+        marginLeft: "20px",
         maxWidth: "200px",
         fontSize: "34px",
         fontWeight: "bold",

@@ -8,6 +8,8 @@ namespace Data_Access_Layer.Interfaces
     {
         public Task<ICollection<Movie>> GetAllAsync();
 
+        public Task<ICollection<Movie>> GetPageAsync(int pageNumber, int pageSize);
+
         public Task<Movie> GetAsync(int id);
     }
 }

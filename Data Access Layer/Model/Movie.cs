@@ -7,8 +7,6 @@ namespace Data_Access_Layer.Model
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(125)]
         public string Title { get; set; }
 
         public string Description { get; set; }

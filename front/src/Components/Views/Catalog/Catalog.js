@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types'
+import { Pagination } from "@mui/material";
 import useStyles from "./styles";
 import Movie from "../Movie/Movie";
 
@@ -16,9 +17,20 @@ const Catalog = (props) => {
             {
                 !props.isLoading &&
                 <div className={classes.wrapper__catalogContainer}>
-                    {
-                        props.movies.map((movie) => <Movie key={movie.Id} {...movie}/>)
-                    }
+                    <div className={classes.wrapper__catalog}>
+                        {
+                            props.movies.map((movie) => <Movie key={movie.id} {...movie}/>)
+                        }
+                    </div>
+                    <Pagination 
+                        className={classes.wrapper__pagination}
+                        count={10} 
+                        shape="rounded"
+                        hidePrevButton
+                        hideNextButton
+                        page={props.page}
+                        onChange={props.changePage}
+                    />
                 </div>
             }
             
@@ -29,6 +41,8 @@ const Catalog = (props) => {
 Catalog.propTypes = {
     isLoading: PropTypes.bool,
     movies: PropTypes.array,
+    page: PropTypes.number,
+    changePage: PropTypes.func,
 }
 
 export default Catalog;

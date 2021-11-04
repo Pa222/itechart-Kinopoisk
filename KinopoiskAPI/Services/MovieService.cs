@@ -21,16 +21,28 @@ namespace KinopoiskAPI.Services
             _mapper = mapper;
         }
 
+        private List<MovieInfoDto> FillMovies(List<Movie> input)
+        {
+            var movies = new List<MovieInfoDto>();
+            _mapper.Map(input, movies);
+            for (var i = 0; i < input.Count; i++)
+            {
+                movies[i].GenreMovies = input[i].GenreMovies.Select(t => t.Genre.Name).ToList();
+            }
+            return movies;
+        }
+
         public async Task<List<MovieInfoDto>> GetAll()
         {
             var result = (List<Movie>)await _unitOfWork.Movies.GetAllAsync();
-            var movies = new List<MovieInfoDto>();
-            _mapper.Map(result, movies);
-            for (var i = 0; i < result.Count; i++)
-            {
-                movies[i].GenreMovies = result[i].GenreMovies.Select(t => t.Genre.Name).ToList();
-            }
+            var movies = FillMovies(result);
+            return movies;
+        }
 
+        public async Task<List<MovieInfoDto>> GetPage(int pageNumber)
+        {
+            var result = (List<Movie>)await _unitOfWork.Movies.GetPageAsync(pageNumber, MoviePageDto.PageSize);
+            var movies = FillMovies(result);
             return movies;
         }
 

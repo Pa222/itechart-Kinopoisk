@@ -8,41 +8,41 @@ namespace Data_Access_Layer
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        protected readonly AppDbContext _db;
+        protected readonly AppDbContext Db;
 
         public GenericRepository(AppDbContext db)
         {
-            _db = db;
+            Db = db;
         }
 
         public async Task<ICollection<T>> GetAll()
         {
-            return await _db.Set<T>().ToListAsync();
+            return await Db.Set<T>().ToListAsync();
         }
 
         public async Task<T> Get(int id)
         {
-            return await _db.Set<T>().FindAsync(id);
+            return await Db.Set<T>().FindAsync(id);
         }
 
         public async void Create(T item)
         {
-            _db.Set<T>().Add(item);
-            await _db.SaveChangesAsync();
+            Db.Set<T>().Add(item);
+            await Db.SaveChangesAsync();
         }
 
         public async void Update(T item)
         {
             if (item == null) return;
-            _db.Set<T>().Update(item);
-            await _db.SaveChangesAsync();
+            Db.Set<T>().Update(item);
+            await Db.SaveChangesAsync();
         }
 
         public async void Delete(T item)
         {
             if (item == null) return;
-            _db.Set<T>().Remove(item);
-            await _db.SaveChangesAsync();
+            Db.Set<T>().Remove(item);
+            await Db.SaveChangesAsync();
         }
     }
 }

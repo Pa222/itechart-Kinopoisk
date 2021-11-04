@@ -9,6 +9,8 @@ namespace KinopoiskAPI.Services.Interfaces
     {
         public Task<List<MovieInfoDto>> GetAll();
 
+        public Task<List<MovieInfoDto>> GetPage(int pageNumber);
+
         public Task<MovieInfoDto> Get(int id);
     }
 }

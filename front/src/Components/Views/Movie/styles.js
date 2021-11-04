@@ -3,9 +3,11 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
     movie: {
         margin: "40px",
-        maxWidth: "200px",
+        marginTop: "20px",
+        cursor: "pointer",
     },
     movie__poster: {
+        maxWidth: "200px",
         height: "294px",
     },
     movie__title: {
