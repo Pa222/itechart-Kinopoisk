@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { useHistory } from "react-router";
 import Catalog from "../Views/Catalog/Catalog";
 
 const CatalogContainer = () => {
@@ -6,6 +7,7 @@ const CatalogContainer = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -32,12 +34,17 @@ const CatalogContainer = () => {
         setTotalPages(json.totalPages);
     }
 
+    const openMoviePage = (id) => {
+        history.push(`/movie/${id}`);
+    }
+
     const catalogProps = {
         isLoading,
         movies,
         page,
         changePage,
         totalPages,
+        openMoviePage,
     };
 
     return (

@@ -19,7 +19,12 @@ const Catalog = (props) => {
                 <div className={classes.wrapper__catalogContainer}>
                     <div className={classes.wrapper__catalog}>
                         {
-                            props.movies.map((movie) => <Movie key={movie.id} {...movie}/>)
+                            props.movies.map((movie) => 
+                                <Movie 
+                                    key={movie.id} 
+                                    openMoviePage={props.openMoviePage} 
+                                    {...movie}
+                                />)
                         }
                     </div>
                     <Pagination 

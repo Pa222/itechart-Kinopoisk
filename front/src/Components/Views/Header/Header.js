@@ -8,7 +8,7 @@ const Header = (props) => {
     return (
         <header className={classes.header}>
             <div className={classes.header__content}>
-                <div className={classes.header__title}>
+                <div className={classes.header__title} onClick={props.goToMainPage}>
                     <p>КиноПоиск</p>
                 </div>
                 <div className={classes.header__searchBoxContainer}>
@@ -32,6 +32,7 @@ const Header = (props) => {
 
 Header.propTypes = {
     toggleMenu: PropTypes.func,
+    goToMainPage: PropTypes.func,
     isMenuOpened: PropTypes.bool,
 }
 

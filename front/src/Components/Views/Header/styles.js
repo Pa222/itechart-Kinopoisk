@@ -27,6 +27,7 @@ const useStyles = makeStyles({
         fontWeight: "bold",
         fontFamily: "sans-serif",
         color: "white",
+        cursor: "pointer"
     },
     header__searchBoxContainer: {
         maxWidth: "400px",
