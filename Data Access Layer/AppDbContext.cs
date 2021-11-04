@@ -22,6 +22,16 @@ namespace Data_Access_Layer
             modelBuilder.Entity<Genre>().Property(p => p.Name).IsRequired().HasMaxLength(20);
             modelBuilder.Entity<Movie>().Property(p => p.Title).IsRequired().HasMaxLength(125);
 
+            modelBuilder.Entity<GenreMovie>()
+                .HasOne(g => g.Genre)
+                .WithMany(gm => gm.GenreMovies)
+                .HasForeignKey(gi => gi.GenreId);
+
+            modelBuilder.Entity<GenreMovie>()
+                .HasOne(g => g.Movie)
+                .WithMany(gm => gm.GenreMovies)
+                .HasForeignKey(gi => gi.MovieId);
+
             var genres = new List<string>()
             {
                 "Фантастика", "Боевик", "Триллер",
@@ -155,16 +165,6 @@ namespace Data_Access_Layer
                     Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Inception_uvkvsd.jpg"
                 }
             );
-
-            modelBuilder.Entity<GenreMovie>()
-                .HasOne(g => g.Genre)
-                .WithMany(gm => gm.GenreMovies)
-                .HasForeignKey(gi => gi.GenreId);
-
-            modelBuilder.Entity<GenreMovie>()
-                .HasOne(g => g.Movie)
-                .WithMany(gm => gm.GenreMovies)
-                .HasForeignKey(gi => gi.MovieId);
 
             modelBuilder.Entity<GenreMovie>().HasData(new List<GenreMovie>()
             {
