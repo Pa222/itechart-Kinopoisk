@@ -32,6 +32,8 @@ namespace Data_Access_Layer
                 .WithMany(gm => gm.GenreMovies)
                 .HasForeignKey(gi => gi.MovieId);
 
+            //Заполнение данными
+
             var genres = new List<string>()
             {
                 "Фантастика", "Боевик", "Триллер",
