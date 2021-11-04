@@ -4,6 +4,7 @@ import Catalog from "../Views/Catalog/Catalog";
 const CatalogContainer = () => {
     const [movies, setMovies] = useState();
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -13,7 +14,8 @@ const CatalogContainer = () => {
             let response = await fetch(`http://localhost:28880/api/Catalog/get-page/1`).catch();
             let json = await response.json();
 
-            setMovies(json);
+            setMovies(json.movies);
+            setTotalPages(json.totalPages);
             setIsLoading(false);
         })()
     }, [])
@@ -24,9 +26,10 @@ const CatalogContainer = () => {
         let response = await fetch(`http://localhost:28880/api/Catalog/get-page/${pageNumber}`).catch();
         let json = await response.json();
 
-        setMovies(json);
+        setMovies(json.movies);
         setIsLoading(false);
-        setPage(pageNumber);
+        setPage(json.pageNumber);
+        setTotalPages(json.totalPages);
     }
 
     const catalogProps = {
@@ -34,6 +37,7 @@ const CatalogContainer = () => {
         movies,
         page,
         changePage,
+        totalPages,
     };
 
     return (

@@ -14,16 +14,21 @@ namespace Data_Access_Layer.Repositories
         {
         }
 
-        public async Task<ICollection<Movie>> GetAllAsync()
+        public async Task<List<Movie>> GetAllAsync()
         {
             return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre).AsNoTracking().ToListAsync();
         }
 
-        public async Task<ICollection<Movie>> GetPageAsync(int pageNumber, int pageSize)
+        public async Task<List<Movie>> GetPageAsync(int pageNumber, int pageSize)
         {
             var delta = pageNumber == 1 ? 0 : pageNumber - 1;
             return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
                 .Skip(delta * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public decimal GetAmountOfMovies()
+        {
+            return Db.Movies.Count();
         }
 
         public async Task<Movie> GetAsync(int id)

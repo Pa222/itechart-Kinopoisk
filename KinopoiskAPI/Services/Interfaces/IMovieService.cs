@@ -7,9 +7,7 @@ namespace KinopoiskAPI.Services.Interfaces
 {
     public interface IMovieService
     {
-        public Task<List<MovieInfoDto>> GetAll();
-
-        public Task<List<MovieInfoDto>> GetPage(int pageNumber);
+        public Task<MoviePageDto> GetPage(int pageNumber);
 
         public Task<MovieInfoDto> Get(int id);
     }

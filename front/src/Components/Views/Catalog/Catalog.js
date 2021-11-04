@@ -24,7 +24,7 @@ const Catalog = (props) => {
                     </div>
                     <Pagination 
                         className={classes.wrapper__pagination}
-                        count={10} 
+                        count={props.totalPages} 
                         shape="rounded"
                         hidePrevButton
                         hideNextButton
@@ -42,6 +42,7 @@ Catalog.propTypes = {
     isLoading: PropTypes.bool,
     movies: PropTypes.array,
     page: PropTypes.number,
+    totalPages: PropTypes.number,
     changePage: PropTypes.func,
 }
 

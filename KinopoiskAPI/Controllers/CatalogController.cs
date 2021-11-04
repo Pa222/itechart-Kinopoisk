@@ -28,12 +28,5 @@ namespace KinopoiskAPI.Controllers
             var movies = await _movieService.GetPage(pageNumber);
             return Ok(movies);
         }
-
-        [HttpGet("get")]
-        public async Task<IActionResult> Get()
-        {
-            var movies = await _movieService.GetAll();
-            return Ok(movies);
-        }
     }
 }

@@ -6,10 +6,12 @@ namespace Data_Access_Layer.Interfaces
 {
     public interface IMovieRepository : IRepository<Movie>
     {
-        public Task<ICollection<Movie>> GetAllAsync();
+        public Task<List<Movie>> GetAllAsync();
 
-        public Task<ICollection<Movie>> GetPageAsync(int pageNumber, int pageSize);
+        public Task<List<Movie>> GetPageAsync(int pageNumber, int pageSize);
 
         public Task<Movie> GetAsync(int id);
+
+        public decimal GetAmountOfMovies();
     }
 }
