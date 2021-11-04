@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using KinopoiskAPI.Dto;
 using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -25,7 +26,7 @@ namespace KinopoiskAPI.Controllers
         [HttpGet("get-page/{pageNumber}")]
         public async Task<IActionResult> GetPage(int pageNumber)
         {
-            var movies = await _movieService.GetPage(pageNumber);
+            var movies = await _movieService.GetPage(new MoviePageDto() { PageNumber = pageNumber });
             return Ok(movies);
         }
     }

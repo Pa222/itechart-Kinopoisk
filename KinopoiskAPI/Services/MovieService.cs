@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Transactions;
 using AutoMapper;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Model;
@@ -23,7 +21,7 @@ namespace KinopoiskAPI.Services
             _mapper = mapper;
         }
 
-        private List<MovieInfoDto> FillMovies(List<Movie> input)
+        private List<MovieInfoDto> MapMovies(List<Movie> input)
         {
             var movies = new List<MovieInfoDto>();
             _mapper.Map(input, movies);
@@ -34,17 +32,17 @@ namespace KinopoiskAPI.Services
             return movies;
         }
 
-        public async Task<MoviePageDto> GetPage(int pageNumber)
+        public async Task<MoviePageDto> GetPage(MoviePageDto info)
         {
-            var dto = new MoviePageDto();
+            var result = await _unitOfWork.Movies.GetPageAsync(info.PageNumber, MoviePageDto.PageSize);
 
-            var result = await _unitOfWork.Movies.GetPageAsync(pageNumber, MoviePageDto.PageSize);
+            info.Movies = MapMovies(result);
 
-            dto.Movies = FillMovies(result);
-            dto.PageNumber = pageNumber;
-            dto.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / MoviePageDto.PageSize);
+            /////////////////////
+            info.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / MoviePageDto.PageSize);
+            /////////////////////
 
-            return dto;
+            return info;
         }
 
         public async Task<MovieInfoDto> Get(int id)

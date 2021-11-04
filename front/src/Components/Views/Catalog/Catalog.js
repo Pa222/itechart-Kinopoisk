@@ -26,8 +26,6 @@ const Catalog = (props) => {
                         className={classes.wrapper__pagination}
                         count={props.totalPages} 
                         shape="rounded"
-                        hidePrevButton
-                        hideNextButton
                         page={props.page}
                         onChange={props.changePage}
                     />

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Data_Access_Layer.Interfaces;
@@ -23,13 +22,16 @@ namespace Data_Access_Layer.Repositories
         {
             var delta = pageNumber == 1 ? 0 : pageNumber - 1;
             return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
-                .Skip(delta * pageSize).Take(pageSize).ToListAsync();
+                .Skip(delta * pageSize).Take(pageSize).AsNoTracking().ToListAsync();
         }
 
+        /////////////////////
         public decimal GetAmountOfMovies()
         {
             return Db.Movies.Count();
         }
+
+        /////////////////////
 
         public async Task<Movie> GetAsync(int id)
         {

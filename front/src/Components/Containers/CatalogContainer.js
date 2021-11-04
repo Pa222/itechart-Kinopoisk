@@ -11,7 +11,7 @@ const CatalogContainer = () => {
         (async () => {
             setIsLoading(true);
 
-            let response = await fetch(`http://localhost:28880/api/Catalog/get-page/1`).catch();
+            let response = await fetch(`http://localhost:28880/api/Catalog/get-page/1`);
             let json = await response.json();
 
             setMovies(json.movies);
@@ -23,7 +23,7 @@ const CatalogContainer = () => {
     const changePage = async (e, pageNumber) => {
         setIsLoading(true);
 
-        let response = await fetch(`http://localhost:28880/api/Catalog/get-page/${pageNumber}`).catch();
+        let response = await fetch(`http://localhost:28880/api/Catalog/get-page/${pageNumber}`);
         let json = await response.json();
 
         setMovies(json.movies);
