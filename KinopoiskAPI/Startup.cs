@@ -29,6 +29,7 @@ namespace KinopoiskAPI
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IMovieRepository, MovieRepository>();
+            services.AddTransient<IFaqService, FaqService>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
             services.AddCors();

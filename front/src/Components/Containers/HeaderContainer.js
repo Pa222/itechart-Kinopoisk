@@ -12,10 +12,15 @@ const HeaderContainer = () => {
         history.push('/');
     }
 
+    const goToFaqPage = () => {
+        history.push('/faq');
+    }
+
     const headerProps = {
         toggleMenu,
         isMenuOpened,
         goToMainPage,
+        goToFaqPage,
     }
 
     return (

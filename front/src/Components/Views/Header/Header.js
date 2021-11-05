@@ -21,7 +21,7 @@ const Header = (props) => {
                         props.isMenuOpened &&
                         <div className={classes.header__menu}>
                             <input className={classes.header__menuItem} type="button" value="Войти"></input>
-                            <input className={classes.header__menuItem} type="button" value="FAQ"></input>
+                            <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
                         </div>
                     }
                 </div>
@@ -33,6 +33,7 @@ const Header = (props) => {
 Header.propTypes = {
     toggleMenu: PropTypes.func,
     goToMainPage: PropTypes.func,
+    goToFaqPage: PropTypes.func,
     isMenuOpened: PropTypes.bool,
 }
 

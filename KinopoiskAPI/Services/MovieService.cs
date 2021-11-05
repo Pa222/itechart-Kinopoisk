@@ -38,9 +38,7 @@ namespace KinopoiskAPI.Services
 
             info.Movies = MapMovies(result);
 
-            /////////////////////
             info.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / MoviePageDto.PageSize);
-            /////////////////////
 
             return info;
         }

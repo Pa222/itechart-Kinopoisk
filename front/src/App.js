@@ -7,6 +7,7 @@ import Footer from './Components/Views/Footer/Footer';
 import ErrorPage from './Components/Views/ErrorPage';
 
 import Store from './Redux/Store';
+import FaqContainer from './Components/Containers/FaqContainer';
 
 window.store = Store;
 
@@ -31,6 +32,16 @@ const App = () => {
                         <div>
                             <HeaderContainer/>
                             <MoviePageContainer/>
+                            <Footer/>
+                        </div>
+                    }
+                />
+                <Route 
+                    path={'/faq'}
+                    render={() =>
+                        <div>
+                            <HeaderContainer/>
+                            <FaqContainer/>
                             <Footer/>
                         </div>
                     }

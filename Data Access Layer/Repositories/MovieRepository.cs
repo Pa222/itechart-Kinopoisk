@@ -25,13 +25,10 @@ namespace Data_Access_Layer.Repositories
                 .Skip(delta * pageSize).Take(pageSize).AsNoTracking().ToListAsync();
         }
 
-        /////////////////////
         public decimal GetAmountOfMovies()
         {
             return Db.Movies.Count();
         }
-
-        /////////////////////
 
         public async Task<Movie> GetAsync(int id)
         {
