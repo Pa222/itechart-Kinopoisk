@@ -9,13 +9,13 @@ const Catalog = (props) => {
     return (
         <div className={classes.wrapper}>
             {
-                props.isLoading &&
+                props.loading &&
                 <div className={classes.wrapper__loadingContainer}>
                     <img className={classes.wrapper__loading} src="./Loading.gif" alt="Loading..."></img>
                 </div>
             }
             {
-                !props.isLoading &&
+                !props.loading &&
                 <div className={classes.wrapper__catalogContainer}>
                     <div className={classes.wrapper__catalog}>
                         {

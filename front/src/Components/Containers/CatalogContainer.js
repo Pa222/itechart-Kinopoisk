@@ -6,12 +6,12 @@ const CatalogContainer = () => {
     const [movies, setMovies] = useState();
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [isLoading, setIsLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const history = useHistory();
 
     useEffect(() => {
         (async () => {
-            setIsLoading(true);
+            setLoading(true);
 
             let response = await fetch(`http://localhost:28880/api/Catalog/get-page/1`);
             let json = await response.json();
@@ -19,12 +19,12 @@ const CatalogContainer = () => {
             setMovies(json.movies);
             setTotalPages(json.totalPages);
 
-            setIsLoading(false);
+            setLoading(false);
         })()
     }, [])
 
     const changePage = async (e, pageNumber) => {
-        setIsLoading(true);
+        setLoading(true);
 
         let response = await fetch(`http://localhost:28880/api/Catalog/get-page/${pageNumber}`);
         let json = await response.json();
@@ -33,7 +33,7 @@ const CatalogContainer = () => {
         setPage(json.pageNumber);
         setTotalPages(json.totalPages);
 
-        setIsLoading(false);
+        setLoading(false);
     }
 
     const openMoviePage = (id) => {
@@ -41,7 +41,7 @@ const CatalogContainer = () => {
     }
 
     const catalogProps = {
-        isLoading,
+        loading,
         movies,
         page,
         changePage,

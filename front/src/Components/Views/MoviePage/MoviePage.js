@@ -32,6 +32,7 @@ MoviePage.propTypes = {
     image: PropTypes.string,
     createYear: PropTypes.string,
     description: PropTypes.string,
+    loading: PropTypes.bool,
 }
 
 export default MoviePage;
