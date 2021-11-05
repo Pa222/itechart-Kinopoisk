@@ -18,6 +18,7 @@ const CatalogContainer = () => {
 
             setMovies(json.movies);
             setTotalPages(json.totalPages);
+
             setIsLoading(false);
         })()
     }, [])
@@ -29,13 +30,14 @@ const CatalogContainer = () => {
         let json = await response.json();
 
         setMovies(json.movies);
-        setIsLoading(false);
         setPage(json.pageNumber);
         setTotalPages(json.totalPages);
+
+        setIsLoading(false);
     }
 
     const openMoviePage = (id) => {
-        history.push(`/movie/${id}`);
+        history.push(`movie/${id}`);
     }
 
     const catalogProps = {

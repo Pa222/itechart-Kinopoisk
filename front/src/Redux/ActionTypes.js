@@ -1,0 +1,2 @@
+export const UPDATE_MOVIE = "UPDATE_MOVIE";
+export const FETCH_MOVIE_ASYNC = "FETCH_MOVIE_ASYNC";

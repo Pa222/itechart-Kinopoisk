@@ -10,7 +10,7 @@ const Movie = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.movie} onClick={handleClick}>
-            <img className={classes.movie__poster} src={props.image} alt={props.Title}></img>
+            <img className={classes.movie__poster} src={props.image} alt={props.title}></img>
             <p className={classes.movie__title}>{props.title}</p>
             <p className={classes.movie__year}>({props.createYear})</p>
         </div>

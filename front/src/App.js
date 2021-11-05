@@ -6,6 +6,10 @@ import MoviePageContainer from './Components/Containers/MoviePageContainer';
 import Footer from './Components/Views/Footer/Footer';
 import ErrorPage from './Components/Views/ErrorPage';
 
+import Store from './Redux/Store';
+
+window.store = Store;
+
 const App = () => {
     return (
         <div>
@@ -22,7 +26,7 @@ const App = () => {
                     }
                 />
                 <Route 
-                    path={'/movie/'}
+                    path={'/movie/:int'}
                     render={() =>
                         <div>
                             <HeaderContainer/>
