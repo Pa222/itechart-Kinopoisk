@@ -12,9 +12,6 @@ namespace Data_Access_Layer.Interfaces
 
         public Task<Movie> GetAsync(int id);
 
-        /////////////////////
         public decimal GetAmountOfMovies();
-
-        /////////////////////
     }
 }

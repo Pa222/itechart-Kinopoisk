@@ -9,6 +9,6 @@ namespace KinopoiskAPI.Dto
         public int PageNumber { get; set; }
         public int TotalPages { get; set; }
 
-        public static readonly int PageSize = 8;
+        public int PageSize { get; set; }
     }
 }

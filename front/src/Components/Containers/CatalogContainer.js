@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router";
+import KinopoiskApi from "../../Api/KinopoiskApi";
 import Catalog from "../Views/Catalog/Catalog";
 
 const CatalogContainer = () => {
@@ -13,11 +14,10 @@ const CatalogContainer = () => {
         (async () => {
             setLoading(true);
 
-            let response = await fetch(`http://localhost:28880/api/Catalog/get-page/1`);
-            let json = await response.json();
+            let response = await KinopoiskApi.getMoviesPage(1, 8);
 
-            setMovies(json.movies);
-            setTotalPages(json.totalPages);
+            setMovies(response.movies);
+            setTotalPages(response.totalPages);
 
             setLoading(false);
         })()
@@ -26,12 +26,11 @@ const CatalogContainer = () => {
     const changePage = async (e, pageNumber) => {
         setLoading(true);
 
-        let response = await fetch(`http://localhost:28880/api/Catalog/get-page/${pageNumber}`);
-        let json = await response.json();
+        let response = await KinopoiskApi.getMoviesPage(pageNumber, 8);
 
-        setMovies(json.movies);
-        setPage(json.pageNumber);
-        setTotalPages(json.totalPages);
+        setMovies(response.movies);
+        setPage(response.pageNumber);
+        setTotalPages(response.totalPages);
 
         setLoading(false);
     }

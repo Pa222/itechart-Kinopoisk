@@ -34,11 +34,10 @@ namespace KinopoiskAPI.Services
 
         public async Task<MoviePageDto> GetPage(MoviePageDto info)
         {
-            var result = await _unitOfWork.Movies.GetPageAsync(info.PageNumber, MoviePageDto.PageSize);
+            var result = await _unitOfWork.Movies.GetPageAsync(info.PageNumber, info.PageSize);
 
             info.Movies = MapMovies(result);
-
-            info.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / MoviePageDto.PageSize);
+            info.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / info.PageSize);
 
             return info;
         }
