@@ -1,26 +1,48 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router";
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
+import { fetchMovieAsync } from "../../Redux/Actions";
 
-const HeaderContainer = () => {
-    const [isMenuOpened, setIsMenuOpened] = useState(false);
+const HeaderContainer = (props) => {
+    const [menuOpened, setMenuOpened] = useState(false);
+    const [searchText, setSearchText] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     const history = useHistory();
 
-    const toggleMenu = () => setIsMenuOpened(!isMenuOpened);
+    useEffect(() => {
+        (async () => {
+            let response = await KinopoiskApi.getMoviesByTitle(searchText);
+            setSearchResults(response.slice(0, 5));
+        })();
+    }, [searchText]);
 
-    const goToMainPage = () => {
-        history.push('/');
+    const toggleMenu = () => setMenuOpened(!menuOpened);
+
+    const handleSearchBoxChange = (e) => setSearchText(e.target.value); 
+
+    const goToMoviePage = (id) => {
+        history.push(`/movie/${id}`);
+        props.getMovie(id);
+        setSearchText('');
+        document.querySelector("input[name='searchbox']").value = "";
     }
 
-    const goToFaqPage = () => {
-        history.push('/faq');
-    }
+    const goToMainPage = () => history.push('/');
+
+    const goToFaqPage = () => history.push('/faq');
 
     const headerProps = {
+        menuOpened,
+        searchText,
+        searchResults,
         toggleMenu,
-        isMenuOpened,
         goToMainPage,
         goToFaqPage,
+        goToMoviePage,
+        handleSearchBoxChange,
     }
 
     return (
@@ -28,4 +50,14 @@ const HeaderContainer = () => {
     );
 }
 
-export default HeaderContainer;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMovie: (id) => dispatch(fetchMovieAsync(id)),
+    }
+}
+
+HeaderContainer.propTypes = {
+    getMovie: PropTypes.func,
+}
+
+export default connect(null, mapDispatchToProps)(HeaderContainer);

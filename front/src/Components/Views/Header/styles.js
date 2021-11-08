@@ -30,11 +30,18 @@ const useStyles = makeStyles({
         cursor: "pointer"
     },
     header__searchBoxContainer: {
+        position: "relative",
         maxWidth: "400px",
         display: "flex",
         flexDirection: "row",
         borderRadius: "5px",
         backgroundColor: "#3e3e3e",
+    },
+    header__searchResults: {
+        top: "40px",
+        position: "absolute",
+        width: "100%",
+        backgroundColor: "white",
     },
     header__searchBox: {
         padding: "5px",

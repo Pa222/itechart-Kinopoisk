@@ -22,12 +22,23 @@ namespace Data_Access_Layer.Repositories
         {
             var delta = pageNumber == 1 ? 0 : pageNumber - 1;
             return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
-                .Skip(delta * pageSize).Take(pageSize).AsNoTracking().ToListAsync();
+                .Skip(delta * pageSize)
+                .Take(pageSize)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public decimal GetAmountOfMovies()
         {
             return Db.Movies.Count();
+        }
+
+        public async Task<List<Movie>> GetMoviesByTitle(string title)
+        {
+            var tmp = await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
+                .Where(m => m.Title.Contains(title))
+                .ToListAsync();
+            return tmp;
         }
 
         public async Task<Movie> GetAsync(int id)

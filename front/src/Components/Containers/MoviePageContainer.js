@@ -9,13 +9,9 @@ const MoviePageContainer = (props) => {
     const history = useHistory();
 
     useEffect(() => {
-        //on mount
-        (() => {
-            const id = history.location.pathname.match(/(\d+)/)[0];
-            props.getMovie(id);
-        })()
+        const id = history.location.pathname.match(/(\d+)/)[0];
+        props.getMovie(id);
 
-        //on unmount
         return () => {
             props.cleanMovie();
         }

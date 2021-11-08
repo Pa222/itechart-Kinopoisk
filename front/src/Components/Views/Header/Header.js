@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
+import SearchResult from "./SearchResult/SearchResult";
 
 const Header = (props) => {
     const classes = useStyles();
@@ -12,13 +13,28 @@ const Header = (props) => {
                     <p>КиноПоиск</p>
                 </div>
                 <div className={classes.header__searchBoxContainer}>
-                    <input className={classes.header__searchBox} type="text" placeholder="Поиск"></input>
-                    <img className={classes.header__searchButton} src="./search.png" alt="Поиск"></img>
+                    <input 
+                        className={classes.header__searchBox} 
+                        type="text" 
+                        name="searchbox"
+                        placeholder="Поиск"
+                        onChange={props.handleSearchBoxChange}
+                    ></input>
+                    <div className={classes.header__searchResults}>
+                        {
+                            props.searchResults !== [] &&
+                            props.searchResults.map(result => {
+                                return (
+                                    <SearchResult key={result.id} goToMoviePage={props.goToMoviePage} {...result} />
+                                );
+                            })
+                        }
+                    </div>
                 </div>
                 <div>
                     <img className={classes.header__userImage} src="./user.png" alt="User" onClick={props.toggleMenu}></img>
                     {
-                        props.isMenuOpened &&
+                        props.menuOpened &&
                         <div className={classes.header__menu}>
                             <input className={classes.header__menuItem} type="button" value="Войти"></input>
                             <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
@@ -31,10 +47,14 @@ const Header = (props) => {
 }
 
 Header.propTypes = {
+    menuOpened: PropTypes.bool,
+    searchText: PropTypes.string,
+    searchResults: PropTypes.array,
     toggleMenu: PropTypes.func,
     goToMainPage: PropTypes.func,
     goToFaqPage: PropTypes.func,
-    isMenuOpened: PropTypes.bool,
+    goToMoviePage: PropTypes.func,
+    handleSearchBoxChange: PropTypes.func,
 }
 
 export default Header;

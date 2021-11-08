@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from "redux";
-import Reducer from "./Reducer";
+import MovieReducer from "./Reducers/MovieReducer";
 import createSagaMiddleware from "redux-saga";
-import { watchFetchMovie } from "./Saga/MovieSaga";
+import rootSaga from "./Saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,8 +16,8 @@ const defaultState = {
     },
 }
 
-const Store = createStore(Reducer, defaultState, applyMiddleware(sagaMiddleware));
+const Store = createStore(MovieReducer, defaultState, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(watchFetchMovie);
+sagaMiddleware.run(rootSaga);
 
 export default Store;

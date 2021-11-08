@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using KinopoiskAPI.Dto;
 
 namespace KinopoiskAPI.Services.Interfaces
@@ -8,5 +9,7 @@ namespace KinopoiskAPI.Services.Interfaces
         public Task<MoviePageDto> GetPage(MoviePageDto info);
 
         public Task<MovieInfoDto> Get(int id);
+
+        public Task<List<MovieInfoDto>> GetMoviesByTitle(string title);
     }
 }

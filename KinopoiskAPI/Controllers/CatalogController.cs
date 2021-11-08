@@ -16,7 +16,7 @@ namespace KinopoiskAPI.Controllers
             _movieService = movieService;
         }
 
-        [HttpGet("get/{id}")]
+        [HttpGet("get")]
         public async Task<IActionResult> Get(int id)
         {
             var movies = await _movieService.Get(id);
@@ -31,6 +31,13 @@ namespace KinopoiskAPI.Controllers
                 PageNumber = page,
                 PageSize = size,
             });
+            return Ok(movies);
+        }
+
+        [HttpGet("get-by-title")]
+        public async Task<IActionResult> GetMoviesByTitle(string title)
+        {
+            var movies = await _movieService.GetMoviesByTitle(title);
             return Ok(movies);
         }
     }

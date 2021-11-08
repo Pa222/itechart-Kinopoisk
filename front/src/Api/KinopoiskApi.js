@@ -11,8 +11,15 @@ class KinopoiskApi{
     }
 
     static getMovieById = async (id) => {
-        let response = await fetch(`http://localhost:28880/api/Catalog/get/${id}`);
+        let response = await fetch(`http://localhost:28880/api/Catalog/get?id=${id}`);
         return await response.json();
+    }
+
+    static getMoviesByTitle = async (title) => {
+        if (typeof title === "string"){
+            let response = await fetch(`http://localhost:28880/api/Catalog/get-by-title?title=${title}`);
+            return await response.json();
+        }
     }
 }
 

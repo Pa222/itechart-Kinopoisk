@@ -50,5 +50,11 @@ namespace KinopoiskAPI.Services
             movies.GenreMovies = result.GenreMovies.Select(t => t.Genre.Name).ToList();
             return movies;
         }
+
+        public async Task<List<MovieInfoDto>> GetMoviesByTitle(string title)
+        {
+            var result = await _unitOfWork.Movies.GetMoviesByTitle(title);
+            return MapMovies(result);
+        }
     }
 }

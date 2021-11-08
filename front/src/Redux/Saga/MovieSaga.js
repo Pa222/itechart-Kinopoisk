@@ -12,7 +12,7 @@ function* fetchMovieAsync(action){
     try{
         yield put(cleanMovie());
         const movie = yield call(() => {
-            return KinopoiskApi.getMoviesById(action.id);
+            return KinopoiskApi.getMovieById(action.id);
         })
         yield put(updateMovie(movie));
     } catch(e){
