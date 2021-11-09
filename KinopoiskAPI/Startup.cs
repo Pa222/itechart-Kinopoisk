@@ -2,8 +2,10 @@ using Data_Access_Layer;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Model;
 using Data_Access_Layer.Repositories;
+using KinopoiskAPI.Jwt;
 using KinopoiskAPI.Services;
 using KinopoiskAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace KinopoiskAPI
 {
@@ -33,7 +36,24 @@ namespace KinopoiskAPI
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddTransient<IFaqService, FaqService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = AuthOptions.Iss,
+                        ValidateAudience = true,
+                        ValidAudience = AuthOptions.Aud,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
 
             services.AddCors();
 
@@ -50,6 +70,9 @@ namespace KinopoiskAPI
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

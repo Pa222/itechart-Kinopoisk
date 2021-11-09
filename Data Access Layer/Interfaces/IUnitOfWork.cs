@@ -1,4 +1,5 @@
 ﻿using Data_Access_Layer.Model;
+using Data_Access_Layer.Repositories.Interfaces;
 
 namespace Data_Access_Layer.Interfaces
 {
@@ -7,5 +8,6 @@ namespace Data_Access_Layer.Interfaces
         IMovieRepository Movies { get; }
         IRepository<Genre> Genres { get; }
         IRepository<Faq> Faqs { get; }
+        IUserRepository Users { get; }
     }
 }

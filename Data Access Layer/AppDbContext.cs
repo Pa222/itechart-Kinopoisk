@@ -12,8 +12,8 @@ namespace Data_Access_Layer
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<GenreMovie> GenreMovies { get; set; }
-
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -38,6 +38,18 @@ namespace Data_Access_Layer
                 .HasForeignKey(gi => gi.MovieId);
 
             //Filling
+
+            modelBuilder.Entity<User>().HasData(new User()
+            {
+                Id = 1,
+                Role = Role.Admin,
+                Name = "Квит Кирилл Витальевич",
+                Email = "kbroom135@gmail.com",
+                Gender = Gender.Male,
+                PhoneNumber = "+375295189484",
+                Password = "112233",
+                CardNumber = "1234 5678 1234 5678"
+            });
 
             var genres = new List<string>()
             {
