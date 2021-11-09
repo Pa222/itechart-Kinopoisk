@@ -18,6 +18,7 @@ const Header = (props) => {
                         type="text" 
                         name="searchbox"
                         placeholder="Поиск"
+                        autoComplete="off"
                         onChange={props.handleSearchBoxChange}
                     ></input>
                     <div className={classes.header__searchResults}>
@@ -36,7 +37,7 @@ const Header = (props) => {
                     {
                         props.menuOpened &&
                         <div className={classes.header__menu}>
-                            <input className={classes.header__menuItem} type="button" value="Войти"></input>
+                            <input className={classes.header__menuItem} type="button" value="Войти" onClick={props.goToLoginPage}></input>
                             <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
                         </div>
                     }
@@ -54,6 +55,7 @@ Header.propTypes = {
     goToMainPage: PropTypes.func,
     goToFaqPage: PropTypes.func,
     goToMoviePage: PropTypes.func,
+    goToLoginPage: PropTypes.func,
     handleSearchBoxChange: PropTypes.func,
 }
 

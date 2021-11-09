@@ -29,9 +29,6 @@ namespace KinopoiskAPI
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>();
-
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IMovieRepository, MovieRepository>();
@@ -53,9 +50,6 @@ namespace KinopoiskAPI
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

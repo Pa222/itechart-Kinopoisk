@@ -33,7 +33,15 @@ const HeaderContainer = (props) => {
 
     const goToMainPage = () => history.push('/');
 
-    const goToFaqPage = () => history.push('/faq');
+    const goToFaqPage = () => {
+        history.push('/faq');
+        toggleMenu();
+    }
+
+    const goToLoginPage = () => {
+        history.push('/login');
+        toggleMenu();
+    }
 
     const headerProps = {
         menuOpened,
@@ -43,6 +51,7 @@ const HeaderContainer = (props) => {
         goToMainPage,
         goToFaqPage,
         goToMoviePage,
+        goToLoginPage,
         handleSearchBoxChange,
     }
 

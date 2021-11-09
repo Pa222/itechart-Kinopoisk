@@ -8,6 +8,8 @@ import ErrorPage from './Components/Views/ErrorPage';
 
 import Store from './Redux/Store';
 import FaqContainer from './Components/Containers/FaqContainer';
+import LoginContainer from './Components/Containers/LoginContainer';
+import RegistrationContainer from './Components/Containers/RegistrationContainer';
 
 window.store = Store;
 
@@ -42,6 +44,26 @@ const App = () => {
                         <div>
                             <HeaderContainer/>
                             <FaqContainer/>
+                            <Footer/>
+                        </div>
+                    }
+                />
+                <Route
+                    path={'/login'}
+                    render={() => 
+                        <div>
+                            <HeaderContainer/>
+                            <LoginContainer/>
+                            <Footer/>
+                        </div>
+                    }
+                />
+                <Route
+                    path={'/register'}
+                    render={() => 
+                        <div>
+                            <HeaderContainer/>
+                            <RegistrationContainer/>
                             <Footer/>
                         </div>
                     }

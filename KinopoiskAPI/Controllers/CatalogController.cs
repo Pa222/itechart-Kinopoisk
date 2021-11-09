@@ -24,7 +24,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [HttpGet("get-page")]
-        public async Task<IActionResult> GetPage(int page, int size)
+        public async Task<IActionResult> GetPage(int page, int size = 8)
         {
             var movies = await _movieService.GetPage(new MoviePageDto()
             {

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data_Access_Layer
 {
-    public class AppDbContext : IdentityDbContext<User>
+    public class AppDbContext : DbContext
     {
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
