@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router";
+import KinopoiskApi from "../../Api/KinopoiskApi";
 import Login from "../Views/Login/Login";
 
 const LoginContainer = () => {
@@ -14,8 +15,9 @@ const LoginContainer = () => {
         name === "password" && setPassword(value);
     }
 
-    const handleSubmit = () => {
-        console.log(`${email}: ${password}`);
+    const handleSubmit = async () => {
+        const response = await KinopoiskApi.auth(email, password);
+        console.log({...response});
     }
 
     const goToRegisterPage = () => history.push("/register");

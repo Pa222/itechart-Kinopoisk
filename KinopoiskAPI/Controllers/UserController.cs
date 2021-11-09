@@ -22,9 +22,16 @@ namespace KinopoiskAPI.Controllers
             _userService = userService;
         }
 
+        [Authorize]
+        [HttpGet("authtest")]
+        public IActionResult Test()
+        {
+            return Ok("Authorized");
+        }
+
         [AllowAnonymous]
         [HttpPost("auth")]
-        public async Task<IActionResult> Auth(UserLoginDto info)
+        public async Task<IActionResult> Auth([FromBody] UserLoginDto info)
         {
             var user = await _userService.GetUser(info);
 
