@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Net.Mime;
 using Data_Access_Layer.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data_Access_Layer
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -20,6 +21,7 @@ namespace Data_Access_Layer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Genre>().Property(p => p.Name).IsRequired().HasMaxLength(20);
             modelBuilder.Entity<Movie>().Property(p => p.Title).IsRequired().HasMaxLength(125);
             modelBuilder.Entity<Faq>().Property(p => p.Question).IsRequired();
@@ -35,7 +37,7 @@ namespace Data_Access_Layer
                 .WithMany(gm => gm.GenreMovies)
                 .HasForeignKey(gi => gi.MovieId);
 
-            //Заполнение данными
+            //Filling
 
             var genres = new List<string>()
             {

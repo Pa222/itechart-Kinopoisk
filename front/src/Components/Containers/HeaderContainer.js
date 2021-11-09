@@ -26,6 +26,7 @@ const HeaderContainer = (props) => {
     const goToMoviePage = (id) => {
         history.push(`/movie/${id}`);
         props.getMovie(id);
+        
         setSearchText('');
         document.querySelector("input[name='searchbox']").value = "";
     }

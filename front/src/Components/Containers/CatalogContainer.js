@@ -14,7 +14,7 @@ const CatalogContainer = () => {
         (async () => {
             setLoading(true);
 
-            let response = await KinopoiskApi.getMoviesPage(1, 8);
+            let response = await KinopoiskApi.getMoviesPage(1);
 
             setMovies(response.movies);
             setTotalPages(response.totalPages);
@@ -26,7 +26,7 @@ const CatalogContainer = () => {
     const changePage = async (e, pageNumber) => {
         setLoading(true);
 
-        let response = await KinopoiskApi.getMoviesPage(pageNumber, 8);
+        let response = await KinopoiskApi.getMoviesPage(pageNumber);
 
         setMovies(response.movies);
         setPage(response.pageNumber);

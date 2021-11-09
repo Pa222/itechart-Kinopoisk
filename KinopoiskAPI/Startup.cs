@@ -1,10 +1,12 @@
 using Data_Access_Layer;
 using Data_Access_Layer.Interfaces;
+using Data_Access_Layer.Model;
 using Data_Access_Layer.Repositories;
 using KinopoiskAPI.Services;
 using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,10 @@ namespace KinopoiskAPI
             var connection = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IMovieRepository, MovieRepository>();
@@ -48,6 +54,7 @@ namespace KinopoiskAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

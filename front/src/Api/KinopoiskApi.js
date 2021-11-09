@@ -1,6 +1,6 @@
 
 class KinopoiskApi{
-    static getMoviesPage = async (page, size) => {
+    static getMoviesPage = async (page, size = 8) => {
         let response = await fetch(`http://localhost:28880/api/Catalog/get-page?page=${page}&size=${size}`);
         return await response.json();
     }
