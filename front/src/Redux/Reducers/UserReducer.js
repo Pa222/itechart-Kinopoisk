@@ -1,6 +1,6 @@
 import { CLEAN_USER, UPDATE_USER } from "../ActionTypes";
 
-const defaultState = {
+let defaultState = {
     role: '',
     name: '',
     phoneNumber: '',
