@@ -37,15 +37,16 @@ const Header = (props) => {
                     {
                         props.menuOpened && !props.authorized &&
                             <div className={classes.header__menu}>
-                                <input className={classes.header__menuItem} type="button" value="Войти" onClick={props.goToLoginPage}></input>
                                 <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
+                                <input className={classes.header__menuItem} type="button" value="Войти" onClick={props.goToLoginPage}></input>
                             </div>
                     }
                     {
                         props.menuOpened && props.authorized &&
                         <div className={classes.header__menu}>
-                            <input className={classes.header__menuItem} type="button" value="Выйти" onClick={props.logout}></input>
+                            <input className={classes.header__menuItem} type="button" onClick={props.goToProfilePage} value="Профиль"></input>
                             <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
+                            <input className={classes.header__menuItem} type="button" value="Выйти" onClick={props.logout}></input>
                         </div>
                     }
                 </div>
@@ -66,6 +67,7 @@ Header.propTypes = {
     goToFaqPage: PropTypes.func,
     goToMoviePage: PropTypes.func,
     goToLoginPage: PropTypes.func,
+    goToProfilePage: PropTypes.func,
     handleSearchBoxChange: PropTypes.func,
 }
 

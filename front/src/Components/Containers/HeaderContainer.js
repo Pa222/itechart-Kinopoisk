@@ -43,6 +43,11 @@ const HeaderContainer = (props) => {
         toggleMenu();
     }
 
+    const goToProfilePage = () => {
+        history.push('/profile');
+        toggleMenu();
+    }
+
     const logout = () => {
         props.logout();
         toggleMenu();
@@ -60,6 +65,7 @@ const HeaderContainer = (props) => {
         goToFaqPage,
         goToMoviePage,
         goToLoginPage,
+        goToProfilePage,
         handleSearchBoxChange,
     }
 
