@@ -43,6 +43,9 @@ namespace KinopoiskAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto info)
         {
+            var user = await _userService.GetUser(info.Email);
+            if (user != null)
+                return BadRequest();
             if (await _userService.AddUser(info))
                 return Ok();
             return BadRequest();

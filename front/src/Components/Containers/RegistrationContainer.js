@@ -19,8 +19,8 @@ const RegistrationContainer = () => {
         name === "repeatPassword" && setRepeatPassword(value);
     }
 
-    const handleSubmit = () => {
-        if (KinopoiskApi.register({email, password, name})){
+    const handleSubmit = async () => {
+        if (await KinopoiskApi.register({email, password, name})){
             setMessage("Вы успешно зарегистрировались. Перейдите на страницу авторизации для входа");
             return
         }
