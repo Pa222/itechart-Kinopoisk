@@ -1,6 +1,5 @@
 using Data_Access_Layer;
 using Data_Access_Layer.Interfaces;
-using Data_Access_Layer.Model;
 using Data_Access_Layer.Repositories;
 using KinopoiskAPI.Jwt;
 using KinopoiskAPI.Services;
@@ -8,7 +7,6 @@ using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

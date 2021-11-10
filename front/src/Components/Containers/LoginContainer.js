@@ -54,12 +54,6 @@ const LoginContainer = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         cleanUser: () => dispatch(cleanUser()),
@@ -72,4 +66,4 @@ LoginContainer.propTypes = {
     updateUser: PropTypes.func,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(null, mapDispatchToProps)(LoginContainer);

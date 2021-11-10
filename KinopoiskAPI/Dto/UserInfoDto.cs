@@ -1,6 +1,4 @@
-﻿using Data_Access_Layer.Model;
-
-namespace KinopoiskAPI.Dto
+﻿namespace KinopoiskAPI.Dto
 {
     public class UserInfoDto
     {

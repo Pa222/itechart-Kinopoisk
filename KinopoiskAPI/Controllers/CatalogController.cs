@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using KinopoiskAPI.Dto;
+﻿using KinopoiskAPI.Dto;
 using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Controllers
 {

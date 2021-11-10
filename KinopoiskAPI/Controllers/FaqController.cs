@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using KinopoiskAPI.Services.Interfaces;
+﻿using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Controllers
 {

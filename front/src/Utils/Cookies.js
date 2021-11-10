@@ -6,6 +6,10 @@ export const addCookie = (name, value) => {
     cookies.set(name, value);
 }
 
+export const removeCookie = (name) => {
+    cookies.remove(name);
+}
+
 export const getCookies = () => {
     return cookies.getAll();
 }

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Data_Access_Layer.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Data_Access_Layer.Model;
 
 namespace Data_Access_Layer.Interfaces
 {

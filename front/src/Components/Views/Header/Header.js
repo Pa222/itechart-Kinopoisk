@@ -35,9 +35,16 @@ const Header = (props) => {
                 <div>
                     <img className={classes.header__userImage} src={props.avatar} alt="User" onClick={props.toggleMenu}></img>
                     {
-                        props.menuOpened &&
+                        props.menuOpened && !props.authorized &&
+                            <div className={classes.header__menu}>
+                                <input className={classes.header__menuItem} type="button" value="Войти" onClick={props.goToLoginPage}></input>
+                                <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
+                            </div>
+                    }
+                    {
+                        props.menuOpened && props.authorized &&
                         <div className={classes.header__menu}>
-                            <input className={classes.header__menuItem} type="button" value="Войти" onClick={props.goToLoginPage}></input>
+                            <input className={classes.header__menuItem} type="button" value="Выйти" onClick={props.logout}></input>
                             <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
                         </div>
                     }
@@ -52,7 +59,9 @@ Header.propTypes = {
     searchText: PropTypes.string,
     searchResults: PropTypes.array,
     avatar: PropTypes.string,
+    authorized: PropTypes.bool,
     toggleMenu: PropTypes.func,
+    logout: PropTypes.func,
     goToMainPage: PropTypes.func,
     goToFaqPage: PropTypes.func,
     goToMoviePage: PropTypes.func,

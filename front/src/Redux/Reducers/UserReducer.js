@@ -1,6 +1,20 @@
+import { removeCookie } from "../../Utils/Cookies";
 import { CLEAN_USER, UPDATE_USER } from "../ActionTypes";
 
-let defaultState = {
+const defaultState = {
+    authorized: false,
+    user: {
+        role: '',
+        name: '',
+        phoneNumber: '',
+        gender: '',
+        email: '',
+        cardNumber: '',
+        avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png',
+    },
+}
+
+const cleanUser = {
     role: '',
     name: '',
     phoneNumber: '',
@@ -13,11 +27,14 @@ let defaultState = {
 const UserReducer = (state = defaultState, action) => {
     switch(action.type){
         case UPDATE_USER:{
-            state = action.payload;
+            state.user = action.payload;
+            state.authorized = true;
             break;
         }
         case CLEAN_USER:{
-            state = defaultState;
+            state.user = cleanUser;
+            state.authorized = false;
+            removeCookie("AuthToken");
             break;
         }
         default:

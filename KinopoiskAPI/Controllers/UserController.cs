@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Policy;
-using System.Threading.Tasks;
-using AutoMapper;
-using KinopoiskAPI.Dto;
-using KinopoiskAPI.Jwt;
+﻿using KinopoiskAPI.Dto;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.Hasher;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Controllers
 {
@@ -19,12 +11,10 @@ namespace KinopoiskAPI.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
         }
 
         [Authorize]
@@ -32,11 +22,9 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> GetUser()
         {
             var user = await _userService.GetUser(User.Identity?.Name);
-
-            var response = new UserInfoDto();
-            _mapper.Map(user, response);
-
-            return Ok(response);
+            if (user != null)
+                return Ok(_userService.GetUserInfo(user));
+            return Unauthorized();
         }
 
         [AllowAnonymous]
@@ -48,27 +36,7 @@ namespace KinopoiskAPI.Controllers
             if (user == null || !Hasher.CheckPassword(info.Password, user.Password, user.Salt))
                 return Unauthorized();
 
-            var claims = new List<Claim>
-            {
-                new(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new(ClaimsIdentity.DefaultRoleClaimType, user.Role),
-            };
-
-            var identity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
-
-            var jwt = new JwtSecurityToken(
-                issuer: AuthOptions.Iss,
-                audience: AuthOptions.Aud,
-                notBefore: DateTime.UtcNow,
-                claims: identity.Claims,
-                expires: DateTime.UtcNow.AddMinutes(AuthOptions.LifeTime),
-                signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature)
-            );
-
-            var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return Ok(token); ;
+            return Ok(_userService.GetToken(user));
         }
     }
 }

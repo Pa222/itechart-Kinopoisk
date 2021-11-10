@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mime;
-using Data_Access_Layer.Model;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Data_Access_Layer.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace Data_Access_Layer
 {

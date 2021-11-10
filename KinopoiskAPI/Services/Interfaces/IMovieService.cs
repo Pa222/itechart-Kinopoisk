@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using KinopoiskAPI.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using KinopoiskAPI.Dto;
 
 namespace KinopoiskAPI.Services.Interfaces
 {
