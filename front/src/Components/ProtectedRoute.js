@@ -1,5 +1,6 @@
 import React from "react";
-import { Route } from "react-router";
+import { Redirect, Route } from "react-router";
+import Store from '../Redux/Store';
 
 const ProtectedRoute = ({component: Comp, ...rest}) => {
 
@@ -7,7 +8,13 @@ const ProtectedRoute = ({component: Comp, ...rest}) => {
         <Route
             {...rest}
             render={props => {
-                return <Comp {...props} />
+                console.log(Comp);
+                if (Store.getState().userState.authorized){
+                    return <Comp {...props} />
+                }
+                return <Redirect to={{
+                    pathname: '/',
+                }} />
             }}
         />
     );

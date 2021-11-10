@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
+import ProtectedRoute from './Components/ProtectedRoute';
 import CatalogContainer from './Components/Containers/CatalogContainer';
 import HeaderContainer from './Components/Containers/HeaderContainer';
 import MoviePageContainer from './Components/Containers/MoviePageContainer';
@@ -7,62 +8,48 @@ import FaqContainer from './Components/Containers/FaqContainer';
 import LoginContainer from './Components/Containers/LoginContainer';
 import RegistrationContainer from './Components/Containers/RegistrationContainer';
 import Footer from './Components/Views/Footer/Footer';
-import ErrorPage from './Components/Views/ErrorPage';
+import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
+import ProfileContainer from './Components/Containers/ProfileContainer';
 
 const App = () => {
     return (
         <div>
+            <HeaderContainer/>
             <Switch>
                 <Route 
                     exact
                     path={['/', '/index']}
                     render={() =>
-                        <div>
-                            <HeaderContainer/>
-                            <CatalogContainer/>
-                            <Footer/>
-                        </div>
+                        <CatalogContainer/>
                     }
                 />
                 <Route 
                     path={'/movie/:int'}
                     render={() =>
-                        <div>
-                            <HeaderContainer/>
-                            <MoviePageContainer/>
-                            <Footer/>
-                        </div>
+                        <MoviePageContainer/>
                     }
                 />
                 <Route 
                     path={'/faq'}
                     render={() =>
-                        <div>
-                            <HeaderContainer/>
-                            <FaqContainer/>
-                            <Footer/>
-                        </div>
+                        <FaqContainer/>
                     }
                 />
                 <Route
                     path={'/login'}
                     render={() => 
-                        <div>
-                            <HeaderContainer/>
-                            <LoginContainer/>
-                            <Footer/>
-                        </div>
+                        <LoginContainer/>
                     }
                 />
                 <Route
                     path={'/register'}
                     render={() => 
-                        <div>
-                            <HeaderContainer/>
-                            <RegistrationContainer/>
-                            <Footer/>
-                        </div>
+                        <RegistrationContainer/>
                     }
+                />
+                <ProtectedRoute
+                    path={'/profile'}
+                    component={ProfileContainer}
                 />
                 <Route 
                     render={() =>
@@ -70,6 +57,7 @@ const App = () => {
                     }
                 />
             </Switch>
+            <Footer/>
         </div>
     );
 }
