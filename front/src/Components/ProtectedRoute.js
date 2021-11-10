@@ -8,7 +8,6 @@ const ProtectedRoute = ({component: Comp, ...rest}) => {
         <Route
             {...rest}
             render={props => {
-                console.log(Comp);
                 if (Store.getState().userState.authorized){
                     return <Comp {...props} />
                 }

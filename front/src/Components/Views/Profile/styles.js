@@ -7,9 +7,34 @@ const useStyles = makeStyles({
         backgroundColor: "#f4f4f4",
     },
     wrapper__profileContainer: {
+        padding: "40px",
         minHeight: "900px",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
+    },
+    profileContainer__avatarContainer:{
+        display: "flex",
+        flexDirection: "column"
+    },
+    profileContainer__editButton:{
+        marginTop: "20px",
+    },
+    profileContainer__avatar: {
+        maxWidth: "200px",
+        maxHeight: "300px"
+    },
+    profileContainer__informationContainer:{
+        marginLeft: "100px",
+        display: "flex",
+        flexDirection: "column"
+    },
+    profileContainer__inforamtionKey: {
+        fontSize: "24px",
+        fontStyle: "italic",
+    },
+    profileContainer__informationValue: {
+        marginLeft: "40px",
+        fontSize: "20px",
     },
 });
 

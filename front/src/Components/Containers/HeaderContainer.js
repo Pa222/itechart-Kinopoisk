@@ -49,6 +49,7 @@ const HeaderContainer = (props) => {
     }
 
     const logout = () => {
+        history.push('/');
         props.logout();
         toggleMenu();
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import useStyles from "./styles";
 
 const Profile = (props) => {
@@ -7,10 +8,80 @@ const Profile = (props) => {
     return (
         <div className={classes.wrapper}>
             <div className={classes.wrapper__profileContainer}>
-                
+                <div className={classes.profileContainer__avatarContainer}>
+                    <img className={classes.profileContainer__avatar} src={props.user.avatar} alt="Avatar"></img>
+                    <input 
+                        className={classes.profileContainer__editButton} 
+                        type="button" 
+                        value="Сохранить изменения"
+                        onChange={props.handleChange}
+                        onClick={props.saveChanges}
+                    ></input>
+                </div>
+                <div className={classes.profileContainer__informationContainer}>
+                    <div>
+                        <label className={classes.profileContainer__inforamtionKey}>Имя</label>
+                        <input 
+                            className={classes.profileContainer__informationValue} 
+                            type="text" 
+                            value={props.user.name}
+                            onChange={props.handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label className={classes.profileContainer__inforamtionKey}>E-mail</label>
+                        <input 
+                            className={classes.profileContainer__informationValue} 
+                            type="email" 
+                            value={props.user.email}
+                            onChange={props.handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label className={classes.profileContainer__inforamtionKey}>Номер телефона</label>
+                        <input 
+                            className={classes.profileContainer__informationValue} 
+                            type="tel" 
+                            value={props.user.phoneNumber}
+                            onChange={props.handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label className={classes.profileContainer__inforamtionKey}>Номер карты</label>
+                        <input 
+                            className={classes.profileContainer__informationValue} 
+                            type="tel" 
+                            inputMode="numeric" 
+                            pattern="[0-9\s]{13,19}" 
+                            autoComplete="cc-number" 
+                            maxLength="19" 
+                            placeholder="xxxx xxxx xxxx xxxx"
+                            value={props.user.cardNumber}
+                            onChange={props.handleChange}
+                        ></input>
+                    </div>
+                    <div>
+                        <label className={classes.profileContainer__inforamtionKey}>Пол</label>
+                        <select 
+                            className={classes.profileContainer__informationValue} 
+                            value={props.user.gender}
+                            onChange={props.handleChange}
+                        >
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Undefined">Undefined</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     );
+}
+
+Profile.propTypes = {
+    user: PropTypes.object,
+    saveChanges: PropTypes.func,
+    handleChange: PropTypes.func,
 }
 
 export default Profile;
