@@ -19,8 +19,7 @@ namespace KinopoiskAPI.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        private const string _defaultAvatar =
-            "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg";
+        private const string DefaultAvatar = "https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png";
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -72,7 +71,7 @@ namespace KinopoiskAPI.Services
                 Email = info.Email,
                 Salt = salt,
                 Password = Hasher.GetHash(info.Password, salt),
-                Avatar = _defaultAvatar,
+                Avatar = DefaultAvatar,
                 Role = Role.User.ToString(),
             });
         }

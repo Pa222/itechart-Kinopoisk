@@ -16,6 +16,9 @@ const validatationSchema = Yup.object().shape({
         .min(6, 'Минимальная длина: 6 символоа')
         .required('Обязательно')
         .oneOf([Yup.ref('password'), null], 'Пароли дожны совпадать'),
+    name: Yup.string()
+        .max(100, 'Слишком длинное имя')
+        .required('Обязательно'),
 })
 
 const Registration = (props) => {
@@ -34,6 +37,24 @@ const Registration = (props) => {
                 {({handleChange, handleSubmit, handleBlur, errors, touched}) => (
                 <form onSubmit={handleSubmit}>
                     <div className={classes.wrapper__loginFormContainer}>
+                        <input
+                            className={classes.loginFormContainer__input}
+                            type="text"
+                            name="name"
+                            placeholder="Имя"
+                            value={props.name}
+                            onBlur={handleBlur('name')}
+                            onChange={(e) => {
+                                handleChange(e);
+                                props.handleChange(e);
+                            }}
+                        />
+                        {
+                            errors.name && touched.name &&
+                            <div className={classes.errorMessage}>
+                                {errors.name}
+                            </div> 
+                        }
                         <input
                             className={classes.loginFormContainer__input}
                             type="email"
@@ -88,10 +109,16 @@ const Registration = (props) => {
                                 {errors.repeatPassword}
                             </div> 
                         }
+                        {
+                            props.message !== '' &&
+                            <div className={classes.errorMessage}>
+                                {props.message}
+                            </div> 
+                        }
                         <input 
                             className={[classes.loginFormContainer__input, classes.loginFormContainer__submitButton].join(" ")} 
                             type="submit" 
-                            value="Войти"
+                            value="Зарегистрироваться"
                         />
                         <input
                             className={classes.loginFormContainer__registerButton}
@@ -111,6 +138,8 @@ Registration.propTypes = {
     email: PropTypes.string,
     password: PropTypes.string,
     repeatPassword: PropTypes.string,
+    name: PropTypes.string,
+    message: PropTypes.string,
     handleChange: PropTypes.func,
     handleSubmit: PropTypes.func,
 }
