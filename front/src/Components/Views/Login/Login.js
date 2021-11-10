@@ -67,6 +67,12 @@ const Login = (props) => {
                                 {errors.password}
                             </div> 
                         }
+                        {
+                            props.errorMessage !== '' &&
+                            <div className={classes.errorMessage}>
+                                {props.errorMessage}
+                            </div> 
+                        }
                         <input 
                             className={[classes.loginFormContainer__input, classes.loginFormContainer__submitButton].join(" ")} 
                             type="submit" 
@@ -92,6 +98,7 @@ Login.propTypes = {
     handleSubmit: PropTypes.func,
     email: PropTypes.string,
     password: PropTypes.string,
+    errorMessage: PropTypes.string,
 }
 
 export default Login;

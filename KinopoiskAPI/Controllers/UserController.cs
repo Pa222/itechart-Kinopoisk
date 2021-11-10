@@ -23,7 +23,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("authtest")]
+        [HttpPost("authtest")]
         public IActionResult Test()
         {
             return Ok("Authorized");
@@ -58,17 +58,7 @@ namespace KinopoiskAPI.Controllers
 
             var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var response = new
-            {
-                token,
-                user = identity.Name,
-                name = user.Name,
-                number = user.PhoneNumber,
-                cardNumber = user.CardNumber,
-                gender = user.Gender,
-            };
-
-            return Ok(response); ;
+            return Ok(token); ;
         }
     }
 }

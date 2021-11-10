@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
@@ -10,6 +10,7 @@ const HeaderContainer = (props) => {
     const [menuOpened, setMenuOpened] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const avatar = useSelector(state => state.userState.image);
     const history = useHistory();
 
     useEffect(() => {
@@ -47,6 +48,7 @@ const HeaderContainer = (props) => {
         menuOpened,
         searchText,
         searchResults,
+        avatar,
         toggleMenu,
         goToMainPage,
         goToFaqPage,

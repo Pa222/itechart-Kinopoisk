@@ -1,9 +1,15 @@
 import React from "react";
 import { Route } from "react-router";
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = ({component: Comp, ...rest}) => {
+
     return (
-        <h1>Mock</h1>
+        <Route
+            {...rest}
+            render={props => {
+                return <Comp {...props} />
+            }}
+        />
     );
 }
 

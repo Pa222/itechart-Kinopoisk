@@ -33,11 +33,11 @@ const MoviePageContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        title: state.movie.title,
-        image: state.movie.image,
-        createYear: state.movie.createYear,
-        description: state.movie.description,
-        genres: state.movie.genreMovies,
+        title: state.movieState.title,
+        image: state.movieState.image,
+        createYear: state.movieState.createYear,
+        description: state.movieState.description,
+        genres: state.movieState.genreMovies,
     }
 }
 

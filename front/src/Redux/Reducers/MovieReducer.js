@@ -1,6 +1,6 @@
 import { CLEAN_MOVIE, UPDATE_MOVIE } from "../ActionTypes";
 
-const cleanMovie = {
+const defaultState = {
     id: 0,
     title: 'Empty',
     genreMovies: [],
@@ -9,14 +9,14 @@ const cleanMovie = {
     image: 'Empty',
 }
 
-const MovieReducer = (state, action) => {
+const MovieReducer = (state = defaultState, action) => {
     switch(action.type){
         case CLEAN_MOVIE:{
-            state.movie = cleanMovie;
+            state = defaultState;
             break;
         }
         case UPDATE_MOVIE:{
-            state.movie = action.movie;
+            state = action.payload;
             break;
         }
         default:

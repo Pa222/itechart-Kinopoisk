@@ -1,11 +1,16 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router";
+import { connect } from "react-redux";
+import { addCookie } from "../../Utils/Cookies";
+import { cleanUser } from '../../Redux/Actions';
+import PropTypes from 'prop-types';
 import KinopoiskApi from "../../Api/KinopoiskApi";
 import Login from "../Views/Login/Login";
 
-const LoginContainer = () => {
+const LoginContainer = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const history = useHistory();
 
     const handleChange = (e) => {
@@ -16,8 +21,15 @@ const LoginContainer = () => {
     }
 
     const handleSubmit = async () => {
-        const response = await KinopoiskApi.auth(email, password);
-        console.log({...response});
+        const token = await KinopoiskApi.auth(email, password);
+        if (token === null){
+            props.cleanUser();
+            setErrorMessage("Неверные логин или пароль");
+            return;
+        }
+        setErrorMessage("");
+        addCookie("AuthToken", token);
+        history.push("/");
     }
 
     const goToRegisterPage = () => history.push("/register");
@@ -28,6 +40,7 @@ const LoginContainer = () => {
         handleSubmit,
         email,
         password,
+        errorMessage,
     }
 
     return (
@@ -35,4 +48,24 @@ const LoginContainer = () => {
     );
 };
 
-export default LoginContainer;
+const mapStateToProps = (state) => {
+    return {
+        token: state.userState.token,
+        email: state.userState.email,
+        name: state.userState.name,
+        cardNumber: state.userState.cardNumber,
+        gender: state.userState.gender,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        cleanUser: () => dispatch(cleanUser())
+    }
+}
+
+LoginContainer.propTypes = {
+    cleanUser: PropTypes.func,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

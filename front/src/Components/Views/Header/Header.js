@@ -33,7 +33,7 @@ const Header = (props) => {
                     </div>
                 </div>
                 <div>
-                    <img className={classes.header__userImage} src="./user.png" alt="User" onClick={props.toggleMenu}></img>
+                    <img className={classes.header__userImage} src={props.avatar} alt="User" onClick={props.toggleMenu}></img>
                     {
                         props.menuOpened &&
                         <div className={classes.header__menu}>
@@ -51,6 +51,7 @@ Header.propTypes = {
     menuOpened: PropTypes.bool,
     searchText: PropTypes.string,
     searchResults: PropTypes.array,
+    avatar: PropTypes.string,
     toggleMenu: PropTypes.func,
     goToMainPage: PropTypes.func,
     goToFaqPage: PropTypes.func,
