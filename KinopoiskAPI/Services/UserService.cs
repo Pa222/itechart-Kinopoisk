@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Model;
 using KinopoiskAPI.Dto;
@@ -15,9 +16,9 @@ namespace KinopoiskAPI.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<User> GetUser(UserLoginDto info)
+        public async Task<User> GetUser(string email)
         {
-            return await _unitOfWork.Users.GetByEmail(info.Email);
+            return await _unitOfWork.Users.GetByEmail(email);
         }
     }
 }

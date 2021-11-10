@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using AutoMapper;
 using KinopoiskAPI.Dto;
 using KinopoiskAPI.Jwt;
 using KinopoiskAPI.Services.Interfaces;
+using KinopoiskAPI.Utils.Hasher;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -16,32 +19,39 @@ namespace KinopoiskAPI.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [Authorize]
-        [HttpPost("authtest")]
-        public IActionResult Test()
+        [HttpGet("get-user")]
+        public async Task<IActionResult> GetUser()
         {
-            return Ok("Authorized");
+            var user = await _userService.GetUser(User.Identity?.Name);
+
+            var response = new UserInfoDto();
+            _mapper.Map(user, response);
+
+            return Ok(response);
         }
 
         [AllowAnonymous]
         [HttpPost("auth")]
         public async Task<IActionResult> Auth([FromBody] UserLoginDto info)
         {
-            var user = await _userService.GetUser(info);
+            var user = await _userService.GetUser(info.Email);
 
-            if (user == null || !user.Password.Equals(info.Password))
+            if (user == null || !Hasher.CheckPassword(info.Password, user.Password, user.Salt))
                 return Unauthorized();
 
             var claims = new List<Claim>
             {
                 new(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new(ClaimsIdentity.DefaultRoleClaimType, user.Role.ToString()),
+                new(ClaimsIdentity.DefaultRoleClaimType, user.Role),
             };
 
             var identity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

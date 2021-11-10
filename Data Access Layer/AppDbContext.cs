@@ -42,13 +42,18 @@ namespace Data_Access_Layer
             modelBuilder.Entity<User>().HasData(new User()
             {
                 Id = 1,
-                Role = Role.Admin,
+                Role = Role.Admin.ToString(),
                 Name = "Квит Кирилл Витальевич",
                 Email = "kbroom135@gmail.com",
-                Gender = Gender.Male,
+                Gender = Gender.Male.ToString(),
                 PhoneNumber = "+375295189484",
-                Password = "112233",
-                CardNumber = "1234 5678 1234 5678"
+                Password = "7uGP9aeazU4F7QhxLc3fEkBMcZn5AyQqeDq6MLxBO6Y=",
+                Salt = new byte[]
+                {
+                    143, 188, 230, 183, 101, 3, 38, 186, 29, 23, 147, 73, 165, 102, 250, 161
+                },
+                CardNumber = "1234 5678 1234 5678",
+                Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg"
             });
 
             var genres = new List<string>()

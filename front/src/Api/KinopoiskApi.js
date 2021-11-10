@@ -1,3 +1,5 @@
+import { getCookie } from "../Utils/Cookies";
+
 const ip = "localhost";
 const port = 4000;
 
@@ -38,6 +40,19 @@ class KinopoiskApi{
         }
         const token = await response.text();
         return token;
+    }
+
+    static getUser = async () => {
+        let response = await fetch(`http://${ip}:${port}/api/User/get-user`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${getCookie("AuthToken")}`
+            }
+        });
+        if (response.status === 401){
+            return null;
+        }
+        return await response.json();
     }
 }
 

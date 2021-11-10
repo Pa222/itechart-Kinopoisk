@@ -9,6 +9,7 @@ namespace KinopoiskAPI
         public AutoMapperProfile()
         {
             CreateMap<Movie, MovieInfoDto>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<User, UserInfoDto>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

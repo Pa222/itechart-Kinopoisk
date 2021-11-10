@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { fetchMovieAsync } from "../../Redux/Actions";
 import PropTypes from 'prop-types';
 import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
-import { fetchMovieAsync } from "../../Redux/Actions";
 
 const HeaderContainer = (props) => {
     const [menuOpened, setMenuOpened] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const avatar = useSelector(state => state.userState.image);
     const history = useHistory();
 
     useEffect(() => {
@@ -32,7 +31,10 @@ const HeaderContainer = (props) => {
         document.querySelector("input[name='searchbox']").value = "";
     }
 
-    const goToMainPage = () => history.push('/');
+    const goToMainPage = () => {
+        history.push('/');
+        toggleMenu();
+    }
 
     const goToFaqPage = () => {
         history.push('/faq');
@@ -48,7 +50,7 @@ const HeaderContainer = (props) => {
         menuOpened,
         searchText,
         searchResults,
-        avatar,
+        avatar: props.avatar,
         toggleMenu,
         goToMainPage,
         goToFaqPage,
@@ -62,6 +64,12 @@ const HeaderContainer = (props) => {
     );
 }
 
+const mapStateToProps = (state) => {
+    return {
+        avatar: state.userState.avatar,
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         getMovie: (id) => dispatch(fetchMovieAsync(id)),
@@ -69,7 +77,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 HeaderContainer.propTypes = {
+    avatar: PropTypes.string,
     getMovie: PropTypes.func,
 }
 
-export default connect(null, mapDispatchToProps)(HeaderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

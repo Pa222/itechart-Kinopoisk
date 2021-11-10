@@ -1,11 +1,13 @@
 import { CLEAN_USER, UPDATE_USER } from "../ActionTypes";
 
 const defaultState = {
-    email: '',
+    role: '',
     name: '',
-    cardNumber: '',
+    phoneNumber: '',
     gender: '',
-    image: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png',
+    email: '',
+    cardNumber: '',
+    avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png',
 }
 
 const UserReducer = (state = defaultState, action) => {

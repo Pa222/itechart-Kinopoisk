@@ -6,6 +6,6 @@ namespace KinopoiskAPI.Services.Interfaces
 {
     public interface IUserService
     {
-        public Task<User> GetUser(UserLoginDto info);
+        public Task<User> GetUser(string email);
     }
 }
