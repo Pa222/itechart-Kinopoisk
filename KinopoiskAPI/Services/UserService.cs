@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using KinopoiskAPI.Utils.Hasher;
 
 namespace KinopoiskAPI.Services
 {
@@ -17,6 +18,9 @@ namespace KinopoiskAPI.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+
+        private const string _defaultAvatar =
+            "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg";
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -57,6 +61,20 @@ namespace KinopoiskAPI.Services
             var result = new UserInfoDto();
             _mapper.Map(user, result);
             return result;
+        }
+
+        public async Task<bool> AddUser(UserRegisterDto info)
+        {
+            var salt = Hasher.GetSalt();
+            return await _unitOfWork.Users.Create(new User()
+            {
+                Name = info.Name,
+                Email = info.Email,
+                Salt = salt,
+                Password = Hasher.GetHash(info.Password, salt),
+                Avatar = _defaultAvatar,
+                Role = Role.User.ToString(),
+            });
         }
     }
 }

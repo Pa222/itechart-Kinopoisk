@@ -31,10 +31,7 @@ const HeaderContainer = (props) => {
         document.querySelector("input[name='searchbox']").value = "";
     }
 
-    const goToMainPage = () => {
-        history.push('/');
-        toggleMenu();
-    }
+    const goToMainPage = () => history.push('/');
 
     const goToFaqPage = () => {
         history.push('/faq');

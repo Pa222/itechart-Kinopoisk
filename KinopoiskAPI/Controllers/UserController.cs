@@ -38,5 +38,14 @@ namespace KinopoiskAPI.Controllers
 
             return Ok(_userService.GetToken(user));
         }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] UserRegisterDto info)
+        {
+            if (await _userService.AddUser(info))
+                return Ok();
+            return BadRequest();
+        }
     }
 }

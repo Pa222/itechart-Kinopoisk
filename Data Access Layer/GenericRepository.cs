@@ -25,10 +25,10 @@ namespace Data_Access_Layer
             return await Db.Set<T>().FindAsync(id);
         }
 
-        public async void Create(T item)
+        public async Task<bool> Create(T item)
         {
             Db.Set<T>().Add(item);
-            await Db.SaveChangesAsync();
+            return await Db.SaveChangesAsync() != 0;
         }
 
         public async void Update(T item)
