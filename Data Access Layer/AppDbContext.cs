@@ -80,7 +80,7 @@ namespace Data_Access_Layer
                 {
                     143, 188, 230, 183, 101, 3, 38, 186, 29, 23, 147, 73, 165, 102, 250, 161
                 },
-                Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg"
+                Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/UserAvatars/kbroom135_gmail.com_xw2qe1.jpg"
             });
 
             var genres = new List<string>()
@@ -109,7 +109,7 @@ namespace Data_Access_Layer
                     Description = "Более чем через год после тех событий журналист Эдди Брок пытается приспособиться к жизни в качестве хозяина инопланетного симбиота Венома," +
                                   " который наделяет его сверхчеловеческими способностями. Брок пытается возродить свою карьеру и берет интервью у серийного убийцы Клетуса Касади," +
                                   " который по воле случая становится хозяином Карнажа и сбегает из тюрьмы после неудавшейся казни.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022558/Venom_2_wg6ejn.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022558/MoviePosters/Venom_2_wg6ejn.jpg"
                 },
                 new Movie()
                 {
@@ -121,7 +121,7 @@ namespace Data_Access_Layer
                                   " за помощью лично к королю Франции Карлу VI. Заслушав все свидетельства, король постановил, что конфликт должен быть " +
                                   "разрешён в честном поединке. От исхода битвы зависит судьба не только Ле Гри и Карружа, но и жены последнего. " +
                                   "В случае поражения мужа её должны сжечь на костре за ложные обвинения.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Last_duel_e5rsyn.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Last_duel_e5rsyn.jpg"
                 },
                 new Movie()
                 {
@@ -136,7 +136,7 @@ namespace Data_Access_Layer
                                   " граф Дракулов, — опасный кровопийца! Петр сбегает из демонической усадьбы и спешит в Москву, " +
                                   "чтобы защитить свою невесту от трехсотлетнего вампира. Помочь ему в этом — или помешать — могут" +
                                   " лучшая подруга Вари, Соня, и ее странные кавалеры, а также сын знаменитого профессора Ван Хельсинга Вася.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Drakulov_pjwsdp.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Drakulov_pjwsdp.jpg"
                 },
                 new Movie()
                 {
@@ -149,7 +149,7 @@ namespace Data_Access_Layer
                                   "Берлина приходит приказ — вывезти из Михайловского все исторические ценности. Этого никак не могут допустить ни партизаны," +
                                   " ни местный умелец Сергей, которого связывают с Марией недопустимые, губительные для обоих отношения. Сергей решает любой" +
                                   " ценой спасти достояние своей страны. Пушкинское наследие должно остаться в России. Даже ценой жизни…",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Uchenosti_Plody_iq3hkx.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Uchenosti_Plody_iq3hkx.jpg"
                 },
                 new Movie()
                 {
@@ -160,7 +160,7 @@ namespace Data_Access_Layer
                                   " которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых" +
                                   " и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении," +
                                   " стал одним из самых необычных обитателей блока.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Green_MIle_wt2y9b.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Green_MIle_wt2y9b.jpg"
                 },
                 new Movie()
                 {
@@ -172,7 +172,7 @@ namespace Data_Access_Layer
                                   "решётки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, обладающий" +
                                   " живым умом и доброй душой, находит подход как к заключённым, так и к охранникам, добиваясь их " +
                                   "особого к себе расположения.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Shawshank_crz3n0.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Shawshank_crz3n0.jpg"
                 },
                 new Movie()
                 {
@@ -183,7 +183,7 @@ namespace Data_Access_Layer
                                   ", коллектив исследователей и учёных отправляется сквозь червоточину (которая предположительно соединяет" +
                                   " области пространства-времени через большое расстояние) в путешествие, чтобы превзойти прежние ограничения" +
                                   " для космических путешествий человека и найти планету с подходящими для человечества условиями.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Interstellar_utaka5.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Interstellar_utaka5.jpg"
                 },
                 new Movie()
                 {
@@ -195,7 +195,7 @@ namespace Data_Access_Layer
                                   "В первой истории Винсент проводит незабываемый вечер с женой Марселласа Мией." +
                                   " Во второй рассказывается о боксёре Бутче Кулидже, купленном Уоллесом, чтобы сдать бой." +
                                   " В третьей истории Винсент и Джулс по нелепой случайности попадают в неприятности.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Pulp_Fiction_pwgblb.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Pulp_Fiction_pwgblb.jpg"
                 },
                 new Movie()
                 {
@@ -213,7 +213,7 @@ namespace Data_Access_Layer
                                   " станет идеальным преступлением. Но никакое планирование или мастерство не могут" +
                                   " подготовить команду к встрече с опасным противником, который, кажется, предугадывает каждый" +
                                   " их ход. Врагом, увидеть которого мог бы лишь Кобб.",
-                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Inception_uvkvsd.jpg"
+                    Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Inception_uvkvsd.jpg"
                 }
             );
 
