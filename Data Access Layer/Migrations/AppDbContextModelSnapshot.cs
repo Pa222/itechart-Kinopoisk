@@ -46,6 +46,16 @@ namespace Data_Access_Layer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CreditCards");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Cvv = "522",
+                            Expiration = "04/2022",
+                            Number = "4556933079048353",
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Model.Faq", b =>

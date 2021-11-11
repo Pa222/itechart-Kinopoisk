@@ -13,7 +13,7 @@ namespace Data_Access_Layer.Repositories
 
         public async Task<User> GetByEmail(string email)
         {
-            return await Db.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(email));
+            return await Db.Users.Include(s => s.Cards).AsNoTracking().FirstOrDefaultAsync(u => u.Email.Equals(email)); ;
         }
     }
 }

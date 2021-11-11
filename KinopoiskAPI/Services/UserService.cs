@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using KinopoiskAPI.Dto.CreditCard;
 using KinopoiskAPI.Utils.Hasher;
 
 namespace KinopoiskAPI.Services
@@ -56,8 +57,14 @@ namespace KinopoiskAPI.Services
 
         public UserInfoDto GetUserInfo(User user)
         {
-            var result = new UserInfoDto();
+            var result = new UserInfoDto
+            {
+                CreditCards = new List<CreditCardInfoDto>()
+            };
+
             _mapper.Map(user, result);
+            _mapper.Map(user.Cards, result.CreditCards);
+
             return result;
         }
 

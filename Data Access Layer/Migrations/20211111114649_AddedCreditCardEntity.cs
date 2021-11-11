@@ -28,6 +28,11 @@ namespace Data_Access_Layer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "CreditCards",
+                columns: new[] { "Id", "Cvv", "Expiration", "Number", "UserId" },
+                values: new object[] { 1, "522", "04/2022", "4556933079048353", 1 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CreditCards_UserId",
                 table: "CreditCards",

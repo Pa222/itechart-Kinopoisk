@@ -57,6 +57,15 @@ namespace Data_Access_Layer
 
             //Filling
 
+            modelBuilder.Entity<CreditCard>().HasData(new CreditCard
+            {
+                Id = 1,
+                UserId = 1,
+                Cvv = "522",
+                Number = "4556933079048353",
+                Expiration = "04/2022",
+            });
+
             modelBuilder.Entity<User>().HasData(new User()
             {
                 Id = 1,
