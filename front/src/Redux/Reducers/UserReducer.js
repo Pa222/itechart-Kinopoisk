@@ -10,7 +10,7 @@ const defaultState = {
         gender: '',
         email: '',
         creditCards: [],
-        avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png',
+        avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/UserAvatars/user_fhguim.png',
     },
 }
 

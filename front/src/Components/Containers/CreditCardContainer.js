@@ -8,7 +8,6 @@ const CreditCardContainer = (props) => {
         expiration: props.expiration,
         image: props.image,
     }
-    console.log({...props});
 
     return (
         <CreditCard {...creditCardProps} />

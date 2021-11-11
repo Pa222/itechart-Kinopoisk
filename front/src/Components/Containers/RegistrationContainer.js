@@ -10,8 +10,7 @@ const RegistrationContainer = () => {
     const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const { name, value } = e.target;
 
         name === "name" && setName(value);
         name === "email" && setEmail(value);
