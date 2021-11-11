@@ -50,7 +50,7 @@ class KinopoiskApi{
             },
             body: JSON.stringify(user),
         })
-        return response.code === 200;
+        return response.status === 200;
     }
 
     static getUser = async () => {

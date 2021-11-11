@@ -4,49 +4,22 @@ using Data_Access_Layer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data_Access_Layer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211111104228_AddedUserSaltPassword")]
+    partial class AddedUserSaltPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Cvv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Expiration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CreditCards");
-                });
 
             modelBuilder.Entity("Data_Access_Layer.Model.Faq", b =>
                 {
@@ -515,17 +488,6 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
-                {
-                    b.HasOne("Data_Access_Layer.Model.User", "User")
-                        .WithMany("Cards")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Data_Access_Layer.Model.GenreMovie", b =>
                 {
                     b.HasOne("Data_Access_Layer.Model.Genre", "Genre")
@@ -553,11 +515,6 @@ namespace Data_Access_Layer.Migrations
             modelBuilder.Entity("Data_Access_Layer.Model.Movie", b =>
                 {
                     b.Navigation("GenreMovies");
-                });
-
-            modelBuilder.Entity("Data_Access_Layer.Model.User", b =>
-                {
-                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }

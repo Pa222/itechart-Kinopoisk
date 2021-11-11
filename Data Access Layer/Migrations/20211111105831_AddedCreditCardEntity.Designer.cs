@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access_Layer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211110104738_AddeduserSaltPassword")]
-    partial class AddeduserSaltPassword
+    [Migration("20211111105831_AddedCreditCardEntity")]
+    partial class AddedCreditCardEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,35 @@ namespace Data_Access_Layer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Cvv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Expiration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CreditCards");
+                });
 
             modelBuilder.Entity("Data_Access_Layer.Model.Faq", b =>
                 {
@@ -442,28 +471,31 @@ namespace Data_Access_Layer.Migrations
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CardNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Salt")
+                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
@@ -475,15 +507,25 @@ namespace Data_Access_Layer.Migrations
                         {
                             Id = 1,
                             Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg",
-                            CardNumber = "1234 5678 1234 5678",
                             Email = "kbroom135@gmail.com",
                             Gender = "Male",
                             Name = "Квит Кирилл Витальевич",
-                            Password = "7uGP9aeazU4F7QhxLc3fEkBMcZn5AyQqeDq6MLxBO6Y",
+                            Password = "7uGP9aeazU4F7QhxLc3fEkBMcZn5AyQqeDq6MLxBO6Y=",
                             PhoneNumber = "+375295189484",
                             Role = "Admin",
                             Salt = new byte[] { 143, 188, 230, 183, 101, 3, 38, 186, 29, 23, 147, 73, 165, 102, 250, 161 }
                         });
+                });
+
+            modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
+                {
+                    b.HasOne("Data_Access_Layer.Model.User", "User")
+                        .WithMany("Cards")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Model.GenreMovie", b =>
@@ -513,6 +555,11 @@ namespace Data_Access_Layer.Migrations
             modelBuilder.Entity("Data_Access_Layer.Model.Movie", b =>
                 {
                     b.Navigation("GenreMovies");
+                });
+
+            modelBuilder.Entity("Data_Access_Layer.Model.User", b =>
+                {
+                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }

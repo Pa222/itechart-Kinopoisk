@@ -72,6 +72,7 @@ namespace KinopoiskAPI.Services
                 Password = Hasher.GetHash(info.Password, salt),
                 Avatar = DefaultAvatar,
                 Role = Role.User.ToString(),
+                Gender = Gender.Undefined.ToString(),
             });
         }
     }

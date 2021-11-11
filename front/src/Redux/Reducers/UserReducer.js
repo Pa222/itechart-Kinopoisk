@@ -44,7 +44,6 @@ const UserReducer = (state = defaultState, action) => {
         default:
             break;
     }
-    console.log(state.user);
     return Object.assign({}, state);
 }
 

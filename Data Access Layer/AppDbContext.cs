@@ -13,6 +13,8 @@ namespace Data_Access_Layer
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<CreditCard> CreditCards { get; set; }
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -21,9 +23,27 @@ namespace Data_Access_Layer
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Genre>().Property(p => p.Name).IsRequired().HasMaxLength(20);
+
             modelBuilder.Entity<Movie>().Property(p => p.Title).IsRequired().HasMaxLength(125);
+
             modelBuilder.Entity<Faq>().Property(p => p.Question).IsRequired();
             modelBuilder.Entity<Faq>().Property(p => p.Answer).IsRequired();
+
+            modelBuilder.Entity<User>().Property(p => p.Name).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<User>().Property(p => p.Email).IsRequired();
+            modelBuilder.Entity<User>().Property(p => p.Role).IsRequired();
+            modelBuilder.Entity<User>().Property(p => p.Password).IsRequired();
+            modelBuilder.Entity<User>().Property(p => p.Salt).IsRequired();
+
+            modelBuilder.Entity<CreditCard>()
+                .HasOne<User>(c => c.User)
+                .WithMany(u => u.Cards)
+                .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<CreditCard>().Property(p => p.Number).IsRequired();
+            modelBuilder.Entity<CreditCard>().Property(p => p.Expiration).IsRequired();
+            modelBuilder.Entity<CreditCard>().Property(p => p.Cvv).IsRequired();
+            modelBuilder.Entity<CreditCard>().Property(p => p.UserId).IsRequired();
 
             modelBuilder.Entity<GenreMovie>()
                 .HasOne(g => g.Genre)
@@ -50,7 +70,6 @@ namespace Data_Access_Layer
                 {
                     143, 188, 230, 183, 101, 3, 38, 186, 29, 23, 147, 73, 165, 102, 250, 161
                 },
-                CardNumber = "1234 5678 1234 5678",
                 Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg"
             });
 

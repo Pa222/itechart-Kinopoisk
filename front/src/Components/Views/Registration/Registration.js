@@ -120,12 +120,6 @@ const Registration = (props) => {
                             type="submit" 
                             value="Зарегистрироваться"
                         />
-                        <input
-                            className={classes.loginFormContainer__registerButton}
-                            type="button"
-                            value="Нет аккаунта? Зарегистрироваться"
-                            onClick={props.goToRegisterPage}
-                        />
                     </div>
                 </form>
             )}

@@ -36,6 +36,11 @@ const useStyles = makeStyles({
         marginLeft: "40px",
         fontSize: "20px",
     },
+    errorMessage:{
+        alignSelf: "center",
+        fontStyle: "italic",
+        color: "red",
+    },
 });
 
 export default useStyles;
