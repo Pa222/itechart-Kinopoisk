@@ -7,6 +7,7 @@
         public string Expiration { get; set; }
         public string Cvv { get; set; }
         public int UserId { get; set; }
+        public string Image { get; set; }
         public User User { get; set; }
     }
 }

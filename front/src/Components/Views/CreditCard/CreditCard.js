@@ -7,6 +7,9 @@ const CreditCard = (props) => {
 
     return (
         <div className={classes.container}>
+            <div>
+                <img className={classes.container__creditCardImage} src={props.image} alt="Card"></img>
+            </div>
             <p className={classes.container__info}>{props.number}</p>
             <p className={classes.container__info}>{props.expiration}</p>
         </div>
@@ -16,6 +19,7 @@ const CreditCard = (props) => {
 CreditCard.propTypes = {
     number: PropTypes.string,
     expiration: PropTypes.string,
+    image: PropTypes.string,
 }
 
 export default CreditCard;

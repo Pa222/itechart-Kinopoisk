@@ -34,6 +34,9 @@ namespace Data_Access_Layer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -53,6 +56,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 1,
                             Cvv = "522",
                             Expiration = "04/2022",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636633366/CreditCardImages/visa_qkcnbw.png",
                             Number = "4556933079048353",
                             UserId = 1
                         });
