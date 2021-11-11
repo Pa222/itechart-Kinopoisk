@@ -9,19 +9,9 @@ const defaultState = {
         phoneNumber: '',
         gender: '',
         email: '',
-        cardNumber: '',
+        creditCards: [],
         avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png',
     },
-}
-
-const cleanUser = {
-    role: '',
-    name: '',
-    phoneNumber: '',
-    gender: '',
-    email: '',
-    cardNumber: '',
-    avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png',
 }
 
 const UserReducer = (state = defaultState, action) => {
@@ -35,7 +25,7 @@ const UserReducer = (state = defaultState, action) => {
             break;
         }
         case CLEAN_USER:{
-            state.user = cleanUser;
+            state.user = defaultState.user;
             state.authorized = false;
             removeCookie("AuthToken");
             break;
