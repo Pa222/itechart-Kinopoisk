@@ -11,7 +11,7 @@ const Catalog = (props) => {
             {
                 props.loading &&
                 <div className={classes.wrapper__loadingContainer}>
-                    <img className={classes.wrapper__loading} src="./Loading.gif" alt="Loading..."></img>
+                    <img className={classes.wrapper__loading} src="https://res.cloudinary.com/pa2/image/upload/v1636645499/Static/Loading_umrhxo.gif" alt="Loading..."></img>
                 </div>
             }
             {

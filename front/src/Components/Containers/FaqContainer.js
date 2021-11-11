@@ -29,7 +29,7 @@ const FaqContainer = () => {
             {
                 loading && 
                 <div>
-                    <img src="./Loading.gif" alt="Loading..."></img>
+                    <img src="https://res.cloudinary.com/pa2/image/upload/v1636645499/Static/Loading_umrhxo.gif" alt="Loading..."></img>
                 </div>
             }
         </div>
