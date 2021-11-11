@@ -20,7 +20,7 @@ namespace KinopoiskAPI.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        private const string DefaultAvatar = "https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png";
+        private const string DefaultAvatar = "https://res.cloudinary.com/pa2/image/upload/v1636535929/UserAvatars/user_fhguim.png";
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
