@@ -37,7 +37,6 @@ namespace KinopoiskAPI.Services
             var claims = new List<Claim>
             {
                 new(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new(ClaimsIdentity.DefaultRoleClaimType, user.Role),
             };
 
             var identity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

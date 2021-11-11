@@ -6,7 +6,6 @@ import Profile from "../Views/Profile/Profile";
 
 const ProfileContainer = (props) => {
     const [name, setName] = useState(props.name);
-    const [email, setEmail] = useState(props.email);
     const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
     const [cardNumber, setCardNumber] = useState(props.cardNumber);
     const [gender, setGender] = useState(props.gender);
@@ -17,7 +16,6 @@ const ProfileContainer = (props) => {
         const value = e.target.value;
 
         name === "name" && setName(value);
-        name === "email" && setEmail(value);
         name === "phoneNumber" && setPhoneNumber(value);
         name === "cardNumber" && setCardNumber(value);
         name === "gender" && setGender(value);
@@ -25,12 +23,11 @@ const ProfileContainer = (props) => {
     }
 
     const saveChanges = () => {
-        props.updateUser({name, email, phoneNumber, cardNumber, gender, avatar})
+        props.updateUser({name, phoneNumber, cardNumber, gender, avatar})
     }
 
     const profileProps = {
         name,
-        email,
         phoneNumber,
         cardNumber,
         gender,
@@ -47,7 +44,6 @@ const ProfileContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         name: state.userState.user.name,
-        email: state.userState.user.email,
         phoneNumber: state.userState.user.phoneNumber,
         cardNumber: state.userState.user.cardNumber,
         gender: state.userState.user.gender,
@@ -62,7 +58,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 ProfileContainer.propTypes = {
-    user: PropTypes.object,
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    cardNumber: PropTypes.string,
+    gender: PropTypes.string,
+    avatar: PropTypes.string,
     updateUser: PropTypes.func,
 }
 

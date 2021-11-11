@@ -24,7 +24,7 @@ const App = () => {
                     }
                 />
                 <Route 
-                    path={'/movie/:int'}
+                    path={'/movie'}
                     render={() =>
                         <MoviePageContainer/>
                     }

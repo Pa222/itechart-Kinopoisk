@@ -7,5 +7,6 @@ export const FETCH_MOVIE_ASYNC = "FETCH_MOVIE_ASYNC";
 //User actions
 export const SET_USER = "SET_USER";
 export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_USER_ASYNC = "UPDATE_USER_ASYNC";
 export const CLEAN_USER = "CLEAN_USER";
 //User actions

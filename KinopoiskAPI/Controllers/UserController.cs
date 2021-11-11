@@ -4,6 +4,8 @@ using KinopoiskAPI.Utils.Hasher;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using KinopoiskAPI.Utils.Jwt;
+using Microsoft.Net.Http.Headers;
 
 namespace KinopoiskAPI.Controllers
 {
@@ -21,10 +23,14 @@ namespace KinopoiskAPI.Controllers
         [HttpGet("get-user")]
         public async Task<IActionResult> GetUser()
         {
-            var user = await _userService.GetUser(User.Identity?.Name);
-            if (user != null)
-                return Ok(_userService.GetUserInfo(user));
-            return Unauthorized();
+            var token = Request.Headers[HeaderNames.Authorization].ToString();
+            var email = JwtDecoder.GetEmail(token[7..]);
+            var user = await _userService.GetUser(email);
+
+            if (user == null)
+                return Unauthorized();
+
+            return Ok(_userService.GetUserInfo(user));
         }
 
         [AllowAnonymous]

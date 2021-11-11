@@ -42,6 +42,17 @@ class KinopoiskApi{
         return token;
     }
 
+    static register = async (user) => {
+        const response = await fetch(`http://${ip}:${port}/api/User/register`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+        return response.code === 200;
+    }
+
     static getUser = async () => {
         const response = await fetch(`http://${ip}:${port}/api/User/get-user`, {
             method: "GET",
@@ -55,15 +66,7 @@ class KinopoiskApi{
         return await response.json();
     }
 
-    static register = async (user) => {
-        const response = await fetch(`http://${ip}:${port}/api/User/register`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(user),
-        })
-        return response.code === 200;
+    static updateUser = async (user) => {
     }
 }
 

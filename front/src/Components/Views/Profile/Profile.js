@@ -30,16 +30,6 @@ const Profile = (props) => {
                         ></input>
                     </div>
                     <div>
-                        <label className={classes.profileContainer__inforamtionKey}>E-mail</label>
-                        <input 
-                            className={classes.profileContainer__informationValue} 
-                            name="email"
-                            type="email" 
-                            value={props.email}
-                            onChange={props.handleChange}
-                        ></input>
-                    </div>
-                    <div>
                         <label className={classes.profileContainer__inforamtionKey}>Номер телефона</label>
                         <input 
                             className={classes.profileContainer__informationValue} 
@@ -84,7 +74,11 @@ const Profile = (props) => {
 }
 
 Profile.propTypes = {
-    user: PropTypes.object,
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    cardNumber: PropTypes.string,
+    gender: PropTypes.string,
+    avatar: PropTypes.string,
     saveChanges: PropTypes.func,
     handleChange: PropTypes.func,
 }
