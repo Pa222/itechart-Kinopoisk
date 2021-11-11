@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import * as Yup from 'yup';
 import { Formik } from "formik";
+import CreditCardContainer from "../../Containers/CreditCardContainer";
 
 const phoneNumberRegex = /^\+\d[\d()]{4,14}\d$/;
 
@@ -45,7 +46,7 @@ const Profile = (props) => {
                         <form>
                             <div className={classes.profileContainer__informationContainer}>
                                 <div>
-                                    <label className={classes.profileContainer__inforamtionKey}>Имя</label>
+                                    <label className={classes.profileContainer__inforamtionKey}>Имя: </label>
                                     <input 
                                         className={classes.profileContainer__informationValue}
                                         name="name"
@@ -65,7 +66,7 @@ const Profile = (props) => {
                                     }
                                 </div>
                                 <div>
-                                    <label className={classes.profileContainer__inforamtionKey}>Номер телефона</label>
+                                    <label className={classes.profileContainer__inforamtionKey}>Номер телефона: </label>
                                     <input 
                                         className={classes.profileContainer__informationValue} 
                                         name="phoneNumber"
@@ -85,7 +86,7 @@ const Profile = (props) => {
                                     }
                                 </div>
                                 <div>
-                                    <label className={classes.profileContainer__inforamtionKey}>Пол</label>
+                                    <label className={classes.profileContainer__inforamtionKey}>Пол: </label>
                                     <select 
                                         className={classes.profileContainer__informationValue}
                                         name="gender"
@@ -107,6 +108,18 @@ const Profile = (props) => {
                                         </div> 
                                     }
                                 </div>
+                                <div>
+                                    <label className={classes.profileContainer__inforamtionKey}>Кредитные карты: </label>
+                                    {
+                                        props.creditCards.length !== 0 &&
+                                        <div>
+                                            {
+                                                props.creditCards.map((card, i) => <CreditCardContainer key={i} {...card} />)
+                                            }
+                                        </div>
+                                    }
+                                    <input type="button" value="Добавить карту"></input>
+                                </div>
                             </div>
                         </form>
                     )}
@@ -119,7 +132,7 @@ const Profile = (props) => {
 Profile.propTypes = {
     name: PropTypes.string,
     phoneNumber: PropTypes.string,
-    cardNumber: PropTypes.string,
+    creditCards: PropTypes.array,
     gender: PropTypes.string,
     avatar: PropTypes.string,
     saveChanges: PropTypes.func,

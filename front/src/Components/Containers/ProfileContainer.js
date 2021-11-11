@@ -7,7 +7,7 @@ import Profile from "../Views/Profile/Profile";
 const ProfileContainer = (props) => {
     const [name, setName] = useState(props.name);
     const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
-    const [cardNumber, setCardNumber] = useState(props.cardNumber);
+    const [creditCards, setCreditCards] = useState(props.creditCards);
     const [gender, setGender] = useState(props.gender);
     const [avatar, setAvatar] = useState(props.avatar);
 
@@ -17,19 +17,20 @@ const ProfileContainer = (props) => {
 
         name === "name" && setName(value);
         name === "phoneNumber" && setPhoneNumber(value);
-        name === "cardNumber" && setCardNumber(value);
+        name === "cardNumber" && setCreditCards(value);
         name === "gender" && setGender(value);
         name === "avatar" && setAvatar(value);
     }
 
     const saveChanges = () => {
-        props.updateUser({name, phoneNumber, cardNumber, gender, avatar})
+        // props.updateUser({name, phoneNumber, creditCards, gender, avatar})
+        console.log({name, phoneNumber, creditCards, gender, avatar});
     }
 
     const profileProps = {
         name,
         phoneNumber,
-        cardNumber,
+        creditCards,
         gender,
         avatar,
         saveChanges,
@@ -45,7 +46,7 @@ const mapStateToProps = (state) => {
     return {
         name: state.userState.user.name,
         phoneNumber: state.userState.user.phoneNumber,
-        cardNumber: state.userState.user.cardNumber,
+        creditCards: state.userState.user.creditCards,
         gender: state.userState.user.gender,
         avatar: state.userState.user.avatar,
     }
