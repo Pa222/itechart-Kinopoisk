@@ -15,6 +15,9 @@ const HeaderContainer = (props) => {
     useEffect(() => {
         (async () => {
             let response = await KinopoiskApi.getMoviesByTitle(searchText);
+            if (response === null){
+                return;
+            }
             setSearchResults(response.slice(0, 5));
         })();
     }, [searchText]);

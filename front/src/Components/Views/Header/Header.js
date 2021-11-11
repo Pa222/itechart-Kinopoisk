@@ -33,7 +33,9 @@ const Header = (props) => {
                     </div>
                 </div>
                 <div>
-                    <img className={classes.header__userImage} src={props.avatar} alt="User" onClick={props.toggleMenu}></img>
+                    <div>
+                        <img className={classes.header__userImage} src={props.avatar} alt="User" onClick={props.toggleMenu}></img>
+                    </div>
                     {
                         props.menuOpened && !props.authorized &&
                             <div className={classes.header__menu}>

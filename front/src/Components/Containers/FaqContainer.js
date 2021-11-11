@@ -11,6 +11,9 @@ const FaqContainer = () => {
             setLoading(true);
 
             const response = await KinopoiskApi.getFaqs();
+            if (response === null){
+                return;
+            }
             setFaq(response);
 
             setLoading(false);
@@ -22,6 +25,12 @@ const FaqContainer = () => {
             {
                 !loading &&
                 faq.map(faq => <Faq key={faq.id} loading={loading} {...faq} />)
+            }
+            {
+                loading && 
+                <div>
+                    <img src="./Loading.gif" alt="Loading..."></img>
+                </div>
             }
         </div>
     );

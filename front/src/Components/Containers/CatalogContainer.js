@@ -4,7 +4,7 @@ import KinopoiskApi from "../../Api/KinopoiskApi";
 import Catalog from "../Views/Catalog/Catalog";
 
 const CatalogContainer = () => {
-    const [movies, setMovies] = useState();
+    const [movies, setMovies] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
@@ -15,6 +15,9 @@ const CatalogContainer = () => {
             setLoading(true);
 
             let response = await KinopoiskApi.getMoviesPage(1);
+            if (response === null){
+                return;
+            }
 
             setMovies(response.movies);
             setTotalPages(response.totalPages);

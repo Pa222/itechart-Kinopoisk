@@ -32,7 +32,6 @@ const UserReducer = (state = defaultState, action) => {
             break;
         }
         case UPDATE_USER:{
-            Object.assign(state.user, action.payload);
             break;
         }
         case CLEAN_USER:{

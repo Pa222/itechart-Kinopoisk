@@ -22,19 +22,21 @@ const LoginContainer = (props) => {
 
     const handleSubmit = async () => {
         const token = await KinopoiskApi.auth(email, password);
-
         if (token === null){
             props.cleanUser();
             setErrorMessage("Неверные логин или пароль");
             return;
         }
-
-        setErrorMessage("");
         addCookie("AuthToken", token);
         
         const user = await KinopoiskApi.getUser();
+        if (user === null){
+            setErrorMessage("Неверные логин или пароль");
+            return;
+        }
+        
         props.updateUser(user);
-
+        setErrorMessage("");
         history.push("/");
     }
 

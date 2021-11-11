@@ -14,7 +14,9 @@ function* fetchMovieAsync(action){
         const movie = yield call(() => {
             return KinopoiskApi.getMovieById(action.payload);
         })
-        yield put(updateMovie(movie));
+        if (movie !== null){
+            yield put(updateMovie(movie));
+        }
     } catch(e){
         console.log(e);
     }
