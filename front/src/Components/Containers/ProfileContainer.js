@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
 import { updateUser } from "../../Redux/Actions";
+import { useHistory } from "react-router";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 
@@ -10,6 +11,7 @@ const ProfileContainer = (props) => {
     const [creditCards, setCreditCards] = useState(props.creditCards);
     const [gender, setGender] = useState(props.gender);
     const [avatar, setAvatar] = useState(props.avatar);
+    const history = useHistory();
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -27,6 +29,10 @@ const ProfileContainer = (props) => {
         console.log({name, phoneNumber, creditCards, gender, avatar});
     }
 
+    const goToAddCreditCardPage = () => {
+        history.push("/addCreditCard");
+    }
+
     const profileProps = {
         name,
         phoneNumber,
@@ -34,7 +40,8 @@ const ProfileContainer = (props) => {
         gender,
         avatar,
         saveChanges,
-        handleChange
+        handleChange,
+        goToAddCreditCardPage
     }
 
     return (

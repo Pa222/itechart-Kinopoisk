@@ -118,7 +118,7 @@ const Profile = (props) => {
                                             }
                                         </div>
                                     }
-                                    <input type="button" value="Добавить карту"></input>
+                                    <input type="button" value="Добавить карту" onClick={props.goToAddCreditCardPage}></input>
                                 </div>
                             </div>
                         </form>
@@ -137,6 +137,7 @@ Profile.propTypes = {
     avatar: PropTypes.string,
     saveChanges: PropTypes.func,
     handleChange: PropTypes.func,
+    goToAddCreditCardPage: PropTypes.func,
 }
 
 export default Profile;
