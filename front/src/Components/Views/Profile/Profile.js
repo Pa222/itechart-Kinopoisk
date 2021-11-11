@@ -9,7 +9,7 @@ const Profile = (props) => {
         <div className={classes.wrapper}>
             <div className={classes.wrapper__profileContainer}>
                 <div className={classes.profileContainer__avatarContainer}>
-                    <img className={classes.profileContainer__avatar} src={props.user.avatar} alt="Avatar"></img>
+                    <img className={classes.profileContainer__avatar} src={props.avatar} alt="Avatar"></img>
                     <input 
                         className={classes.profileContainer__editButton} 
                         type="button" 
@@ -22,9 +22,10 @@ const Profile = (props) => {
                     <div>
                         <label className={classes.profileContainer__inforamtionKey}>Имя</label>
                         <input 
-                            className={classes.profileContainer__informationValue} 
+                            className={classes.profileContainer__informationValue}
+                            name="name"
                             type="text" 
-                            value={props.user.name}
+                            value={props.name}
                             onChange={props.handleChange}
                         ></input>
                     </div>
@@ -32,8 +33,9 @@ const Profile = (props) => {
                         <label className={classes.profileContainer__inforamtionKey}>E-mail</label>
                         <input 
                             className={classes.profileContainer__informationValue} 
+                            name="email"
                             type="email" 
-                            value={props.user.email}
+                            value={props.email}
                             onChange={props.handleChange}
                         ></input>
                     </div>
@@ -41,8 +43,9 @@ const Profile = (props) => {
                         <label className={classes.profileContainer__inforamtionKey}>Номер телефона</label>
                         <input 
                             className={classes.profileContainer__informationValue} 
+                            name="phoneNumber"
                             type="tel" 
-                            value={props.user.phoneNumber}
+                            value={props.phoneNumber}
                             onChange={props.handleChange}
                         ></input>
                     </div>
@@ -50,21 +53,23 @@ const Profile = (props) => {
                         <label className={classes.profileContainer__inforamtionKey}>Номер карты</label>
                         <input 
                             className={classes.profileContainer__informationValue} 
+                            name="cardNumber"
                             type="tel" 
                             inputMode="numeric" 
                             pattern="[0-9\s]{13,19}" 
                             autoComplete="cc-number" 
                             maxLength="19" 
                             placeholder="xxxx xxxx xxxx xxxx"
-                            value={props.user.cardNumber}
+                            value={props.cardNumber}
                             onChange={props.handleChange}
                         ></input>
                     </div>
                     <div>
                         <label className={classes.profileContainer__inforamtionKey}>Пол</label>
                         <select 
-                            className={classes.profileContainer__informationValue} 
-                            value={props.user.gender}
+                            className={classes.profileContainer__informationValue}
+                            name="gender"
+                            value={props.gender}
                             onChange={props.handleChange}
                         >
                             <option value="Female">Female</option>

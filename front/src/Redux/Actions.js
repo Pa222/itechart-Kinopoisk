@@ -1,4 +1,4 @@
-import { UPDATE_MOVIE, FETCH_MOVIE_ASYNC, CLEAN_MOVIE, UPDATE_USER, CLEAN_USER } from "./ActionTypes"
+import { UPDATE_MOVIE, FETCH_MOVIE_ASYNC, CLEAN_MOVIE, SET_USER, CLEAN_USER, UPDATE_USER } from "./ActionTypes"
 
 //Movie actions
 export const updateMovie = (movie) => {
@@ -23,10 +23,17 @@ export const fetchMovieAsync = (id) => {
 //Movie actions
 
 //User actions
+export const setUser = (user) => {
+    return {
+        type: SET_USER,
+        payload: user,
+    }
+}
+
 export const updateUser = (user) => {
     return {
         type: UPDATE_USER,
-        payload: user,
+        payload: user
     }
 }
 

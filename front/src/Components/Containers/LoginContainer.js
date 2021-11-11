@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
 import { addCookie } from "../../Utils/Cookies";
-import { cleanUser, updateUser } from '../../Redux/Actions';
+import { cleanUser, setUser } from '../../Redux/Actions';
 import PropTypes from 'prop-types';
 import KinopoiskApi from "../../Api/KinopoiskApi";
 import Login from "../Views/Login/Login";
@@ -57,7 +57,7 @@ const LoginContainer = (props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         cleanUser: () => dispatch(cleanUser()),
-        updateUser: (user) => dispatch(updateUser(user)),
+        updateUser: (user) => dispatch(setUser(user)),
     }
 }
 

@@ -1,5 +1,5 @@
 import { removeCookie } from "../../Utils/Cookies";
-import { CLEAN_USER, UPDATE_USER } from "../ActionTypes";
+import { CLEAN_USER, SET_USER, UPDATE_USER } from "../ActionTypes";
 
 const defaultState = {
     authorized: false,
@@ -26,9 +26,13 @@ const cleanUser = {
 
 const UserReducer = (state = defaultState, action) => {
     switch(action.type){
-        case UPDATE_USER:{
+        case SET_USER:{
             state.user = action.payload;
             state.authorized = true;
+            break;
+        }
+        case UPDATE_USER:{
+            Object.assign(state.user, action.payload);
             break;
         }
         case CLEAN_USER:{
@@ -40,6 +44,7 @@ const UserReducer = (state = defaultState, action) => {
         default:
             break;
     }
+    console.log(state.user);
     return Object.assign({}, state);
 }
 
