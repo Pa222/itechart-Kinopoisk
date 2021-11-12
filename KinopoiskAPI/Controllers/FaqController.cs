@@ -1,6 +1,7 @@
 ﻿using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KinopoiskAPI.Controllers
 {
@@ -14,6 +15,7 @@ namespace KinopoiskAPI.Controllers
             _faqService = faqService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Get()
         {

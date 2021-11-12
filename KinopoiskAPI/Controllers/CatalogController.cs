@@ -2,6 +2,7 @@
 using KinopoiskAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KinopoiskAPI.Controllers
 {
@@ -15,6 +16,7 @@ namespace KinopoiskAPI.Controllers
             _movieService = movieService;
         }
 
+        [AllowAnonymous]
         [HttpGet("get")]
         public async Task<IActionResult> Get(int id)
         {
@@ -22,6 +24,7 @@ namespace KinopoiskAPI.Controllers
             return Ok(movies);
         }
 
+        [AllowAnonymous]
         [HttpGet("get-page")]
         public async Task<IActionResult> GetPage(int page, int size = 8)
         {
@@ -33,6 +36,7 @@ namespace KinopoiskAPI.Controllers
             return Ok(movies);
         }
 
+        [AllowAnonymous]
         [HttpGet("get-by-title")]
         public async Task<IActionResult> GetMoviesByTitle(string title)
         {
