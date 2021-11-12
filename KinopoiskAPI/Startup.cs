@@ -4,6 +4,7 @@ using Data_Access_Layer.Repositories;
 using KinopoiskAPI.Jwt;
 using KinopoiskAPI.Services;
 using KinopoiskAPI.Services.Interfaces;
+using KinopoiskAPI.Utils.CloudinaryApi;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,10 +32,12 @@ namespace KinopoiskAPI
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICloudinaryApi, CloudinaryApi>();
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddTransient<IFaqService, FaqService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IProfileService, ProfileService>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

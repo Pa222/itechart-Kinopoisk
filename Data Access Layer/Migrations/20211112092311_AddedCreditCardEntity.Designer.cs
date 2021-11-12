@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access_Layer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211111122821_AddedCreditCardEntity")]
+    [Migration("20211112092311_AddedCreditCardEntity")]
     partial class AddedCreditCardEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,9 @@ namespace Data_Access_Layer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CardHolder")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Cvv")
                         .IsRequired()
@@ -56,8 +59,9 @@ namespace Data_Access_Layer.Migrations
                         new
                         {
                             Id = 1,
+                            CardHolder = "KIRYL KVIT",
                             Cvv = "522",
-                            Expiration = "04/2022",
+                            Expiration = "04/22",
                             Image = "https://res.cloudinary.com/pa2/image/upload/v1636633366/CreditCardImages/visa_qkcnbw.png",
                             Number = "4556933079048353",
                             UserId = 1
@@ -406,7 +410,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 1,
                             CreateYear = "2021",
                             Description = "Более чем через год после тех событий журналист Эдди Брок пытается приспособиться к жизни в качестве хозяина инопланетного симбиота Венома, который наделяет его сверхчеловеческими способностями. Брок пытается возродить свою карьеру и берет интервью у серийного убийцы Клетуса Касади, который по воле случая становится хозяином Карнажа и сбегает из тюрьмы после неудавшейся казни.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022558/Venom_2_wg6ejn.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022558/MoviePosters/Venom_2_wg6ejn.jpg",
                             Title = "Веном 2"
                         },
                         new
@@ -414,7 +418,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 2,
                             CreateYear = "2021",
                             Description = "Нормандский рыцарь Жан де Карруж по возвращении с войны узнаёт, что его сосед и соперник Жак Ле Гри изнасиловал его жену Маргарит. Однако у Ле Гри обнаружились сильные союзники, словам женщины никто не верит, и Карруж обращается за помощью лично к королю Франции Карлу VI. Заслушав все свидетельства, король постановил, что конфликт должен быть разрешён в честном поединке. От исхода битвы зависит судьба не только Ле Гри и Карружа, но и жены последнего. В случае поражения мужа её должны сжечь на костре за ложные обвинения.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Last_duel_e5rsyn.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Last_duel_e5rsyn.jpg",
                             Title = "Последняя дуэль"
                         },
                         new
@@ -422,7 +426,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 3,
                             CreateYear = "2021",
                             Description = "Российская империя. Юрист Петр Смирнов приезжает в мрачное имение загадочного графа Дракулова, чьи предки родом из далекой Трансильвании, чтобы оформить покупку дома в Москве. Граф замечает фотокарточку невесты Петра, юной Вари, и немедленно срывается проинспектировать свою новую недвижимость… Петр обеспокоен, но его бдительность усыпляют старательные служанки графа. Правда, вскоре Смирнов обнаруживает, что девушки — вурдалаки, а это значит, что и их хозяин, граф Дракулов, — опасный кровопийца! Петр сбегает из демонической усадьбы и спешит в Москву, чтобы защитить свою невесту от трехсотлетнего вампира. Помочь ему в этом — или помешать — могут лучшая подруга Вари, Соня, и ее странные кавалеры, а также сын знаменитого профессора Ван Хельсинга Вася.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Drakulov_pjwsdp.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Drakulov_pjwsdp.jpg",
                             Title = "Дракулов"
                         },
                         new
@@ -430,7 +434,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 4,
                             CreateYear = "2021",
                             Description = "1944 год. Из Германии в оккупированное немцами село Михайловское в музей Пушкина приезжает профессор литературы Мария Шиллер и ведет просветительскую работу среди солдат вермахта и местных крестьян, рассказывая им о великом русском поэте. Ее действия вызывают неодобрение немецкого командования. Фронт приближается всё ближе, и вскоре из Берлина приходит приказ — вывезти из Михайловского все исторические ценности. Этого никак не могут допустить ни партизаны, ни местный умелец Сергей, которого связывают с Марией недопустимые, губительные для обоих отношения. Сергей решает любой ценой спасти достояние своей страны. Пушкинское наследие должно остаться в России. Даже ценой жизни…",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Uchenosti_Plody_iq3hkx.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Uchenosti_Plody_iq3hkx.jpg",
                             Title = "Учености плоды"
                         },
                         new
@@ -438,7 +442,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 5,
                             CreateYear = "1999",
                             Description = "Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Green_MIle_wt2y9b.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Green_MIle_wt2y9b.jpg",
                             Title = "Зеленая миля"
                         },
                         new
@@ -446,7 +450,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 6,
                             CreateYear = "1994",
                             Description = "Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием, царящими по обе стороны решётки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, обладающий живым умом и доброй душой, находит подход как к заключённым, так и к охранникам, добиваясь их особого к себе расположения.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Shawshank_crz3n0.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Shawshank_crz3n0.jpg",
                             Title = "Побег из Шоушенка"
                         },
                         new
@@ -454,7 +458,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 7,
                             CreateYear = "2014",
                             Description = "Когда засуха, пыльные бури и вымирание растений приводят человечество к продовольственному кризису, коллектив исследователей и учёных отправляется сквозь червоточину (которая предположительно соединяет области пространства-времени через большое расстояние) в путешествие, чтобы превзойти прежние ограничения для космических путешествий человека и найти планету с подходящими для человечества условиями.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Interstellar_utaka5.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Interstellar_utaka5.jpg",
                             Title = "Интерстеллар"
                         },
                         new
@@ -462,7 +466,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 8,
                             CreateYear = "1994",
                             Description = "Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между разборками и решением проблем с должниками криминального босса Марселласа Уоллеса. В первой истории Винсент проводит незабываемый вечер с женой Марселласа Мией. Во второй рассказывается о боксёре Бутче Кулидже, купленном Уоллесом, чтобы сдать бой. В третьей истории Винсент и Джулс по нелепой случайности попадают в неприятности.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Pulp_Fiction_pwgblb.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Pulp_Fiction_pwgblb.jpg",
                             Title = "Криминальное чтиво"
                         },
                         new
@@ -470,7 +474,7 @@ namespace Data_Access_Layer.Migrations
                             Id = 9,
                             CreateYear = "2010",
                             Description = "Кобб – талантливый вор, лучший из лучших в опасном искусстве извлечения: он крадет ценные секреты из глубин подсознания во время сна, когда человеческий разум наиболее уязвим. Редкие способности Кобба сделали его ценным игроком в привычном к предательству мире промышленного шпионажа, но они же превратили его в извечного беглеца и лишили всего, что он когда-либо любил. И вот у Кобба появляется шанс исправить ошибки. Его последнее дело может вернуть все назад, но для этого ему нужно совершить невозможное – инициацию. Вместо идеальной кражи Кобб и его команда спецов должны будут провернуть обратное. Теперь их задача – не украсть идею, а внедрить ее. Если у них получится, это и станет идеальным преступлением. Но никакое планирование или мастерство не могут подготовить команду к встрече с опасным противником, который, кажется, предугадывает каждый их ход. Врагом, увидеть которого мог бы лишь Кобб.",
-                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/Inception_uvkvsd.jpg",
+                            Image = "https://res.cloudinary.com/pa2/image/upload/v1636022557/MoviePosters/Inception_uvkvsd.jpg",
                             Title = "Начало"
                         });
                 });
@@ -520,7 +524,7 @@ namespace Data_Access_Layer.Migrations
                         new
                         {
                             Id = 1,
-                            Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/kbroom135_gmail.com_xw2qe1.jpg",
+                            Avatar = "https://res.cloudinary.com/pa2/image/upload/v1636538257/UserAvatars/kbroom135_gmail.com_xw2qe1.jpg",
                             Email = "kbroom135@gmail.com",
                             Gender = "Male",
                             Name = "Квит Кирилл Витальевич",

@@ -10,7 +10,6 @@ import RegistrationContainer from './Components/Containers/RegistrationContainer
 import Footer from './Components/Views/Footer/Footer';
 import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
 import ProfileContainer from './Components/Containers/ProfileContainer';
-import AddCredirCardContainer from './Components/Containers/AddCreditCardContainer';
 
 const App = () => {
     return (
@@ -51,10 +50,6 @@ const App = () => {
                 <ProtectedRoute
                     path={'/profile'}
                     component={ProfileContainer}
-                />
-                <ProtectedRoute
-                    path={'/addCreditCard'}
-                    component={AddCredirCardContainer}
                 />
                 <Route 
                     render={() =>

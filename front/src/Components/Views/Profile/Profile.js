@@ -4,6 +4,7 @@ import useStyles from "./styles";
 import * as Yup from 'yup';
 import { Formik } from "formik";
 import CreditCardContainer from "../../Containers/CreditCardContainer";
+import AddCreditCardContainer from "../../Containers/AddCreditCardContainer";
 
 const phoneNumberRegex = /^\+\d[\d()]{4,14}\d$/;
 
@@ -118,7 +119,11 @@ const Profile = (props) => {
                                             }
                                         </div>
                                     }
-                                    <input type="button" value="Добавить карту" onClick={props.goToAddCreditCardPage}></input>
+                                    <input type="button" value="Добавление новой карты" onClick={props.toggleAddCreditCardContainer}></input>
+                                    {
+                                        props.showAddCreditCard && 
+                                        <AddCreditCardContainer/>
+                                    }
                                 </div>
                             </div>
                         </form>
@@ -135,9 +140,10 @@ Profile.propTypes = {
     creditCards: PropTypes.array,
     gender: PropTypes.string,
     avatar: PropTypes.string,
+    showAddCreditCard: PropTypes.bool,
     saveChanges: PropTypes.func,
     handleChange: PropTypes.func,
-    goToAddCreditCardPage: PropTypes.func,
+    toggleAddCreditCardContainer: PropTypes.func,
 }
 
 export default Profile;

@@ -63,7 +63,8 @@ namespace Data_Access_Layer
                 UserId = 1,
                 Cvv = "522",
                 Number = "4556933079048353",
-                Expiration = "04/2022",
+                Expiration = "04/22",
+                CardHolder = "KIRYL KVIT",
                 Image = "https://res.cloudinary.com/pa2/image/upload/v1636633366/CreditCardImages/visa_qkcnbw.png",
             });
 

@@ -4,7 +4,7 @@ using System.Security.Claims;
 
 namespace KinopoiskAPI.Utils.Jwt
 {
-    public class JwtDecoder
+    public static class JwtDecoder
     {
         public static string GetEmail(string token)
         {
