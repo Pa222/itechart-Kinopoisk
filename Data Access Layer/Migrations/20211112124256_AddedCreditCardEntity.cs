@@ -6,6 +6,16 @@ namespace Data_Access_Layer.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<string>(
+                name: "PhoneNumber",
+                table: "Users",
+                type: "nvarchar(max)",
+                nullable: true,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
             migrationBuilder.CreateTable(
                 name: "CreditCards",
                 columns: table => new
@@ -13,9 +23,9 @@ namespace Data_Access_Layer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CardHolder = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Expiration = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cvv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardHolderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Expiry = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cvc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -32,7 +42,7 @@ namespace Data_Access_Layer.Migrations
 
             migrationBuilder.InsertData(
                 table: "CreditCards",
-                columns: new[] { "Id", "CardHolder", "Cvv", "Expiration", "Image", "Number", "UserId" },
+                columns: new[] { "Id", "CardHolderName", "Cvc", "Expiry", "Image", "Number", "UserId" },
                 values: new object[] { 1, "KIRYL KVIT", "522", "04/22", "https://res.cloudinary.com/pa2/image/upload/v1636633366/CreditCardImages/visa_qkcnbw.png", "4556933079048353", 1 });
 
             migrationBuilder.UpdateData(
@@ -115,6 +125,16 @@ namespace Data_Access_Layer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CreditCards");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "PhoneNumber",
+                table: "Users",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true,
+                oldDefaultValue: "");
 
             migrationBuilder.UpdateData(
                 table: "Movies",

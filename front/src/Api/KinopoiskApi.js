@@ -52,7 +52,7 @@ class KinopoiskApi{
                     },
                     body: JSON.stringify({email, password}),
                 });
-            if (response.status === 401){
+            if (response.status !== 200){
                 return null;
             }
             const token = await response.text();
@@ -85,7 +85,7 @@ class KinopoiskApi{
                     'Authorization': `Bearer ${getCookie("AuthToken")}`
                 }
             });
-            if (response.status === 401){
+            if (response.status !== 200){
                 return null;
             }
             return await response.json();
@@ -95,6 +95,22 @@ class KinopoiskApi{
     }
 
     static updateUser = async (user) => {
+    }
+
+    static addCreditCard = async (card) => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Profile/add-credit-card`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
+                },
+                body: JSON.stringify(card),
+            })
+            return await response.json();
+        } catch(e){
+            return null;
+        }
     }
 }
 

@@ -17,7 +17,7 @@ namespace Data_Access_Layer
         public IMovieRepository Movies => new MovieRepository(_db);
         public IRepository<Genre> Genres => new GenericRepository<Genre>(_db);
         public IRepository<Faq> Faqs => new GenericRepository<Faq>(_db);
-        public IRepository<CreditCard> CreditCards => new GenericRepository<CreditCard>(_db);
+        public ICreditCardRepository CreditCards => new CreditCardRepository(_db);
         public IUserRepository Users => new UserRepository(_db);
     }
 }

@@ -1,4 +1,4 @@
-import { UPDATE_MOVIE, FETCH_MOVIE_ASYNC, CLEAN_MOVIE, SET_USER, CLEAN_USER, UPDATE_USER, UPDATE_USER_ASYNC } from "./ActionTypes"
+import { UPDATE_MOVIE, FETCH_MOVIE_ASYNC, CLEAN_MOVIE, SET_USER, CLEAN_USER, UPDATE_USER, UPDATE_USER_ASYNC, ADD_USER_CREDIT_CARD, ADD_USER_CREDIT_CARD_ASYNC } from "./ActionTypes"
 
 //Movie actions
 export const updateMovie = (movie) => {
@@ -41,6 +41,20 @@ export const updateUserAsync = (user) => {
     return {
         type: UPDATE_USER_ASYNC,
         payload: user,
+    }
+}
+
+export const addUserCreditCard = (card) => {
+    return {
+        type: ADD_USER_CREDIT_CARD,
+        payload: card,
+    }
+}
+
+export const addUserCreditCardAsync = (card) => {
+    return {
+        type: ADD_USER_CREDIT_CARD_ASYNC,
+        payload: card,
     }
 }
 

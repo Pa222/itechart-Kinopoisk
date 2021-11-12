@@ -8,7 +8,7 @@ namespace Data_Access_Layer.Interfaces
         IMovieRepository Movies { get; }
         IRepository<Genre> Genres { get; }
         IRepository<Faq> Faqs { get; }
-        IRepository<CreditCard> CreditCards { get; }
+        ICreditCardRepository CreditCards { get; }
         IUserRepository Users { get; }
     }
 }

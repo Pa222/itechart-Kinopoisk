@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access_Layer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211112092311_AddedCreditCardEntity")]
+    [Migration("20211112124256_AddedCreditCardEntity")]
     partial class AddedCreditCardEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,14 +28,14 @@ namespace Data_Access_Layer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CardHolder")
+                    b.Property<string>("CardHolderName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Cvv")
+                    b.Property<string>("Cvc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Expiration")
+                    b.Property<string>("Expiry")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -59,9 +59,9 @@ namespace Data_Access_Layer.Migrations
                         new
                         {
                             Id = 1,
-                            CardHolder = "KIRYL KVIT",
-                            Cvv = "522",
-                            Expiration = "04/22",
+                            CardHolderName = "KIRYL KVIT",
+                            Cvc = "522",
+                            Expiry = "04/22",
                             Image = "https://res.cloudinary.com/pa2/image/upload/v1636633366/CreditCardImages/visa_qkcnbw.png",
                             Number = "4556933079048353",
                             UserId = 1
@@ -506,7 +506,9 @@ namespace Data_Access_Layer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("");
 
                     b.Property<string>("Role")
                         .IsRequired()

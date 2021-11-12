@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addUserCreditCardAsync } from "../../Redux/Actions";
+import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import AddCreditCard from "../Views/AddCreditCard/AddCreditCard";
 
@@ -8,12 +11,13 @@ const validationSchema = Yup.object().shape({
     cardHolderName: Yup.string()
         .required('Необходимо имя держателя карты'),
     expiry: Yup.string()
-        .required('Необходима дата действительности карты'),
+        .min(4, 'Неверный срок действия карты')
+        .required('Необходим срок действия карты'),
     cvc: Yup.string()
         .required('Необходим cvc-код'),
 });
 
-const AddCreditCardContainer = () => {
+const AddCreditCardContainer = (props) => {
     const [number, setNumber] = useState('');
     const [expiry, setExpiry] = useState('');
     const [cardHolderName, setCardHolderName] = useState('');
@@ -58,20 +62,20 @@ const AddCreditCardContainer = () => {
         return null;
     }
 
-    const addCreditCard = () => {
+    const addCreditCard = async () => {
         validationSchema.validate({number, cardHolderName, expiry, cvc})
         .catch(err => setMessage(err.message));
 
         var issuer = detectCardIssuer(number);
         if (issuer !== null){
-            setMessage(issuer);
-            console.log(JSON.stringify({
+            props.addCreditCard({
                 number,
-                expiration: expiry.slice(0, 2) + '/' + expiry.slice(2), 
-                cardHolder: cardHolderName.toUpperCase(), 
-                cvv: cvc,
+                expiry: expiry.slice(0, 2) + '/' + expiry.slice(2),
+                cardHolderName,
+                cvc,
                 issuer,
-            }));
+            })
+            props.toggleAddCreditCardContainer();
             return;
         }
         setMessage("Проверьте номер карты");
@@ -109,4 +113,15 @@ const AddCreditCardContainer = () => {
     );
 }
 
-export default AddCreditCardContainer;
+AddCreditCardContainer.propTypes = {
+    addCreditCard: PropTypes.func,
+    toggleAddCreditCardContainer: PropTypes.func,
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCreditCard: (card) => dispatch(addUserCreditCardAsync(card)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddCreditCardContainer);

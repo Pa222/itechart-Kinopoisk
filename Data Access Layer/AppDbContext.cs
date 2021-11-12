@@ -34,6 +34,7 @@ namespace Data_Access_Layer
             modelBuilder.Entity<User>().Property(p => p.Role).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.Password).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.Salt).IsRequired();
+            modelBuilder.Entity<User>().Property(p => p.PhoneNumber).HasDefaultValue("");
 
             modelBuilder.Entity<CreditCard>()
                 .HasOne<User>(c => c.User)
@@ -41,8 +42,8 @@ namespace Data_Access_Layer
                 .HasForeignKey(c => c.UserId);
 
             modelBuilder.Entity<CreditCard>().Property(p => p.Number).IsRequired();
-            modelBuilder.Entity<CreditCard>().Property(p => p.Expiration).IsRequired();
-            modelBuilder.Entity<CreditCard>().Property(p => p.Cvv).IsRequired();
+            modelBuilder.Entity<CreditCard>().Property(p => p.Expiry).IsRequired();
+            modelBuilder.Entity<CreditCard>().Property(p => p.Cvc).IsRequired();
             modelBuilder.Entity<CreditCard>().Property(p => p.UserId).IsRequired();
 
             modelBuilder.Entity<GenreMovie>()
@@ -61,10 +62,10 @@ namespace Data_Access_Layer
             {
                 Id = 1,
                 UserId = 1,
-                Cvv = "522",
+                Cvc = "522",
                 Number = "4556933079048353",
-                Expiration = "04/22",
-                CardHolder = "KIRYL KVIT",
+                Expiry = "04/22",
+                CardHolderName = "KIRYL KVIT",
                 Image = "https://res.cloudinary.com/pa2/image/upload/v1636633366/CreditCardImages/visa_qkcnbw.png",
             });
 

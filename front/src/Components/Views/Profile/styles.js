@@ -36,6 +36,10 @@ const useStyles = makeStyles({
         marginLeft: "40px",
         fontSize: "20px",
     },
+    profileContainer__cardsContainer: {
+        maxHeight: "150px",
+        overflow: "auto",
+    },
     errorMessage:{
         alignSelf: "center",
         fontStyle: "italic",

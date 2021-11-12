@@ -1,5 +1,5 @@
 import { removeCookie } from "../../Utils/Cookies";
-import { CLEAN_USER, SET_USER, UPDATE_USER } from "../ActionTypes";
+import { ADD_USER_CREDIT_CARD, CLEAN_USER, SET_USER, UPDATE_USER } from "../ActionTypes";
 
 const defaultState = {
     authorized: false,
@@ -28,6 +28,11 @@ const UserReducer = (state = defaultState, action) => {
             state.user = defaultState.user;
             state.authorized = false;
             removeCookie("AuthToken");
+            break;
+        }
+        case ADD_USER_CREDIT_CARD:{
+            state.user.creditCards.push(action.payload);
+            Object.assign({}, state.user);
             break;
         }
         default:

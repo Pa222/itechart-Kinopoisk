@@ -37,6 +37,9 @@ namespace KinopoiskAPI.Controllers
         [HttpPost("auth")]
         public async Task<IActionResult> Auth([FromBody] UserLoginDto info)
         {
+            if (info == null)
+                return BadRequest();
+
             var user = await _userService.GetUser(info.Email);
 
             if (user == null || !Hasher.CheckPassword(info.Password, user.Password, user.Salt))
@@ -49,9 +52,13 @@ namespace KinopoiskAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto info)
         {
+            if (info == null)
+                return BadRequest();
+
             var user = await _userService.GetUser(info.Email);
             if (user != null)
                 return BadRequest();
+
             if (await _userService.AddUser(info))
                 return Ok();
             return BadRequest();

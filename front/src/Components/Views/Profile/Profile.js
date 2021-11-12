@@ -111,18 +111,20 @@ const Profile = (props) => {
                                 </div>
                                 <div>
                                     <label className={classes.profileContainer__inforamtionKey}>Кредитные карты: </label>
-                                    {
-                                        props.creditCards.length !== 0 &&
-                                        <div>
-                                            {
-                                                props.creditCards.map((card, i) => <CreditCardContainer key={i} {...card} />)
-                                            }
-                                        </div>
-                                    }
+                                    <div className={classes.profileContainer__cardsContainer}>
+                                        {
+                                            props.creditCards.length !== 0 &&
+                                            <div>
+                                                {
+                                                    props.creditCards.map((card, i) => <CreditCardContainer key={i} {...card} />)
+                                                }
+                                            </div>
+                                        }
+                                    </div>
                                     <input type="button" value="Добавление новой карты" onClick={props.toggleAddCreditCardContainer}></input>
                                     {
                                         props.showAddCreditCard && 
-                                        <AddCreditCardContainer/>
+                                        <AddCreditCardContainer toggleAddCreditCardContainer={props.toggleAddCreditCardContainer}/>
                                     }
                                 </div>
                             </div>

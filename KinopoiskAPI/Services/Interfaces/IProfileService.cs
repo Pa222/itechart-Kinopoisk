@@ -5,6 +5,6 @@ namespace KinopoiskAPI.Services.Interfaces
 {
     public interface IProfileService
     {
-        public Task<bool> AddCreditCard(AddCreditCardDto info, int userId);
+        public Task<CreditCardInfoDto> AddCreditCard(AddCreditCardDto info, int userId);
     }
 }
