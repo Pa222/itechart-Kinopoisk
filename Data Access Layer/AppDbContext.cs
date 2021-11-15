@@ -15,6 +15,8 @@ namespace Data_Access_Layer
 
         public DbSet<CreditCard> CreditCards { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -36,15 +38,19 @@ namespace Data_Access_Layer
             modelBuilder.Entity<User>().Property(p => p.Salt).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.PhoneNumber).HasDefaultValue("");
 
-            modelBuilder.Entity<CreditCard>()
-                .HasOne<User>(c => c.User)
-                .WithMany(u => u.Cards)
-                .HasForeignKey(c => c.UserId);
-
             modelBuilder.Entity<CreditCard>().Property(p => p.Number).IsRequired();
             modelBuilder.Entity<CreditCard>().Property(p => p.Expiry).IsRequired();
             modelBuilder.Entity<CreditCard>().Property(p => p.Cvc).IsRequired();
             modelBuilder.Entity<CreditCard>().Property(p => p.UserId).IsRequired();
+
+            modelBuilder.Entity<Comment>().Property(p => p.MovieId).IsRequired();
+            modelBuilder.Entity<Comment>().Property(p => p.UserId).IsRequired();
+            modelBuilder.Entity<Comment>().Property(p => p.Description).IsRequired();
+
+            modelBuilder.Entity<CreditCard>()
+                .HasOne<User>(c => c.User)
+                .WithMany(u => u.Cards)
+                .HasForeignKey(c => c.UserId);
 
             modelBuilder.Entity<GenreMovie>()
                 .HasOne(g => g.Genre)
@@ -55,6 +61,16 @@ namespace Data_Access_Layer
                 .HasOne(g => g.Movie)
                 .WithMany(gm => gm.GenreMovies)
                 .HasForeignKey(gi => gi.MovieId);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.User)
+                .WithMany(cu => cu.Comments)
+                .HasForeignKey(ci => ci.UserId);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Movie)
+                .WithMany(cu => cu.Comments)
+                .HasForeignKey(ci => ci.MovieId);
 
             //Filling
 

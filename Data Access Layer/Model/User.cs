@@ -13,6 +13,7 @@ namespace Data_Access_Layer.Model
         public string Password { get; set; }
         public byte[] Salt { get; set; }
         public string Avatar { get; set; } = "https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png";
-        public ICollection<CreditCard> Cards { get; set; }
+        public List<CreditCard> Cards { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace Data_Access_Layer.Model
 
         public List<GenreMovie> GenreMovies { get; set; }
 
+        public List<Comment> Comments { get; set; }
+
         public string Image { get; set; }
     }
 }
