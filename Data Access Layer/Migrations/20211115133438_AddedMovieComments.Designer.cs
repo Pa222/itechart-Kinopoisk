@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access_Layer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211115130430_AddedMovieComments")]
+    [Migration("20211115133438_AddedMovieComments")]
     partial class AddedMovieComments
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,8 @@ namespace Data_Access_Layer.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");

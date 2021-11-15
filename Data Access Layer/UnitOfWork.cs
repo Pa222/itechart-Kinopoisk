@@ -19,5 +19,7 @@ namespace Data_Access_Layer
         public IRepository<Faq> Faqs => new GenericRepository<Faq>(_db);
         public ICreditCardRepository CreditCards => new CreditCardRepository(_db);
         public IUserRepository Users => new UserRepository(_db);
+
+        public ICommentRepository Comments => new CommentRepository(_db);
     }
 }

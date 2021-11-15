@@ -28,7 +28,8 @@ namespace Data_Access_Layer.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");

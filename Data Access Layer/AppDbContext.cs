@@ -45,7 +45,7 @@ namespace Data_Access_Layer
 
             modelBuilder.Entity<Comment>().Property(p => p.MovieId).IsRequired();
             modelBuilder.Entity<Comment>().Property(p => p.UserId).IsRequired();
-            modelBuilder.Entity<Comment>().Property(p => p.Description).IsRequired();
+            modelBuilder.Entity<Comment>().Property(p => p.Description).HasMaxLength(255).IsRequired();
 
             modelBuilder.Entity<CreditCard>()
                 .HasOne<User>(c => c.User)

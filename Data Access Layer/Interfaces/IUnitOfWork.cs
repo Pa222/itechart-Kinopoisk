@@ -10,5 +10,6 @@ namespace Data_Access_Layer.Interfaces
         IRepository<Faq> Faqs { get; }
         ICreditCardRepository CreditCards { get; }
         IUserRepository Users { get; }
+        ICommentRepository Comments { get; }
     }
 }

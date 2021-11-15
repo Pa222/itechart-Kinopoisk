@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KinopoiskAPI.Dto.Comment;
 
 namespace KinopoiskAPI.Services
 {
@@ -61,6 +62,26 @@ namespace KinopoiskAPI.Services
         {
             var result = await _unitOfWork.Movies.GetMoviesByTitle(title);
             return MapMovies(result);
+        }
+
+        public async Task<List<CommentInfoDto>> AddComment(AddCommentDto info, int userId)
+        {
+            await _unitOfWork.Comments.Create(new Comment
+            {
+                Description = info.Description,
+                UserId = userId,
+                MovieId = info.MovieId,
+            });
+            var comments = await _unitOfWork.Comments.GetAllByMovie(info.MovieId);
+            var result = new List<CommentInfoDto>();
+            _mapper.Map(comments, result);
+            for (var i = 0; i < comments.Count; i++)
+            {
+                var user = await _unitOfWork.Users.Get(comments[i].UserId);
+                result[i].UserName = user.Name;
+                result[i].UserAvatar = user.Avatar;
+            }
+            return result;
         }
     }
 }
