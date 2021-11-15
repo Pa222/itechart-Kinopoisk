@@ -43,7 +43,11 @@ namespace Data_Access_Layer.Repositories
 
         public async Task<Movie> GetAsync(int id)
         {
-            return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre).AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+            return await Db.Movies.Include(s => s.GenreMovies)
+                .ThenInclude(s => s.Genre)
+                .Include(s => s.Comments)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == id);
         }
     }
 }

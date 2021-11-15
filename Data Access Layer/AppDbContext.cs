@@ -74,6 +74,14 @@ namespace Data_Access_Layer
 
             //Filling
 
+            modelBuilder.Entity<Comment>().HasData(new Comment
+            {
+                Id = 1,
+                UserId = 1,
+                MovieId = 1,
+                Description = "Тестовый комментарий",
+            });
+
             modelBuilder.Entity<CreditCard>().HasData(new CreditCard
             {
                 Id = 1,

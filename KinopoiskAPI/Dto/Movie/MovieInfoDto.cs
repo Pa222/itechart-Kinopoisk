@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KinopoiskAPI.Dto.Comment;
 
 namespace KinopoiskAPI.Dto
 {
@@ -13,6 +14,8 @@ namespace KinopoiskAPI.Dto
         public string CreateYear { get; set; }
 
         public List<string> GenreMovies { get; set; }
+
+        public List<CommentInfoDto> Comments { get; set; }
 
         public string Image { get; set; }
     }

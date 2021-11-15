@@ -33,6 +33,11 @@ namespace Data_Access_Layer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Comments",
+                columns: new[] { "Id", "Description", "MovieId", "UserId" },
+                values: new object[] { 1, "Тестовый комментарий", 1, 1 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_MovieId",
                 table: "Comments",

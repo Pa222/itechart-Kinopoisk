@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Access_Layer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211115125020_AddedMovieComments")]
+    [Migration("20211115130430_AddedMovieComments")]
     partial class AddedMovieComments
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,15 @@ namespace Data_Access_Layer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Тестовый комментарий",
+                            MovieId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>

@@ -43,6 +43,15 @@ namespace Data_Access_Layer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Тестовый комментарий",
+                            MovieId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
