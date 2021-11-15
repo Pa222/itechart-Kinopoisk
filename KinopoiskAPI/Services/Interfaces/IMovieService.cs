@@ -14,5 +14,7 @@ namespace KinopoiskAPI.Services.Interfaces
         public Task<List<MovieInfoDto>> GetMoviesByTitle(string title);
 
         public Task<List<CommentInfoDto>> AddComment(AddCommentDto info, int userId);
+
+        public Task<List<CommentInfoDto>> DeleteComment(DeleteCommentDto info);
     }
 }

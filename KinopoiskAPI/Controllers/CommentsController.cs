@@ -35,5 +35,15 @@ namespace KinopoiskAPI.Controllers
 
             return Ok(comments);
         }
+
+        [Authorize]
+        [HttpDelete("delete-comment")]
+        public async Task<IActionResult> DeleteComment([FromBody] DeleteCommentDto info)
+        {
+            if (info == null)
+                return BadRequest();
+            var comments = await _movieService.DeleteComment(info);
+            return Ok(comments);
+        }
     }
 }
