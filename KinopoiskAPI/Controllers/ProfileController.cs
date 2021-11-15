@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
+using KinopoiskAPI.Dto;
 using KinopoiskAPI.Dto.CreditCard;
+using KinopoiskAPI.Dto.User;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
 using KinopoiskAPI.Utils.Jwt;
@@ -52,6 +54,17 @@ namespace KinopoiskAPI.Controllers
             var cards = await _profileService.DeleteCreditCard(info, user.Id);
 
             return Ok(cards);
+        }
+
+        [Authorize]
+        [HttpPut("update-user-profile")]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserUpdateProfileDto info)
+        {
+            var token = Request.Headers[HeaderNames.Authorization].ToString();
+            var email = JwtDecoder.GetEmail(token[7..]);
+            var user = await _userService.GetUser(email);
+            var updatedUser = await _profileService.UpdateUserProfile(user, info);
+            return Ok(updatedUser);
         }
     }
 }

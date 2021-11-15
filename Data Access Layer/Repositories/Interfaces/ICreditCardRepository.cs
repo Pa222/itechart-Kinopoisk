@@ -13,7 +13,5 @@ namespace Data_Access_Layer.Repositories.Interfaces
         public Task<CreditCard> GetByNumber(string number);
 
         public Task<List<CreditCard>> GetAllByUserId(int userId);
-
-        public Task<bool> DeleteByNumber(string number);
     }
 }

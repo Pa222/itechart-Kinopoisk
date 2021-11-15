@@ -24,14 +24,5 @@ namespace Data_Access_Layer.Repositories
         {
             return await Db.CreditCards.AsNoTracking().Where(c => c.UserId == userId).ToListAsync();
         }
-
-        public async Task<bool> DeleteByNumber(string number)
-        {
-            var card = await Db.CreditCards.AsNoTracking().FirstOrDefaultAsync(c => c.Number.Equals(number));
-            if (card == null) return false;
-            Db.CreditCards.Remove(card);
-            await Db.SaveChangesAsync();
-            return true;
-        }
     }
 }

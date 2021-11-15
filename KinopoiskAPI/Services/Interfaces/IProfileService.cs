@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Data_Access_Layer.Model;
+using KinopoiskAPI.Dto;
 using KinopoiskAPI.Dto.CreditCard;
+using KinopoiskAPI.Dto.User;
 
 namespace KinopoiskAPI.Services.Interfaces
 {
@@ -9,5 +12,7 @@ namespace KinopoiskAPI.Services.Interfaces
         public Task<List<CreditCardInfoDto>> AddCreditCard(AddCreditCardDto info, int userId);
 
         public Task<List<CreditCardInfoDto>> DeleteCreditCard(DeleteCreditCardDto info, int userId);
+
+        public Task<UserInfoDto> UpdateUserProfile(User user, UserUpdateProfileDto info);
     }
 }

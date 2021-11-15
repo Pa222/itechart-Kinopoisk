@@ -31,18 +31,18 @@ namespace Data_Access_Layer
             return await Db.SaveChangesAsync() != 0;
         }
 
-        public async void Update(T item)
+        public async Task<bool> Update(T item)
         {
-            if (item == null) return;
+            if (item == null) return false;
             Db.Set<T>().Update(item);
-            await Db.SaveChangesAsync();
+            return await Db.SaveChangesAsync() != 0;
         }
 
-        public async void Delete(T item)
+        public async Task<bool> Delete(T item)
         {
-            if (item == null) return;
+            if (item == null) return false;
             Db.Set<T>().Remove(item);
-            await Db.SaveChangesAsync();
+            return await Db.SaveChangesAsync() != 0;
         }
     }
 }

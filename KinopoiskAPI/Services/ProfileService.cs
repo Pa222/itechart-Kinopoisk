@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Model;
+using KinopoiskAPI.Dto;
 using KinopoiskAPI.Dto.CreditCard;
+using KinopoiskAPI.Dto.User;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
 
@@ -47,10 +49,25 @@ namespace KinopoiskAPI.Services
 
         public async Task<List<CreditCardInfoDto>> DeleteCreditCard(DeleteCreditCardDto info, int userId)
         {
-            await _unitOfWork.CreditCards.DeleteByNumber(info.Number);
+            var card = await _unitOfWork.CreditCards.GetByNumber(info.Number);
+            await _unitOfWork.CreditCards.Delete(card);
             var result = new List<CreditCardInfoDto>();
             var cards = await _unitOfWork.CreditCards.GetAllByUserId(userId);
             _mapper.Map(cards, result);
+            return result;
+        }
+
+        public async Task<UserInfoDto> UpdateUserProfile(User user, UserUpdateProfileDto info)
+        {
+            _mapper.Map(info, user);
+            await _unitOfWork.Users.Update(user);
+            var result = new UserInfoDto
+            {
+                CreditCards = new List<CreditCardInfoDto>()
+            };
+
+            _mapper.Map(user, result);
+            _mapper.Map(user.Cards, result.CreditCards);
             return result;
         }
     }

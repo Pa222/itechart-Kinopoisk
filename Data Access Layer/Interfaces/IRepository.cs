@@ -11,8 +11,8 @@ namespace Data_Access_Layer.Interfaces
 
         Task<bool> Create(T item);
 
-        void Update(T item);
+        Task<bool> Update(T item);
 
-        void Delete(T item);
+        Task<bool> Delete(T item);
     }
 }
