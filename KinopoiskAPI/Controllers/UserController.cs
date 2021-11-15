@@ -1,4 +1,6 @@
-﻿using KinopoiskAPI.Dto;
+﻿using System;
+using System.IO;
+using KinopoiskAPI.Dto;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.Hasher;
 using Microsoft.AspNetCore.Authorization;
@@ -6,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using KinopoiskAPI.Utils.Jwt;
 using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace KinopoiskAPI.Controllers
 {
@@ -31,6 +34,25 @@ namespace KinopoiskAPI.Controllers
                 return Unauthorized();
 
             return Ok(_userService.GetUserInfo(user));
+        }
+
+        [Authorize]
+        [HttpPost("upload-avatar")]
+        public async Task<IActionResult> UploadAvatar()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                if (file.Length > 0)
+                {
+                    //TODO: UPLOAD FILE TO CLOUDINARY
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            return Ok();
         }
 
         [AllowAnonymous]
