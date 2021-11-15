@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Model;
@@ -21,7 +22,7 @@ namespace KinopoiskAPI.Services
             _mapper = mapper;
         }
 
-        public async Task<CreditCardInfoDto> AddCreditCard(AddCreditCardDto info, int userId)
+        public async Task<List<CreditCardInfoDto>> AddCreditCard(AddCreditCardDto info, int userId)
         {
             var card = await _unitOfWork.CreditCards.GetByNumber(info.Number);
             if (card == null)
@@ -37,10 +38,19 @@ namespace KinopoiskAPI.Services
                 });
             }
 
-            card = await _unitOfWork.CreditCards.GetByNumber(info.Number);
-            var result = new CreditCardInfoDto();
-            _mapper.Map(card, result);
+            var cards = await _unitOfWork.CreditCards.GetAllByUserId(userId);
+            var result = new List<CreditCardInfoDto>();
+            _mapper.Map(cards, result);
 
+            return result;
+        }
+
+        public async Task<List<CreditCardInfoDto>> DeleteCreditCard(DeleteCreditCardDto info, int userId)
+        {
+            await _unitOfWork.CreditCards.DeleteByNumber(info.Number);
+            var result = new List<CreditCardInfoDto>();
+            var cards = await _unitOfWork.CreditCards.GetAllByUserId(userId);
+            _mapper.Map(cards, result);
             return result;
         }
     }

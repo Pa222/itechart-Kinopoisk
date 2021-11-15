@@ -34,8 +34,24 @@ namespace KinopoiskAPI.Controllers
             if (user == null || info == null)
                 return BadRequest();
 
-            var card = await _profileService.AddCreditCard(info, user.Id);
-            return Ok(card);
+            var cards = await _profileService.AddCreditCard(info, user.Id);
+            return Ok(cards);
+        }
+
+        [Authorize]
+        [HttpDelete("delete-credit-card")]
+        public async Task<IActionResult> DeleteCreditCard([FromBody] DeleteCreditCardDto info)
+        {
+            var token = Request.Headers[HeaderNames.Authorization].ToString();
+            var email = JwtDecoder.GetEmail(token[7..]);
+            var user = await _userService.GetUser(email);
+
+            if (user == null || info == null)
+                return BadRequest();
+
+            var cards = await _profileService.DeleteCreditCard(info, user.Id);
+
+            return Ok(cards);
         }
     }
 }
