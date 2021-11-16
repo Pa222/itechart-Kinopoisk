@@ -36,20 +36,19 @@ namespace Data_Access_Layer.Repositories
 
         public async Task<List<Movie>> GetMoviesByTitle(string title)
         {
-            var tmp = await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
+            return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
                 .Where(m => m.Title.Contains(title))
                 .ToListAsync();
-            return tmp;
         }
 
         public async Task<Movie> GetAsync(int id)
         {
-            var tmp = await Db.Movies.Include(s => s.GenreMovies)
+            return await Db.Movies.Include(s => s.GenreMovies)
                 .ThenInclude(s => s.Genre)
                 .Include(s => s.Comments)
+                .Include(m => m.Ratings)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(s => s.Id == id);
-            return tmp;
         }
     }
 }
