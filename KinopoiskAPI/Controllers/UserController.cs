@@ -6,6 +6,7 @@ using KinopoiskAPI.Utils.Hasher;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using KinopoiskAPI.Utils.CloudinaryApi;
 using KinopoiskAPI.Utils.Jwt;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
@@ -16,10 +17,12 @@ namespace KinopoiskAPI.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly ICloudinaryApi _cloudinaryApi;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ICloudinaryApi cloudinaryApi)
         {
             _userService = userService;
+            _cloudinaryApi = cloudinaryApi;
         }
 
         [Authorize]
@@ -40,19 +43,33 @@ namespace KinopoiskAPI.Controllers
         [HttpPost("upload-avatar")]
         public async Task<IActionResult> UploadAvatar()
         {
+            var token = Request.Headers[HeaderNames.Authorization].ToString();
+            var email = JwtDecoder.GetEmail(token[7..]);
+            var user = await _userService.GetUser(email);
+
+            if (await _userService.GetUser(email) == null)
+                return Unauthorized();
+
             try
             {
                 var file = Request.Form.Files[0];
-                if (file.Length > 0)
-                {
-                    //TODO: UPLOAD FILE TO CLOUDINARY
-                }
+                if (file.Length <= 0) return BadRequest();
+
+                var fileUrl = await _cloudinaryApi.UploadFile(file, email);
+
+                if (fileUrl == null)
+                    return BadRequest();
+
+                user.Avatar = fileUrl;
+
+                if (await _userService.UpdateUser(user))
+                    return Ok(_userService.GetUserInfo(user));
+                return BadRequest();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex);
+                return BadRequest();
             }
-            return Ok();
         }
 
         [AllowAnonymous]

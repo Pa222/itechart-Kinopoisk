@@ -13,5 +13,7 @@ namespace KinopoiskAPI.Services.Interfaces
         public UserInfoDto GetUserInfo(User user);
 
         public Task<bool> AddUser(UserRegisterDto info);
+
+        public Task<bool> UpdateUser(User user);
     }
 }

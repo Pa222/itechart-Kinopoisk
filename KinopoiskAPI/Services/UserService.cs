@@ -82,5 +82,10 @@ namespace KinopoiskAPI.Services
                 Gender = Gender.Undefined.ToString(),
             });
         }
+
+        public async Task<bool> UpdateUser(User user)
+        {
+            return await _unitOfWork.Users.Update(user);
+        }
     }
 }
