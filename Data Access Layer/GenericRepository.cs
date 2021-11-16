@@ -25,17 +25,19 @@ namespace Data_Access_Layer
             return await Db.Set<T>().FindAsync(id);
         }
 
-        public async Task<bool> Create(T item)
+        public async Task<T> Create(T item)
         {
             Db.Set<T>().Add(item);
-            return await Db.SaveChangesAsync() != 0;
+            await Db.SaveChangesAsync();
+            return item;
         }
 
-        public async Task<bool> Update(T item)
+        public async Task<T> Update(T item)
         {
-            if (item == null) return false;
+            if (item == null) return null;
             Db.Set<T>().Update(item);
-            return await Db.SaveChangesAsync() != 0;
+            await Db.SaveChangesAsync();
+            return item;
         }
 
         public async Task<bool> Delete(T item)

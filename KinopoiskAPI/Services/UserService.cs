@@ -69,7 +69,7 @@ namespace KinopoiskAPI.Services
             return result;
         }
 
-        public async Task<bool> AddUser(UserRegisterDto info)
+        public async Task<User> AddUser(UserRegisterDto info)
         {
             var salt = Hasher.GetSalt();
             return await _unitOfWork.Users.Create(new User()
@@ -84,7 +84,7 @@ namespace KinopoiskAPI.Services
             });
         }
 
-        public async Task<bool> UpdateUser(User user)
+        public async Task<User> UpdateUser(User user)
         {
             return await _unitOfWork.Users.Update(user);
         }

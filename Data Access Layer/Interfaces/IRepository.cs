@@ -9,9 +9,9 @@ namespace Data_Access_Layer.Interfaces
 
         Task<T> Get(int id);
 
-        Task<bool> Create(T item);
+        Task<T> Create(T item);
 
-        Task<bool> Update(T item);
+        Task<T> Update(T item);
 
         Task<bool> Delete(T item);
     }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data_Access_Layer.Entity;
 using KinopoiskAPI.Dto.Movie;
+using KinopoiskAPI.Dto.Rating;
 
 namespace KinopoiskAPI.Services
 {

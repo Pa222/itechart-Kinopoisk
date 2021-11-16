@@ -21,5 +21,6 @@ namespace Data_Access_Layer
         public IUserRepository Users => new UserRepository(_db);
 
         public ICommentRepository Comments => new CommentRepository(_db);
+        public IRatingRepository Ratings => new RatingRepository(_db);
     }
 }

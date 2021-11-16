@@ -11,5 +11,7 @@ namespace Data_Access_Layer.Interfaces
         ICreditCardRepository CreditCards { get; }
         IUserRepository Users { get; }
         ICommentRepository Comments { get; }
+
+        IRatingRepository Ratings { get; }
     }
 }

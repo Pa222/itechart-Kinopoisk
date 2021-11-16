@@ -61,8 +61,9 @@ namespace KinopoiskAPI.Controllers
 
                 user.Avatar = fileUrl;
 
-                if (await _userService.UpdateUser(user))
-                    return Ok(_userService.GetUserInfo(user));
+                var updUser = await _userService.UpdateUser(user);
+                if (updUser != null)
+                    return Ok();
                 return BadRequest();
             }
             catch (Exception)
@@ -97,9 +98,7 @@ namespace KinopoiskAPI.Controllers
             if (user != null)
                 return BadRequest();
 
-            if (await _userService.AddUser(info))
-                return Ok();
-            return BadRequest();
+            return Ok(await _userService.AddUser(info));
         }
     }
 }

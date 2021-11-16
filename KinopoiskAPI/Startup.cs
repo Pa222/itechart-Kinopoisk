@@ -39,6 +39,7 @@ namespace KinopoiskAPI
             services.AddTransient<IFaqService, FaqService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IRatingService, RatingService>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
