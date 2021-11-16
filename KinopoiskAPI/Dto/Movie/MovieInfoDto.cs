@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using KinopoiskAPI.Dto.Comment;
-using KinopoiskAPI.Dto.Rating;
 
 namespace KinopoiskAPI.Dto.Movie
 {
@@ -19,6 +18,6 @@ namespace KinopoiskAPI.Dto.Movie
 
         public List<CommentInfoDto> Comments { get; set; }
 
-        public List<RatingInfoDto> Ratings { get; set; }
+        public List<int> Ratings { get; set; }
     }
 }

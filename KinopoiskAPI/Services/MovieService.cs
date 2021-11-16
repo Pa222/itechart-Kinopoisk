@@ -64,12 +64,7 @@ namespace KinopoiskAPI.Services
             var result = new MovieInfoDto();
             _mapper.Map(movie, result);
             result.GenreMovies = movie.GenreMovies.Select(t => t.Genre.Name).ToList();
-            for (var i = 0; i < movie.Comments.Count; i++)
-            {
-                var user = await _unitOfWork.Users.Get(movie.Comments[i].UserId);
-                result.Comments[i].UserName = user.Name;
-                result.Comments[i].UserAvatar = user.Avatar;
-            }
+            result.Comments = await MapComments(movie.Comments);
             return result;
         }
 
