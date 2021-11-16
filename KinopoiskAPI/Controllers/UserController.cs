@@ -63,7 +63,7 @@ namespace KinopoiskAPI.Controllers
 
                 var updUser = await _userService.UpdateUser(user);
                 if (updUser != null)
-                    return Ok();
+                    return Ok(_userService.GetUserInfo(updUser));
                 return BadRequest();
             }
             catch (Exception)
