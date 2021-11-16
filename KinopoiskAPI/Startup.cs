@@ -2,6 +2,7 @@ using Data_Access_Layer;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Repositories;
 using Data_Access_Layer.Repositories.Interfaces;
+using KinopoiskAPI.Hubs;
 using KinopoiskAPI.Services;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
@@ -61,6 +62,8 @@ namespace KinopoiskAPI
             services.AddCors();
 
             services.AddControllers();
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -80,6 +83,7 @@ namespace KinopoiskAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/hubs/chat");
             });
         }
     }
