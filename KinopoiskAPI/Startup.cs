@@ -1,10 +1,11 @@
 using Data_Access_Layer;
 using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Repositories;
-using KinopoiskAPI.Jwt;
+using Data_Access_Layer.Repositories.Interfaces;
 using KinopoiskAPI.Services;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
+using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KinopoiskAPI.Dto
+namespace KinopoiskAPI.Dto.Movie
 {
     public class MoviePageDto
     {

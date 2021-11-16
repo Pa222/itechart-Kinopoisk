@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using KinopoiskAPI.Dto.Comment;
+﻿using KinopoiskAPI.Dto.Comment;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Controllers
 {

@@ -1,7 +1,7 @@
-﻿using Data_Access_Layer.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using Data_Access_Layer.Entity;
 
 namespace Data_Access_Layer
 {
@@ -16,6 +16,8 @@ namespace Data_Access_Layer
         public DbSet<CreditCard> CreditCards { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -47,6 +49,9 @@ namespace Data_Access_Layer
             modelBuilder.Entity<Comment>().Property(p => p.UserId).IsRequired();
             modelBuilder.Entity<Comment>().Property(p => p.Description).HasMaxLength(255).IsRequired();
 
+            modelBuilder.Entity<Rating>().Property(p => p.MovieId).IsRequired();
+            modelBuilder.Entity<Rating>().Property(p => p.UserId).IsRequired();
+
             modelBuilder.Entity<CreditCard>()
                 .HasOne<User>(c => c.User)
                 .WithMany(u => u.Cards)
@@ -72,7 +77,25 @@ namespace Data_Access_Layer
                 .WithMany(cu => cu.Comments)
                 .HasForeignKey(ci => ci.MovieId);
 
+            modelBuilder.Entity<Rating>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Ratings)
+                .HasForeignKey(r => r.UserId);
+
+            modelBuilder.Entity<Rating>()
+                .HasOne(r => r.Movie)
+                .WithMany(m => m.Ratings)
+                .HasForeignKey(r => r.MovieId);
+
             //Filling
+
+            modelBuilder.Entity<Rating>().HasData(new Rating
+            {
+                Id = 1,
+                UserId = 1,
+                MovieId = 1,
+                Value = 5,
+            });
 
             modelBuilder.Entity<Comment>().HasData(new Comment
             {

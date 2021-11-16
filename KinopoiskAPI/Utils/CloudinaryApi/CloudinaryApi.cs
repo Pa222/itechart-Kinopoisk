@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using CloudinaryDotNet;
+﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Utils.CloudinaryApi
 {

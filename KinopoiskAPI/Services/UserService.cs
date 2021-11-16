@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using Data_Access_Layer.Interfaces;
-using Data_Access_Layer.Model;
 using KinopoiskAPI.Dto;
-using KinopoiskAPI.Jwt;
+using KinopoiskAPI.Dto.CreditCard;
 using KinopoiskAPI.Services.Interfaces;
+using KinopoiskAPI.Utils.Hasher;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using KinopoiskAPI.Dto.CreditCard;
-using KinopoiskAPI.Utils.Hasher;
+using Data_Access_Layer.Entity;
+using KinopoiskAPI.Dto.User;
+using KinopoiskAPI.Utils.Jwt;
 
 namespace KinopoiskAPI.Services
 {

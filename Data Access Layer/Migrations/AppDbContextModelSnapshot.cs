@@ -19,7 +19,7 @@ namespace Data_Access_Layer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Comment", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +55,7 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.CreditCard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +102,7 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Faq", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Faq", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -166,7 +166,7 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Genre", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,7 +245,7 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.GenreMovie", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.GenreMovie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -413,7 +413,7 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Movie", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -513,7 +513,41 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.User", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ratings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MovieId = 1,
+                            UserId = 1,
+                            Value = 5
+                        });
+                });
+
+            modelBuilder.Entity("Data_Access_Layer.Entity.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -571,15 +605,15 @@ namespace Data_Access_Layer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Comment", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Comment", b =>
                 {
-                    b.HasOne("Data_Access_Layer.Model.Movie", "Movie")
+                    b.HasOne("Data_Access_Layer.Entity.Movie", "Movie")
                         .WithMany("Comments")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data_Access_Layer.Model.User", "User")
+                    b.HasOne("Data_Access_Layer.Entity.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -590,9 +624,9 @@ namespace Data_Access_Layer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.CreditCard", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.CreditCard", b =>
                 {
-                    b.HasOne("Data_Access_Layer.Model.User", "User")
+                    b.HasOne("Data_Access_Layer.Entity.User", "User")
                         .WithMany("Cards")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -601,15 +635,15 @@ namespace Data_Access_Layer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.GenreMovie", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.GenreMovie", b =>
                 {
-                    b.HasOne("Data_Access_Layer.Model.Genre", "Genre")
+                    b.HasOne("Data_Access_Layer.Entity.Genre", "Genre")
                         .WithMany("GenreMovies")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data_Access_Layer.Model.Movie", "Movie")
+                    b.HasOne("Data_Access_Layer.Entity.Movie", "Movie")
                         .WithMany("GenreMovies")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -620,23 +654,46 @@ namespace Data_Access_Layer.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Genre", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Rating", b =>
+                {
+                    b.HasOne("Data_Access_Layer.Entity.Movie", "Movie")
+                        .WithMany("Ratings")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data_Access_Layer.Entity.User", "User")
+                        .WithMany("Ratings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Data_Access_Layer.Entity.Genre", b =>
                 {
                     b.Navigation("GenreMovies");
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.Movie", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.Movie", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("GenreMovies");
+
+                    b.Navigation("Ratings");
                 });
 
-            modelBuilder.Entity("Data_Access_Layer.Model.User", b =>
+            modelBuilder.Entity("Data_Access_Layer.Entity.User", b =>
                 {
                     b.Navigation("Cards");
 
                     b.Navigation("Comments");
+
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

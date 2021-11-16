@@ -1,4 +1,4 @@
-﻿namespace KinopoiskAPI.Dto
+﻿namespace KinopoiskAPI.Dto.User
 {
     public class UserLoginDto
     {

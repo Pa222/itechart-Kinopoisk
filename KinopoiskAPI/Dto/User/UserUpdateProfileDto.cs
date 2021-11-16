@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using KinopoiskAPI.Dto.CreditCard;
-
-namespace KinopoiskAPI.Dto.User
+﻿namespace KinopoiskAPI.Dto.User
 {
     public class UserUpdateProfileDto
     {

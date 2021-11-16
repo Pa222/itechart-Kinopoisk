@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using KinopoiskAPI.Dto;
-using KinopoiskAPI.Dto.CreditCard;
+﻿using KinopoiskAPI.Dto.CreditCard;
 using KinopoiskAPI.Dto.User;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
@@ -8,6 +6,7 @@ using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Controllers
 {

@@ -1,8 +1,8 @@
 ﻿using Data_Access_Layer.Interfaces;
-using Data_Access_Layer.Model;
 using KinopoiskAPI.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Data_Access_Layer.Entity;
 
 namespace KinopoiskAPI.Services
 {

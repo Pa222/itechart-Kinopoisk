@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using CloudinaryDotNet.Actions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Utils.CloudinaryApi
 {

@@ -1,8 +1,9 @@
-﻿using Data_Access_Layer.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Data_Access_Layer.Entity;
+using Data_Access_Layer.Interfaces;
 
-namespace Data_Access_Layer.Interfaces
+namespace Data_Access_Layer.Repositories.Interfaces
 {
     public interface IMovieRepository : IRepository<Movie>
     {

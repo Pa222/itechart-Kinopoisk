@@ -1,8 +1,9 @@
 ﻿using KinopoiskAPI.Dto;
 using KinopoiskAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using KinopoiskAPI.Dto.Movie;
 
 namespace KinopoiskAPI.Controllers
 {

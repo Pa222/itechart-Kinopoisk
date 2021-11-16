@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using Data_Access_Layer.Model;
+using Data_Access_Layer.Entity;
 using KinopoiskAPI.Dto;
 using KinopoiskAPI.Dto.Comment;
 using KinopoiskAPI.Dto.CreditCard;
+using KinopoiskAPI.Dto.Movie;
 using KinopoiskAPI.Dto.User;
 
 namespace KinopoiskAPI

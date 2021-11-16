@@ -1,4 +1,4 @@
-﻿using Data_Access_Layer.Model;
+﻿using Data_Access_Layer.Entity;
 using Data_Access_Layer.Repositories.Interfaces;
 
 namespace Data_Access_Layer.Interfaces

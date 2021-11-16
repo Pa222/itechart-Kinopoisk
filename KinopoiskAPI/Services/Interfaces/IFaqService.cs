@@ -1,6 +1,6 @@
-﻿using Data_Access_Layer.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Data_Access_Layer.Entity;
 
 namespace KinopoiskAPI.Services.Interfaces
 {

@@ -1,7 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.Text;
+﻿using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
-namespace KinopoiskAPI.Jwt
+namespace KinopoiskAPI.Utils.Jwt
 {
     public class AuthOptions
     {

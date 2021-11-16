@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Data_Access_Layer.Model;
 using KinopoiskAPI.Dto.CreditCard;
 
-namespace KinopoiskAPI.Dto
+namespace KinopoiskAPI.Dto.User
 {
     public class UserInfoDto
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using KinopoiskAPI.Dto.Comment;
 
-namespace KinopoiskAPI.Dto
+namespace KinopoiskAPI.Dto.Movie
 {
     public class MovieInfoDto
     {

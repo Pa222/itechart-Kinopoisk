@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
-using KinopoiskAPI.Dto;
+﻿using KinopoiskAPI.Dto;
 using KinopoiskAPI.Services.Interfaces;
+using KinopoiskAPI.Utils.CloudinaryApi;
 using KinopoiskAPI.Utils.Hasher;
+using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using KinopoiskAPI.Utils.CloudinaryApi;
-using KinopoiskAPI.Utils.Jwt;
 using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
+using KinopoiskAPI.Dto.User;
 
 namespace KinopoiskAPI.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using Data_Access_Layer.Interfaces;
-using Data_Access_Layer.Model;
+﻿using Data_Access_Layer.Entity;
+using Data_Access_Layer.Interfaces;
 using Data_Access_Layer.Repositories;
 using Data_Access_Layer.Repositories.Interfaces;
 
