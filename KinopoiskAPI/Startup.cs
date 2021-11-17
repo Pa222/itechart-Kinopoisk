@@ -73,7 +73,7 @@ namespace KinopoiskAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000"));
 
             app.UseRouting();
 
