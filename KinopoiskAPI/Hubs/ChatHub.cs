@@ -33,6 +33,8 @@ namespace KinopoiskAPI.Hubs
         public override async Task<Task> OnDisconnectedAsync(Exception exception)
         {
             Connections.Remove(Connections.First(c => c.ConnectionId.Equals(Context.ConnectionId)));
+            if (Admins.Any(admin => admin.Equals(Context.ConnectionId)))
+                Admins.Remove(Context.ConnectionId);
             await GetAdminInformation();
             return base.OnDisconnectedAsync(exception);
         }
