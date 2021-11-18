@@ -62,6 +62,10 @@ namespace KinopoiskAPI.Services
         public async Task<MovieInfoDto> Get(int id)
         {
             var movie = await _unitOfWork.Movies.GetAsync(id);
+            if (movie == null)
+            {
+                return null;
+            }
             var result = new MovieInfoDto();
             _mapper.Map(movie, result);
             result.GenreMovies = movie.GenreMovies.Select(t => t.Genre.Name).ToList();

@@ -21,8 +21,10 @@ namespace KinopoiskAPI.Controllers
         [HttpGet("get")]
         public async Task<IActionResult> Get(int id)
         {
-            var movies = await _movieService.Get(id);
-            return Ok(movies);
+            var movie = await _movieService.Get(id);
+            if (movie == null)
+                return BadRequest();
+            return Ok(movie);
         }
 
         [AllowAnonymous]

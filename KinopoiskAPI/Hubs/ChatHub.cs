@@ -41,6 +41,14 @@ namespace KinopoiskAPI.Hubs
 
         public async Task SendMessage(ChatMessage message)
         {
+            var connection = Connections.FirstOrDefault(c => c.ConnectionId.Equals(Context.ConnectionId));
+            if (connection != null)
+            {
+                connection.Sender = message.Sender;
+                connection.IsMessagesSend = true;
+                connection.Messages.Add(message);
+            }
+
             if (Admins.Count == 0)
             {
                 await Clients.Caller.SendAsync("ReceiveMessage", new ChatMessage
@@ -52,14 +60,6 @@ namespace KinopoiskAPI.Hubs
             }
             else
             {
-                var connection = Connections.FirstOrDefault(c => c.ConnectionId.Equals(Context.ConnectionId));
-                if (connection != null)
-                {
-                    connection.Sender = message.Sender;
-                    connection.IsMessagesSend = true;
-                    connection.Messages.Add(message);
-                }
-
                 foreach (var admin in Admins)
                 {
                     await Clients.Client(admin).SendAsync("UpdateAdminInformation");
