@@ -46,6 +46,7 @@ namespace KinopoiskAPI.Hubs
             {
                 connection.Sender = message.Sender;
                 connection.IsMessagesSend = true;
+                connection.IsReplied = false;
                 connection.Messages.Add(message);
             }
 
@@ -75,6 +76,8 @@ namespace KinopoiskAPI.Hubs
             if (connection != null)
             {
                 connection.Messages.Add(message);
+                connection.IsReplied = true;
+                await Clients.Caller.SendAsync("UpdateAdminInformation");
                 await Clients.Client(connection.ConnectionId).SendAsync("ReceiveMessage", message);
             }
         }
