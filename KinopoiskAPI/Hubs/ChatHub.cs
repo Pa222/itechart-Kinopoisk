@@ -63,7 +63,18 @@ namespace KinopoiskAPI.Hubs
                 foreach (var admin in Admins)
                 {
                     await Clients.Client(admin).SendAsync("UpdateAdminInformation");
+                    await Clients.Client(admin).SendAsync("ReceiveMessages", connection?.Messages);
                 }
+            }
+        }
+
+        public async Task SendMessageToUser(ChatMessage message)
+        {
+            var connection = Connections.FirstOrDefault(c => c.Sender.Equals(message.Receiver));
+
+            if (connection != null)
+            {
+                await Clients.Client(connection.ConnectionId).SendAsync("ReceiveMessage", message);
             }
         }
 
@@ -88,16 +99,6 @@ namespace KinopoiskAPI.Hubs
             foreach (var admin in Admins)
             {
                 await Clients.Client(admin).SendAsync("ReceiveAdminInformation", connections);
-            }
-        }
-
-        public async Task GetMyMessages(string connectionId)
-        {
-            var connection = Connections.FirstOrDefault(c => c.ConnectionId.Equals(connectionId));
-
-            if (connection != null)
-            {
-                await Clients.Client(connectionId).SendAsync("ReceiveMyMessages", connection.Messages);
             }
         }
     }
