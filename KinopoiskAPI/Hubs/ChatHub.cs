@@ -39,7 +39,7 @@ namespace KinopoiskAPI.Hubs
             return base.OnDisconnectedAsync(exception);
         }
 
-        public async Task SendMessage(ChatMessage message)
+        public async Task SendMessageToAdmin(ChatMessage message)
         {
             var connection = Connections.FirstOrDefault(c => c.ConnectionId.Equals(Context.ConnectionId));
             if (connection != null)
