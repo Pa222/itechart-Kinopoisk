@@ -74,6 +74,7 @@ namespace KinopoiskAPI.Hubs
 
             if (connection != null)
             {
+                connection.Messages.Add(message);
                 await Clients.Client(connection.ConnectionId).SendAsync("ReceiveMessage", message);
             }
         }
