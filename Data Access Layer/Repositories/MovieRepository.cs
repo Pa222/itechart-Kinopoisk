@@ -38,6 +38,7 @@ namespace Data_Access_Layer.Repositories
         {
             return await Db.Movies.Include(s => s.GenreMovies).ThenInclude(s => s.Genre)
                 .Where(m => m.Title.Contains(title))
+                .AsNoTracking()
                 .ToListAsync();
         }
 
