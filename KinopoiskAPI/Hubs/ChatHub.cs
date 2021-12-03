@@ -52,7 +52,7 @@ namespace KinopoiskAPI.Hubs
 
             if (Admins.Count == 0)
             {
-                await Clients.Caller.SendAsync("ReceiveMessage", new ChatMessage
+                await Clients.Caller.SendAsync(HubMethods.ReceiveMessage, new ChatMessage
                 {
                     Sender = "Сервер",
                     Receiver = message.Sender,
@@ -63,8 +63,8 @@ namespace KinopoiskAPI.Hubs
             {
                 foreach (var admin in Admins)
                 {
-                    await Clients.Client(admin).SendAsync("UpdateAdminInformation");
-                    await Clients.Client(admin).SendAsync("ReceiveMessages", connection?.Messages);
+                    await Clients.Client(admin).SendAsync(HubMethods.UpdateAdminInformation);
+                    await Clients.Client(admin).SendAsync(HubMethods.ReceiveMessages, connection?.Messages);
                 }
             }
         }
@@ -77,8 +77,8 @@ namespace KinopoiskAPI.Hubs
             {
                 connection.Messages.Add(message);
                 connection.IsReplied = true;
-                await Clients.Caller.SendAsync("UpdateAdminInformation");
-                await Clients.Client(connection.ConnectionId).SendAsync("ReceiveMessage", message);
+                await Clients.Caller.SendAsync(HubMethods.UpdateAdminInformation);
+                await Clients.Client(connection.ConnectionId).SendAsync(HubMethods.ReceiveMessage, message);
             }
         }
 
@@ -102,7 +102,7 @@ namespace KinopoiskAPI.Hubs
             var connections = Connections.Where(connection => connection.IsMessagesSend);
             foreach (var admin in Admins)
             {
-                await Clients.Client(admin).SendAsync("ReceiveAdminInformation", connections);
+                await Clients.Client(admin).SendAsync(HubMethods.ReceiveAdminInformation, connections);
             }
         }
     }
