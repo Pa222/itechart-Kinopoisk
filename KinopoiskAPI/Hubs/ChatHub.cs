@@ -54,9 +54,9 @@ namespace KinopoiskAPI.Hubs
             {
                 await Clients.Caller.SendAsync(HubMethods.ReceiveMessage, new ChatMessage
                 {
-                    Sender = "Сервер",
+                    Sender = "Server",
                     Receiver = message.Sender,
-                    Message = "Сейчас в сети нет ни одного администратора",
+                    Message = "There's no admins online",
                 });
             }
             else
