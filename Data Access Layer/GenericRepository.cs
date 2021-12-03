@@ -16,7 +16,6 @@ namespace Data_Access_Layer
 
         public async Task<ICollection<T>> GetAll()
         {
-            var tmp = await Db.Set<T>().ToListAsync();
             return await Db.Set<T>().ToListAsync();
         }
 
