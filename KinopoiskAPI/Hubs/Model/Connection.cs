@@ -8,7 +8,7 @@ namespace KinopoiskAPI.Hubs.Model
         public string ConnectionId { get; set; }
         public bool IsMessagesSend { get; set; } = false;
         public bool IsReplied { get; set; } = false;
-        public string Sender { get; set; } = "Empty";
+        public string Sender { get; set; } = ChatDefaultValues.Empty;
         public List<ChatMessage> Messages { get; set; } = new();
     }
 }
