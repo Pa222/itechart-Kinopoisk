@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
+﻿using Data_Access_Layer.Entity;
 using Data_Access_Layer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Data_Access_Layer.Repositories
 {

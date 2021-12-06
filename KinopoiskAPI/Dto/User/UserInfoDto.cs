@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using KinopoiskAPI.Dto.CreditCard;
+﻿using KinopoiskAPI.Dto.CreditCard;
+using System.Collections.Generic;
 
 namespace KinopoiskAPI.Dto.User
 {

@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
+using Data_Access_Layer.Entity;
 using Data_Access_Layer.Interfaces;
-using KinopoiskAPI.Dto;
 using KinopoiskAPI.Dto.Comment;
+using KinopoiskAPI.Dto.Movie;
 using KinopoiskAPI.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
-using KinopoiskAPI.Dto.Movie;
-using KinopoiskAPI.Dto.Rating;
 
 namespace KinopoiskAPI.Services
 {

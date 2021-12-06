@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Data_Access_Layer.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using Data_Access_Layer.Entity;
 
 namespace Data_Access_Layer
 {

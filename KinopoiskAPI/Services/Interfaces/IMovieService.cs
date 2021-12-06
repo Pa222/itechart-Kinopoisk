@@ -1,9 +1,7 @@
-﻿using KinopoiskAPI.Dto;
-using KinopoiskAPI.Dto.Comment;
+﻿using KinopoiskAPI.Dto.Comment;
+using KinopoiskAPI.Dto.Movie;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KinopoiskAPI.Dto.Movie;
-using KinopoiskAPI.Dto.Rating;
 
 namespace KinopoiskAPI.Services.Interfaces
 {

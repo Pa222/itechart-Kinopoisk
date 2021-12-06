@@ -1,7 +1,7 @@
-﻿using Data_Access_Layer.Repositories.Interfaces;
+﻿using Data_Access_Layer.Entity;
+using Data_Access_Layer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
 
 namespace Data_Access_Layer.Repositories
 {

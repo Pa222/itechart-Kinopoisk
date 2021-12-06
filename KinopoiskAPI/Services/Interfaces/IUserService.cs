@@ -1,7 +1,6 @@
-﻿using KinopoiskAPI.Dto;
-using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
+﻿using Data_Access_Layer.Entity;
 using KinopoiskAPI.Dto.User;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services.Interfaces
 {

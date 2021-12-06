@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
+using Data_Access_Layer.Entity;
 using Data_Access_Layer.Interfaces;
-using KinopoiskAPI.Dto;
 using KinopoiskAPI.Dto.CreditCard;
 using KinopoiskAPI.Dto.User;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
 
 namespace KinopoiskAPI.Services
 {

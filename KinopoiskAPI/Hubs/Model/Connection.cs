@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using KinopoiskAPI.Hubs.Messages;
+﻿using KinopoiskAPI.Hubs.Messages;
+using System.Collections.Generic;
 
 namespace KinopoiskAPI.Hubs.Model
 {

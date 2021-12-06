@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Data_Access_Layer.Entity;
 using KinopoiskAPI.Dto.Comment;
 using KinopoiskAPI.Dto.CreditCard;

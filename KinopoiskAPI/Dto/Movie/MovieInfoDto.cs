@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using KinopoiskAPI.Dto.Comment;
+﻿using KinopoiskAPI.Dto.Comment;
+using System.Collections.Generic;
 
 namespace KinopoiskAPI.Dto.Movie
 {

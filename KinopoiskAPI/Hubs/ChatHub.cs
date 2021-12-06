@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
+﻿using Data_Access_Layer.Entity;
 using KinopoiskAPI.Hubs.Messages;
 using KinopoiskAPI.Hubs.Model;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.SignalR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Hubs
 {

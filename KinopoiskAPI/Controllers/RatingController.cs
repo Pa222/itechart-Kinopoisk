@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Data_Access_Layer.Entity;
 using KinopoiskAPI.Dto.Rating;
 using KinopoiskAPI.Services.Interfaces;
@@ -7,6 +6,7 @@ using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Controllers
 {

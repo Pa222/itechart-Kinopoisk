@@ -1,9 +1,8 @@
-﻿using KinopoiskAPI.Dto;
+﻿using Data_Access_Layer.Entity;
 using KinopoiskAPI.Dto.CreditCard;
 using KinopoiskAPI.Dto.User;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
 
 namespace KinopoiskAPI.Services.Interfaces
 {

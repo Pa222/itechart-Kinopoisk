@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Data_Access_Layer.Entity;
+﻿using Data_Access_Layer.Entity;
+using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services.Interfaces
 {

@@ -1,4 +1,4 @@
-﻿using KinopoiskAPI.Dto;
+﻿using KinopoiskAPI.Dto.User;
 using KinopoiskAPI.Services.Interfaces;
 using KinopoiskAPI.Utils.CloudinaryApi;
 using KinopoiskAPI.Utils.Hasher;
@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Threading.Tasks;
-using KinopoiskAPI.Dto.User;
 
 namespace KinopoiskAPI.Controllers
 {
