@@ -39,6 +39,8 @@ namespace Data_Access_Layer
             modelBuilder.Entity<User>().Property(p => p.Password).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.Salt).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.PhoneNumber).HasDefaultValue("");
+            modelBuilder.Entity<User>().Property(p => p.Avatar)
+                .HasDefaultValue("https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png");
 
             modelBuilder.Entity<CreditCard>().Property(p => p.Number).IsRequired();
             modelBuilder.Entity<CreditCard>().Property(p => p.Expiry).IsRequired();
