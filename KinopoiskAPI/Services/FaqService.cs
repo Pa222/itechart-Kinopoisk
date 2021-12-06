@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services
 {
-    public class FaqService : IFaqService
+    public class FaqService : GenericService, IFaqService
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public FaqService(IUnitOfWork unitOfWork)
+        protected FaqService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<ICollection<Faq>> GetAll()

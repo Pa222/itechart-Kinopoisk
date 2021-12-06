@@ -15,16 +15,14 @@ using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services
 {
-    public class UserService : IUserService
+    public class UserService : GenericService, IUserService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         private const string DefaultAvatar = "https://res.cloudinary.com/pa2/image/upload/v1636535929/UserAvatars/user_fhguim.png";
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 

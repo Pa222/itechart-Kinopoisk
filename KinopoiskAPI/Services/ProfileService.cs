@@ -10,15 +10,13 @@ using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services
 {
-    public class ProfileService : IProfileService
+    public class ProfileService : GenericService, IProfileService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly ICloudinaryApi _cloudinaryApi;
         private readonly IMapper _mapper;
 
-        public ProfileService(IUnitOfWork unitOfWork, ICloudinaryApi cloudinaryApi, IMapper mapper)
+        public ProfileService(IUnitOfWork unitOfWork, ICloudinaryApi cloudinaryApi, IMapper mapper) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
             _cloudinaryApi = cloudinaryApi;
             _mapper = mapper;
         }

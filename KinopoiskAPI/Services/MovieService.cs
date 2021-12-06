@@ -11,14 +11,12 @@ using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services
 {
-    public class MovieService : IMovieService
+    public class MovieService : GenericService, IMovieService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public MovieService(IUnitOfWork unitOfWork, IMapper mapper)
+        public MovieService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 

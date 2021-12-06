@@ -5,13 +5,10 @@ using System.Threading.Tasks;
 
 namespace KinopoiskAPI.Services
 {
-    public class RatingService : IRatingService
+    public class RatingService : GenericService, IRatingService
     {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public RatingService(IUnitOfWork unitOfWork)
+        public RatingService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<Rating> GetRating(int movieId, int userId)
