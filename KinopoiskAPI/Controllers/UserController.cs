@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace KinopoiskAPI.Controllers
 {
@@ -23,11 +24,16 @@ namespace KinopoiskAPI.Controllers
             _cloudinaryApi = cloudinaryApi;
         }
 
+        private static string GetAuthorizationHeader(HttpRequest request)
+        {
+            return request.Headers[HeaderNames.Authorization].ToString();
+        }
+
         [Authorize]
         [HttpGet("getUser")]
         public async Task<IActionResult> GetUser()
         {
-            var token = Request.Headers[HeaderNames.Authorization].ToString();
+            var token = GetAuthorizationHeader(Request);
             var email = JwtDecoder.GetEmail(token);
             var user = await _userService.GetUser(email);
 
@@ -43,7 +49,7 @@ namespace KinopoiskAPI.Controllers
         [HttpPost("uploadAvatar")]
         public async Task<IActionResult> UploadAvatar()
         {
-            var token = Request.Headers[HeaderNames.Authorization].ToString();
+            var token = GetAuthorizationHeader(Request);
             var email = JwtDecoder.GetEmail(token);
             var user = await _userService.GetUser(email);
 
