@@ -16,7 +16,10 @@ namespace KinopoiskAPI
             CreateMap<User, UserInfo>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<UserUpdateProfile, User>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<CreditCard, CreditCardInfo>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-            CreateMap<Comment, CommentInfo>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Comment, CommentInfo>()
+                .ForMember(d => d.UserName, m => m.MapFrom(map => map.User.Name))
+                .ForMember(d => d.UserAvatar, m => m.MapFrom(map => map.User.Avatar))
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<Rating, int>().ConvertUsing(r => r.Value);
             CreateMap<UpdateRating, Rating>().ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
