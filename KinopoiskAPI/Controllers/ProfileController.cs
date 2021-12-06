@@ -25,7 +25,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("add-credit-card")]
+        [HttpPost("addCreditCard")]
         public async Task<IActionResult> AddCreditCard([FromBody] AddCreditCardDto info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
@@ -40,7 +40,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpDelete("delete-credit-card")]
+        [HttpDelete("deleteCreditCard")]
         public async Task<IActionResult> DeleteCreditCard([FromBody] DeleteCreditCardDto info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
@@ -56,7 +56,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpPut("update-user-profile")]
+        [HttpPut("updateUserProfile")]
         public async Task<IActionResult> UpdateUserProfile([FromBody] UserUpdateProfileDto info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();

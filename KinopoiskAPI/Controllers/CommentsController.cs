@@ -21,7 +21,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("add-comment")]
+        [HttpPost("addComment")]
         public async Task<IActionResult> AddComment([FromBody] AddCommentDto info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
@@ -37,7 +37,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpDelete("delete-comment")]
+        [HttpDelete("deleteComment")]
         public async Task<IActionResult> DeleteComment([FromBody] DeleteCommentDto info)
         {
             if (info == null)

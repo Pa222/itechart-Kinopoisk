@@ -24,7 +24,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get-user")]
+        [HttpGet("getUser")]
         public async Task<IActionResult> GetUser()
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
@@ -38,7 +38,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("upload-avatar")]
+        [HttpPost("uploadAvatar")]
         public async Task<IActionResult> UploadAvatar()
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();

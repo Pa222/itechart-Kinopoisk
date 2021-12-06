@@ -27,7 +27,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("update-rating")]
+        [HttpPost("updateRating")]
         public async Task<IActionResult> UpdateRating([FromBody] UpdateRatingDto info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();

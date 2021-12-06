@@ -27,7 +27,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("get-page")]
+        [HttpGet("getPage")]
         public async Task<IActionResult> GetPage(int page, int size = 8)
         {
             var movies = await _movieService.GetPage(new MoviePageDto()
@@ -39,7 +39,7 @@ namespace KinopoiskAPI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("get-by-title")]
+        [HttpGet("getByTitle")]
         public async Task<IActionResult> GetMoviesByTitle(string title)
         {
             var movies = await _movieService.GetMoviesByTitle(title);
