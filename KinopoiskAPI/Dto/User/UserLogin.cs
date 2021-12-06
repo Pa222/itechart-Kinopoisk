@@ -2,11 +2,8 @@
 
 namespace KinopoiskAPI.Dto.User
 {
-    public class UserRegisterDto
+    public class UserLogin
     {
-        [Required]
-        public string Name { get; set; }
-
         [Required]
         public string Email { get; set; }
 

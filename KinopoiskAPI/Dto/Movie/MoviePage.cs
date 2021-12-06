@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KinopoiskAPI.Dto.Movie
 {
-    public class MoviePageDto
+    public class MoviePage
     {
         [Required]
         public int PageNumber { get; set; }
@@ -14,6 +14,6 @@ namespace KinopoiskAPI.Dto.Movie
         [Required]
         public int PageSize { get; set; } = 8;
 
-        public List<MovieInfoDto> Movies { get; set; }
+        public List<MovieInfo> Movies { get; set; }
     }
 }

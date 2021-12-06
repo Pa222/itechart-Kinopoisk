@@ -8,10 +8,10 @@ namespace KinopoiskAPI.Services.Interfaces
 {
     public interface IProfileService
     {
-        public Task<List<CreditCardInfoDto>> AddCreditCard(AddCreditCardDto info, int userId);
+        public Task<List<CreditCardInfo>> AddCreditCard(AddCreditCard info, int userId);
 
-        public Task<List<CreditCardInfoDto>> DeleteCreditCard(DeleteCreditCardDto info, int userId);
+        public Task<List<CreditCardInfo>> DeleteCreditCard(DeleteCreditCard info, int userId);
 
-        public Task<UserInfoDto> UpdateUserProfile(User user, UserUpdateProfileDto info);
+        public Task<UserInfo> UpdateUserProfile(User user, UserUpdateProfile info);
     }
 }

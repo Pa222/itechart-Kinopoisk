@@ -2,7 +2,7 @@
 
 namespace KinopoiskAPI.Dto.CreditCard
 {
-    public class CreditCardInfoDto
+    public class AddCreditCard
     {
         [Required]
         [MaxLength(19)]
@@ -17,6 +17,10 @@ namespace KinopoiskAPI.Dto.CreditCard
         public string CardHolderName { get; set; }
 
         [Required]
-        public string Image { get; set; }
+        [MaxLength(3)]
+        public string Cvc { get; set; }
+
+        [Required]
+        public string Issuer { get; set; }
     }
 }

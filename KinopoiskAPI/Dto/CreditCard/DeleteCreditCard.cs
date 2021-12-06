@@ -2,7 +2,7 @@
 
 namespace KinopoiskAPI.Dto.CreditCard
 {
-    public class DeleteCreditCardDto
+    public class DeleteCreditCard
     {
         [Required]
         [MaxLength(19)]

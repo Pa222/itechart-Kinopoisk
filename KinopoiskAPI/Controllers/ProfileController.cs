@@ -26,7 +26,7 @@ namespace KinopoiskAPI.Controllers
 
         [Authorize]
         [HttpPost("addCreditCard")]
-        public async Task<IActionResult> AddCreditCard([FromBody] AddCreditCardDto info)
+        public async Task<IActionResult> AddCreditCard([FromBody] AddCreditCard info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
             var email = JwtDecoder.GetEmail(token);
@@ -48,7 +48,7 @@ namespace KinopoiskAPI.Controllers
 
         [Authorize]
         [HttpDelete("deleteCreditCard")]
-        public async Task<IActionResult> DeleteCreditCard([FromBody] DeleteCreditCardDto info)
+        public async Task<IActionResult> DeleteCreditCard([FromBody] DeleteCreditCard info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
             var email = JwtDecoder.GetEmail(token);
@@ -71,7 +71,7 @@ namespace KinopoiskAPI.Controllers
 
         [Authorize]
         [HttpPut("updateUserProfile")]
-        public async Task<IActionResult> UpdateUserProfile([FromBody] UserUpdateProfileDto info)
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserUpdateProfile info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
             var email = JwtDecoder.GetEmail(token);

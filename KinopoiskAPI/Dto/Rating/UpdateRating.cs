@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace KinopoiskAPI.Dto.Comment
+namespace KinopoiskAPI.Dto.Rating
 {
-    public class DeleteCommentDto
+    public class UpdateRating
     {
         [Required]
-        public int Id { get; set; }
+        public int Value { get; set; }
 
         [Required]
         public int MovieId { get; set; }

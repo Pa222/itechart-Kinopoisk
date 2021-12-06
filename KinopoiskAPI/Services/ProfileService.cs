@@ -21,7 +21,7 @@ namespace KinopoiskAPI.Services
             _mapper = mapper;
         }
 
-        public async Task<List<CreditCardInfoDto>> AddCreditCard(AddCreditCardDto info, int userId)
+        public async Task<List<CreditCardInfo>> AddCreditCard(AddCreditCard info, int userId)
         {
             var card = await UnitOfWork.CreditCards.GetByNumber(info.Number);
             if (card == null)
@@ -38,29 +38,29 @@ namespace KinopoiskAPI.Services
             }
 
             var cards = await UnitOfWork.CreditCards.GetAllByUserId(userId);
-            var result = new List<CreditCardInfoDto>();
+            var result = new List<CreditCardInfo>();
             _mapper.Map(cards, result);
 
             return result;
         }
 
-        public async Task<List<CreditCardInfoDto>> DeleteCreditCard(DeleteCreditCardDto info, int userId)
+        public async Task<List<CreditCardInfo>> DeleteCreditCard(DeleteCreditCard info, int userId)
         {
             var card = await UnitOfWork.CreditCards.GetByNumber(info.Number);
             await UnitOfWork.CreditCards.Delete(card);
-            var result = new List<CreditCardInfoDto>();
+            var result = new List<CreditCardInfo>();
             var cards = await UnitOfWork.CreditCards.GetAllByUserId(userId);
             _mapper.Map(cards, result);
             return result;
         }
 
-        public async Task<UserInfoDto> UpdateUserProfile(User user, UserUpdateProfileDto info)
+        public async Task<UserInfo> UpdateUserProfile(User user, UserUpdateProfile info)
         {
             _mapper.Map(info, user);
             await UnitOfWork.Users.Update(user);
-            var result = new UserInfoDto
+            var result = new UserInfo
             {
-                CreditCards = new List<CreditCardInfoDto>()
+                CreditCards = new List<CreditCardInfo>()
             };
 
             _mapper.Map(user, result);

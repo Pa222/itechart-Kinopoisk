@@ -20,38 +20,38 @@ namespace KinopoiskAPI.Services
             _mapper = mapper;
         }
 
-        public async Task<MoviePageDto> GetPage(MoviePageDto info)
+        public async Task<MoviePage> GetPage(MoviePage info)
         {
             var result = await UnitOfWork.Movies.GetPageAsync(info.PageNumber, info.PageSize);
 
-            info.Movies = _mapper.Map<List<Movie>, List<MovieInfoDto>>(result);
+            info.Movies = _mapper.Map<List<Movie>, List<MovieInfo>>(result);
             info.TotalPages = (int)Math.Ceiling(UnitOfWork.Movies.GetAmountOfMovies() / info.PageSize);
 
             return info;
         }
 
-        public async Task<MovieInfoDto> Get(int id)
+        public async Task<MovieInfo> Get(int id)
         {
             var movie = await UnitOfWork.Movies.GetAsync(id);
             if (movie == null)
             {
                 return null;
             }
-            var result = new MovieInfoDto();
+            var result = new MovieInfo();
             _mapper.Map(movie, result);
             result.GenreMovies = movie.GenreMovies.Select(t => t.Genre.Name).ToList();
-            result.Comments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(movie.Comments);
+            result.Comments = _mapper.Map<List<Comment>, List<CommentInfo>>(movie.Comments);
             return result;
         }
 
-        public async Task<List<MovieInfoDto>> GetMoviesByTitle(string title)
+        public async Task<List<MovieInfo>> GetMoviesByTitle(string title)
         {
             var result = await UnitOfWork.Movies.GetMoviesByTitle(title);
-            var movies = _mapper.Map<List<Movie>, List<MovieInfoDto>>(result);
+            var movies = _mapper.Map<List<Movie>, List<MovieInfo>>(result);
             return movies;
         }
 
-        public async Task<List<CommentInfoDto>> AddComment(AddCommentDto info, int userId)
+        public async Task<List<CommentInfo>> AddComment(AddComment info, int userId)
         {
             await UnitOfWork.Comments.Create(new Comment
             {
@@ -60,16 +60,16 @@ namespace KinopoiskAPI.Services
                 MovieId = info.MovieId,
             });
             var comments = await UnitOfWork.Comments.GetAllByMovie(info.MovieId);
-            var mappedComments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(comments);
+            var mappedComments = _mapper.Map<List<Comment>, List<CommentInfo>>(comments);
             return mappedComments;
         }
 
-        public async Task<List<CommentInfoDto>> DeleteComment(DeleteCommentDto info)
+        public async Task<List<CommentInfo>> DeleteComment(DeleteComment info)
         {
             var comment = await UnitOfWork.Comments.Get(info.Id);
             await UnitOfWork.Comments.Delete(comment);
             var comments = await UnitOfWork.Comments.GetAllByMovie(info.MovieId);
-            var mappedComments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(comments);
+            var mappedComments = _mapper.Map<List<Comment>, List<CommentInfo>>(comments);
             return mappedComments;
         }
     }

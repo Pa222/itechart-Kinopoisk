@@ -33,7 +33,7 @@ namespace KinopoiskAPI.Controllers
         [HttpGet("getPage")]
         public async Task<IActionResult> GetPage(int page, int size = 8)
         {
-            var movies = await _movieService.GetPage(new MoviePageDto()
+            var movies = await _movieService.GetPage(new MoviePage()
             {
                 PageNumber = page,
                 PageSize = size,

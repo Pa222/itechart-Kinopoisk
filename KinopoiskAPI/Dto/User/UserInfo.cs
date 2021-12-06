@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KinopoiskAPI.Dto.User
 {
-    public class UserInfoDto
+    public class UserInfo
     {
         [Required]
         public string Role { get; set; }
@@ -22,6 +22,6 @@ namespace KinopoiskAPI.Dto.User
         [Required]
         public string Avatar { get; set; }
 
-        public List<CreditCardInfoDto> CreditCards { get; set; }
+        public List<CreditCardInfo> CreditCards { get; set; }
     }
 }

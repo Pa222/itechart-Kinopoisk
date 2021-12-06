@@ -90,7 +90,7 @@ namespace KinopoiskAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("auth")]
-        public async Task<IActionResult> Auth([FromBody] UserLoginDto info)
+        public async Task<IActionResult> Auth([FromBody] UserLogin info)
         {
             if (info == null)
             {
@@ -109,7 +109,7 @@ namespace KinopoiskAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserRegisterDto info)
+        public async Task<IActionResult> Register([FromBody] UserRegister info)
         {
             if (info == null)
             {

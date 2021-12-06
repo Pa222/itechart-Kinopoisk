@@ -10,9 +10,9 @@ namespace KinopoiskAPI.Services.Interfaces
 
         public string GetToken(User user);
 
-        public UserInfoDto GetUserInfo(User user);
+        public UserInfo GetUserInfo(User user);
 
-        public Task<User> AddUser(UserRegisterDto info);
+        public Task<User> AddUser(UserRegister info);
 
         public Task<User> UpdateUser(User user);
     }

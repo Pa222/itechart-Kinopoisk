@@ -7,14 +7,14 @@ namespace KinopoiskAPI.Services.Interfaces
 {
     public interface IMovieService
     {
-        public Task<MoviePageDto> GetPage(MoviePageDto info);
+        public Task<MoviePage> GetPage(MoviePage info);
 
-        public Task<MovieInfoDto> Get(int id);
+        public Task<MovieInfo> Get(int id);
 
-        public Task<List<MovieInfoDto>> GetMoviesByTitle(string title);
+        public Task<List<MovieInfo>> GetMoviesByTitle(string title);
 
-        public Task<List<CommentInfoDto>> AddComment(AddCommentDto info, int userId);
+        public Task<List<CommentInfo>> AddComment(AddComment info, int userId);
 
-        public Task<List<CommentInfoDto>> DeleteComment(DeleteCommentDto info);
+        public Task<List<CommentInfo>> DeleteComment(DeleteComment info);
     }
 }

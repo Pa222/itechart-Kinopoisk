@@ -28,7 +28,7 @@ namespace KinopoiskAPI.Controllers
 
         [Authorize]
         [HttpPost("updateRating")]
-        public async Task<IActionResult> UpdateRating([FromBody] UpdateRatingDto info)
+        public async Task<IActionResult> UpdateRating([FromBody] UpdateRating info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
             var email = JwtDecoder.GetEmail(token);
@@ -43,7 +43,7 @@ namespace KinopoiskAPI.Controllers
 
             if (rating == null)
             {
-                var updRating = _mapper.Map<UpdateRatingDto, Rating>(info);
+                var updRating = _mapper.Map<UpdateRating, Rating>(info);
                 updRating.UserId = user.Id;
                 var result = await _ratingService.CreateRating(updRating);
                 if (result != null)

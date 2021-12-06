@@ -2,7 +2,7 @@
 
 namespace KinopoiskAPI.Dto.Comment
 {
-    public class CommentInfoDto
+    public class CommentInfo
     {
         [Required]
         public int Id { get; set; }

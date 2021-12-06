@@ -2,10 +2,10 @@
 
 namespace KinopoiskAPI.Dto.Comment
 {
-    public class AddCommentDto
+    public class DeleteComment
     {
         [Required]
-        public string Description { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public int MovieId { get; set; }

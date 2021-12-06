@@ -22,7 +22,7 @@ namespace KinopoiskAPI.Controllers
 
         [Authorize]
         [HttpPost("addComment")]
-        public async Task<IActionResult> AddComment([FromBody] AddCommentDto info)
+        public async Task<IActionResult> AddComment([FromBody] AddComment info)
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
             var email = JwtDecoder.GetEmail(token);
@@ -45,7 +45,7 @@ namespace KinopoiskAPI.Controllers
 
         [Authorize]
         [HttpDelete("deleteComment")]
-        public async Task<IActionResult> DeleteComment([FromBody] DeleteCommentDto info)
+        public async Task<IActionResult> DeleteComment([FromBody] DeleteComment info)
         {
             if (info == null)
             {

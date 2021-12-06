@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KinopoiskAPI.Dto.Movie
 {
-    public class MovieInfoDto
+    public class MovieInfo
     {
         [Required]
         public int Id { get; set; }
@@ -24,7 +24,7 @@ namespace KinopoiskAPI.Dto.Movie
         public string Image { get; set; }
 
         public List<string> GenreMovies { get; set; }
-        public List<CommentInfoDto> Comments { get; set; }
+        public List<CommentInfo> Comments { get; set; }
         public List<int> Ratings { get; set; }
     }
 }

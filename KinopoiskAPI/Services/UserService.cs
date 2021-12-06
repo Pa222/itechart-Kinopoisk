@@ -53,11 +53,11 @@ namespace KinopoiskAPI.Services
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public UserInfoDto GetUserInfo(User user)
+        public UserInfo GetUserInfo(User user)
         {
-            var result = new UserInfoDto
+            var result = new UserInfo
             {
-                CreditCards = new List<CreditCardInfoDto>()
+                CreditCards = new List<CreditCardInfo>()
             };
 
             _mapper.Map(user, result);
@@ -66,7 +66,7 @@ namespace KinopoiskAPI.Services
             return result;
         }
 
-        public async Task<User> AddUser(UserRegisterDto info)
+        public async Task<User> AddUser(UserRegister info)
         {
             var salt = Hasher.GetSalt();
             return await UnitOfWork.Users.Create(new User()

@@ -2,7 +2,7 @@
 
 namespace KinopoiskAPI.Dto.User
 {
-    public class UserUpdateProfileDto
+    public class UserUpdateProfile
     {
         [Required]
         public string Name { get; set; }
