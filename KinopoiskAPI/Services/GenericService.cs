@@ -6,7 +6,7 @@ namespace KinopoiskAPI.Services
     {
         protected readonly IUnitOfWork _unitOfWork;
 
-        protected GenericService(IUnitOfWork unitOfWork)
+        public GenericService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

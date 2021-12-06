@@ -8,7 +8,7 @@ namespace KinopoiskAPI.Services
 {
     public class FaqService : GenericService, IFaqService
     {
-        protected FaqService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public FaqService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
 
