@@ -28,7 +28,7 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> GetUser()
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
-            var email = JwtDecoder.GetEmail(token[7..]);
+            var email = JwtDecoder.GetEmail(token);
             var user = await _userService.GetUser(email);
 
             if (user == null)
@@ -44,7 +44,7 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> UploadAvatar()
         {
             var token = Request.Headers[HeaderNames.Authorization].ToString();
-            var email = JwtDecoder.GetEmail(token[7..]);
+            var email = JwtDecoder.GetEmail(token);
             var user = await _userService.GetUser(email);
 
             if (await _userService.GetUser(email) == null)

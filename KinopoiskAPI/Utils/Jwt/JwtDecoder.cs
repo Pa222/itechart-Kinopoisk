@@ -8,7 +8,7 @@ namespace KinopoiskAPI.Utils.Jwt
     {
         public static string GetEmail(string token)
         {
-            var jsonToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
+            var jsonToken = new JwtSecurityTokenHandler().ReadJwtToken(token[7..]);
             return jsonToken.Claims.First(claim => claim.Type == ClaimsIdentity.DefaultNameClaimType).Value;
         }
     }
