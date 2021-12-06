@@ -4,11 +4,11 @@ namespace KinopoiskAPI.Services
 {
     public class GenericService
     {
-        protected readonly IUnitOfWork _unitOfWork;
+        protected readonly IUnitOfWork UnitOfWork;
 
         public GenericService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+            UnitOfWork = unitOfWork;
         }
     }
 }

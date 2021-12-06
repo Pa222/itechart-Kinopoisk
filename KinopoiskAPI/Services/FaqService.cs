@@ -14,7 +14,7 @@ namespace KinopoiskAPI.Services
 
         public async Task<ICollection<Faq>> GetAll()
         {
-            return await _unitOfWork.Faqs.GetAll();
+            return await UnitOfWork.Faqs.GetAll();
         }
     }
 }

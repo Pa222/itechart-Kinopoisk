@@ -22,17 +22,17 @@ namespace KinopoiskAPI.Services
 
         public async Task<MoviePageDto> GetPage(MoviePageDto info)
         {
-            var result = await _unitOfWork.Movies.GetPageAsync(info.PageNumber, info.PageSize);
+            var result = await UnitOfWork.Movies.GetPageAsync(info.PageNumber, info.PageSize);
 
             info.Movies = _mapper.Map<List<Movie>, List<MovieInfoDto>>(result);
-            info.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / info.PageSize);
+            info.TotalPages = (int)Math.Ceiling(UnitOfWork.Movies.GetAmountOfMovies() / info.PageSize);
 
             return info;
         }
 
         public async Task<MovieInfoDto> Get(int id)
         {
-            var movie = await _unitOfWork.Movies.GetAsync(id);
+            var movie = await UnitOfWork.Movies.GetAsync(id);
             if (movie == null)
             {
                 return null;
@@ -46,29 +46,29 @@ namespace KinopoiskAPI.Services
 
         public async Task<List<MovieInfoDto>> GetMoviesByTitle(string title)
         {
-            var result = await _unitOfWork.Movies.GetMoviesByTitle(title);
+            var result = await UnitOfWork.Movies.GetMoviesByTitle(title);
             var movies = _mapper.Map<List<Movie>, List<MovieInfoDto>>(result);
             return movies;
         }
 
         public async Task<List<CommentInfoDto>> AddComment(AddCommentDto info, int userId)
         {
-            await _unitOfWork.Comments.Create(new Comment
+            await UnitOfWork.Comments.Create(new Comment
             {
                 Description = info.Description,
                 UserId = userId,
                 MovieId = info.MovieId,
             });
-            var comments = await _unitOfWork.Comments.GetAllByMovie(info.MovieId);
+            var comments = await UnitOfWork.Comments.GetAllByMovie(info.MovieId);
             var mappedComments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(comments);
             return mappedComments;
         }
 
         public async Task<List<CommentInfoDto>> DeleteComment(DeleteCommentDto info)
         {
-            var comment = await _unitOfWork.Comments.Get(info.Id);
-            await _unitOfWork.Comments.Delete(comment);
-            var comments = await _unitOfWork.Comments.GetAllByMovie(info.MovieId);
+            var comment = await UnitOfWork.Comments.Get(info.Id);
+            await UnitOfWork.Comments.Delete(comment);
+            var comments = await UnitOfWork.Comments.GetAllByMovie(info.MovieId);
             var mappedComments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(comments);
             return mappedComments;
         }

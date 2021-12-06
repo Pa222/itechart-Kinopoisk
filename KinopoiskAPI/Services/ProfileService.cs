@@ -23,10 +23,10 @@ namespace KinopoiskAPI.Services
 
         public async Task<List<CreditCardInfoDto>> AddCreditCard(AddCreditCardDto info, int userId)
         {
-            var card = await _unitOfWork.CreditCards.GetByNumber(info.Number);
+            var card = await UnitOfWork.CreditCards.GetByNumber(info.Number);
             if (card == null)
             {
-                await _unitOfWork.CreditCards.Create(new CreditCard
+                await UnitOfWork.CreditCards.Create(new CreditCard
                 {
                     Number = info.Number,
                     CardHolderName = info.CardHolderName,
@@ -37,7 +37,7 @@ namespace KinopoiskAPI.Services
                 });
             }
 
-            var cards = await _unitOfWork.CreditCards.GetAllByUserId(userId);
+            var cards = await UnitOfWork.CreditCards.GetAllByUserId(userId);
             var result = new List<CreditCardInfoDto>();
             _mapper.Map(cards, result);
 
@@ -46,10 +46,10 @@ namespace KinopoiskAPI.Services
 
         public async Task<List<CreditCardInfoDto>> DeleteCreditCard(DeleteCreditCardDto info, int userId)
         {
-            var card = await _unitOfWork.CreditCards.GetByNumber(info.Number);
-            await _unitOfWork.CreditCards.Delete(card);
+            var card = await UnitOfWork.CreditCards.GetByNumber(info.Number);
+            await UnitOfWork.CreditCards.Delete(card);
             var result = new List<CreditCardInfoDto>();
-            var cards = await _unitOfWork.CreditCards.GetAllByUserId(userId);
+            var cards = await UnitOfWork.CreditCards.GetAllByUserId(userId);
             _mapper.Map(cards, result);
             return result;
         }
@@ -57,7 +57,7 @@ namespace KinopoiskAPI.Services
         public async Task<UserInfoDto> UpdateUserProfile(User user, UserUpdateProfileDto info)
         {
             _mapper.Map(info, user);
-            await _unitOfWork.Users.Update(user);
+            await UnitOfWork.Users.Update(user);
             var result = new UserInfoDto
             {
                 CreditCards = new List<CreditCardInfoDto>()

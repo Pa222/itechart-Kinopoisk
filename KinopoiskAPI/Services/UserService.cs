@@ -28,7 +28,7 @@ namespace KinopoiskAPI.Services
 
         public async Task<User> GetUser(string email)
         {
-            return await _unitOfWork.Users.GetByEmail(email);
+            return await UnitOfWork.Users.GetByEmail(email);
         }
 
         public string GetToken(User user)
@@ -69,7 +69,7 @@ namespace KinopoiskAPI.Services
         public async Task<User> AddUser(UserRegisterDto info)
         {
             var salt = Hasher.GetSalt();
-            return await _unitOfWork.Users.Create(new User()
+            return await UnitOfWork.Users.Create(new User()
             {
                 Name = info.Name,
                 Email = info.Email,
@@ -83,7 +83,7 @@ namespace KinopoiskAPI.Services
 
         public async Task<User> UpdateUser(User user)
         {
-            return await _unitOfWork.Users.Update(user);
+            return await UnitOfWork.Users.Update(user);
         }
     }
 }

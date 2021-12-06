@@ -13,17 +13,17 @@ namespace KinopoiskAPI.Services
 
         public async Task<Rating> GetRating(int movieId, int userId)
         {
-            return await _unitOfWork.Ratings.GetByMovieAndUser(movieId, userId);
+            return await UnitOfWork.Ratings.GetByMovieAndUser(movieId, userId);
         }
 
         public async Task<Rating> CreateRating(Rating rating)
         {
-            return await _unitOfWork.Ratings.Create(rating);
+            return await UnitOfWork.Ratings.Create(rating);
         }
 
         public async Task<Rating> UpdateRating(Rating rating)
         {
-            return await _unitOfWork.Ratings.Update(rating);
+            return await UnitOfWork.Ratings.Update(rating);
         }
     }
 }
