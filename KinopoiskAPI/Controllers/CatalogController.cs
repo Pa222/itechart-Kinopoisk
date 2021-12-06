@@ -22,7 +22,10 @@ namespace KinopoiskAPI.Controllers
         {
             var movie = await _movieService.Get(id);
             if (movie == null)
+            {
                 return BadRequest();
+            }
+
             return Ok(movie);
         }
 
@@ -35,6 +38,10 @@ namespace KinopoiskAPI.Controllers
                 PageNumber = page,
                 PageSize = size,
             });
+            if (movies == null)
+            {
+                return BadRequest();
+            }
             return Ok(movies);
         }
 
@@ -43,6 +50,10 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> GetMoviesByTitle(string title)
         {
             var movies = await _movieService.GetMoviesByTitle(title);
+            if (movies == null)
+            {
+                return BadRequest();
+            }
             return Ok(movies);
         }
     }

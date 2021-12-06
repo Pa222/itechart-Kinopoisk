@@ -32,7 +32,9 @@ namespace KinopoiskAPI.Controllers
             var user = await _userService.GetUser(email);
 
             if (user == null)
+            {
                 return Unauthorized();
+            }
 
             return Ok(_userService.GetUserInfo(user));
         }
@@ -46,23 +48,32 @@ namespace KinopoiskAPI.Controllers
             var user = await _userService.GetUser(email);
 
             if (await _userService.GetUser(email) == null)
+            {
                 return Unauthorized();
+            }
 
             try
             {
                 var file = Request.Form.Files[0];
-                if (file.Length <= 0) return BadRequest();
+                if (file.Length <= 0)
+                {
+                    return BadRequest();
+                }
 
                 var fileUrl = await _cloudinaryApi.UploadFile(file, email);
 
                 if (fileUrl == null)
+                {
                     return BadRequest();
+                }
 
                 user.Avatar = fileUrl;
 
                 var updUser = await _userService.UpdateUser(user);
                 if (updUser != null)
+                {
                     return Ok(_userService.GetUserInfo(updUser));
+                }
                 return BadRequest();
             }
             catch (Exception)
@@ -76,12 +87,16 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> Auth([FromBody] UserLoginDto info)
         {
             if (info == null)
+            {
                 return BadRequest();
+            }
 
             var user = await _userService.GetUser(info.Email);
 
             if (user == null || !Hasher.CheckPassword(info.Password, user.Password, user.Salt))
+            {
                 return Unauthorized();
+            }
 
             return Ok(_userService.GetToken(user));
         }
@@ -91,11 +106,15 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> Register([FromBody] UserRegisterDto info)
         {
             if (info == null)
+            {
                 return BadRequest();
+            }
 
             var user = await _userService.GetUser(info.Email);
             if (user != null)
+            {
                 return BadRequest();
+            }
 
             return Ok(await _userService.AddUser(info));
         }

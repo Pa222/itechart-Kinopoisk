@@ -29,9 +29,16 @@ namespace KinopoiskAPI.Controllers
             var user = await _userService.GetUser(email);
 
             if (user == null || info == null)
+            {
                 return BadRequest();
+            }
 
             var comments = await _movieService.AddComment(info, user.Id);
+
+            if (comments == null)
+            {
+                return BadRequest();
+            }
 
             return Ok(comments);
         }
@@ -41,8 +48,14 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> DeleteComment([FromBody] DeleteCommentDto info)
         {
             if (info == null)
+            {
                 return BadRequest();
+            }
             var comments = await _movieService.DeleteComment(info);
+            if (comments == null)
+            {
+                return BadRequest();
+            }
             return Ok(comments);
         }
     }

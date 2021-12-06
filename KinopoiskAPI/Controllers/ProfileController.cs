@@ -33,9 +33,16 @@ namespace KinopoiskAPI.Controllers
             var user = await _userService.GetUser(email);
 
             if (user == null || info == null)
+            {
                 return BadRequest();
+            }
 
             var cards = await _profileService.AddCreditCard(info, user.Id);
+
+            if (cards == null)
+            {
+                return BadRequest();
+            }
             return Ok(cards);
         }
 
@@ -48,9 +55,16 @@ namespace KinopoiskAPI.Controllers
             var user = await _userService.GetUser(email);
 
             if (user == null || info == null)
+            {
                 return BadRequest();
+            }
 
             var cards = await _profileService.DeleteCreditCard(info, user.Id);
+
+            if (cards == null)
+            {
+                return BadRequest();
+            }
 
             return Ok(cards);
         }
@@ -62,7 +76,19 @@ namespace KinopoiskAPI.Controllers
             var token = Request.Headers[HeaderNames.Authorization].ToString();
             var email = JwtDecoder.GetEmail(token[7..]);
             var user = await _userService.GetUser(email);
+
+            if (user == null)
+            {
+                return BadRequest();
+            }
+
             var updatedUser = await _profileService.UpdateUserProfile(user, info);
+
+            if (updatedUser == null)
+            {
+                return BadRequest();
+            }
+
             return Ok(updatedUser);
         }
     }

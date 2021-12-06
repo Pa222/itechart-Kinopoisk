@@ -20,6 +20,10 @@ namespace KinopoiskAPI.Controllers
         public async Task<IActionResult> Get()
         {
             var faqs = await _faqService.GetAll();
+            if (faqs == null)
+            {
+                return BadRequest();
+            }
             return Ok(faqs);
         }
     }

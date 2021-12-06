@@ -35,7 +35,9 @@ namespace KinopoiskAPI.Controllers
             var user = await _userService.GetUser(email);
 
             if (user == null || info == null)
+            {
                 return BadRequest();
+            }
 
             var rating = await _ratingService.GetRating(info.MovieId, user.Id);
 
