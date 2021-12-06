@@ -4,11 +4,11 @@ using KinopoiskAPI.Utils.CloudinaryApi;
 using KinopoiskAPI.Utils.Hasher;
 using KinopoiskAPI.Utils.Jwt;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace KinopoiskAPI.Controllers
 {
