@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace KinopoiskAPI.Dto.Movie
 {
     public class MoviePageDto
     {
-        public List<MovieInfoDto> Movies { get; set; }
-
+        [Required]
         public int PageNumber { get; set; }
+
+        [Required]
         public int TotalPages { get; set; }
 
+        [Required]
         public int PageSize { get; set; } = 8;
+
+        public List<MovieInfoDto> Movies { get; set; }
     }
 }

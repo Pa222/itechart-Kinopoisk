@@ -28,31 +28,9 @@ namespace Data_Access_Layer
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Genre>().Property(p => p.Name).IsRequired().HasMaxLength(20);
 
-            modelBuilder.Entity<Movie>().Property(p => p.Title).IsRequired().HasMaxLength(125);
-
-            modelBuilder.Entity<Faq>().Property(p => p.Question).IsRequired();
-            modelBuilder.Entity<Faq>().Property(p => p.Answer).IsRequired();
-
-            modelBuilder.Entity<User>().Property(p => p.Name).IsRequired().HasMaxLength(100);
-            modelBuilder.Entity<User>().Property(p => p.Email).IsRequired();
-            modelBuilder.Entity<User>().Property(p => p.Role).IsRequired();
-            modelBuilder.Entity<User>().Property(p => p.Password).IsRequired();
-            modelBuilder.Entity<User>().Property(p => p.Salt).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.PhoneNumber).HasDefaultValue("");
             modelBuilder.Entity<User>().Property(p => p.Avatar)
                 .HasDefaultValue("https://res.cloudinary.com/pa2/image/upload/v1636535929/user_fhguim.png");
-
-            modelBuilder.Entity<CreditCard>().Property(p => p.Number).IsRequired();
-            modelBuilder.Entity<CreditCard>().Property(p => p.Expiry).IsRequired();
-            modelBuilder.Entity<CreditCard>().Property(p => p.Cvc).IsRequired();
-            modelBuilder.Entity<CreditCard>().Property(p => p.UserId).IsRequired();
-
-            modelBuilder.Entity<Comment>().Property(p => p.MovieId).IsRequired();
-            modelBuilder.Entity<Comment>().Property(p => p.UserId).IsRequired();
-            modelBuilder.Entity<Comment>().Property(p => p.Description).HasMaxLength(255).IsRequired();
-
-            modelBuilder.Entity<Rating>().Property(p => p.MovieId).IsRequired();
-            modelBuilder.Entity<Rating>().Property(p => p.UserId).IsRequired();
 
             modelBuilder.Entity<CreditCard>()
                 .HasOne<User>(c => c.User)
