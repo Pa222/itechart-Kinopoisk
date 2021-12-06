@@ -20,36 +20,11 @@ namespace KinopoiskAPI.Services
             _mapper = mapper;
         }
 
-        private List<MovieInfoDto> MapMovies(List<Movie> input)
-        {
-            var movies = new List<MovieInfoDto>();
-            _mapper.Map(input, movies);
-            for (var i = 0; i < input.Count; i++)
-            {
-                movies[i].GenreMovies = input[i].GenreMovies.Select(t => t.Genre.Name).ToList();
-            }
-            return movies;
-        }
-
-        private async Task<List<CommentInfoDto>> MapComments(List<Comment> input)
-        {
-            var result = new List<CommentInfoDto>();
-            _mapper.Map(input, result);
-            for (var i = 0; i < input.Count; i++)
-            {
-                var user = await _unitOfWork.Users.Get(input[i].UserId);
-                result[i].UserName = user.Name;
-                result[i].UserAvatar = user.Avatar;
-            }
-
-            return result;
-        }
-
         public async Task<MoviePageDto> GetPage(MoviePageDto info)
         {
             var result = await _unitOfWork.Movies.GetPageAsync(info.PageNumber, info.PageSize);
 
-            info.Movies = MapMovies(result);
+            info.Movies = _mapper.Map<List<Movie>, List<MovieInfoDto>>(result);
             info.TotalPages = (int)Math.Ceiling(_unitOfWork.Movies.GetAmountOfMovies() / info.PageSize);
 
             return info;
@@ -65,14 +40,15 @@ namespace KinopoiskAPI.Services
             var result = new MovieInfoDto();
             _mapper.Map(movie, result);
             result.GenreMovies = movie.GenreMovies.Select(t => t.Genre.Name).ToList();
-            result.Comments = await MapComments(movie.Comments);
+            result.Comments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(movie.Comments);
             return result;
         }
 
         public async Task<List<MovieInfoDto>> GetMoviesByTitle(string title)
         {
             var result = await _unitOfWork.Movies.GetMoviesByTitle(title);
-            return MapMovies(result);
+            var movies = _mapper.Map<List<Movie>, List<MovieInfoDto>>(result);
+            return movies;
         }
 
         public async Task<List<CommentInfoDto>> AddComment(AddCommentDto info, int userId)
@@ -84,7 +60,8 @@ namespace KinopoiskAPI.Services
                 MovieId = info.MovieId,
             });
             var comments = await _unitOfWork.Comments.GetAllByMovie(info.MovieId);
-            return await MapComments(comments);
+            var mappedComments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(comments);
+            return mappedComments;
         }
 
         public async Task<List<CommentInfoDto>> DeleteComment(DeleteCommentDto info)
@@ -92,7 +69,8 @@ namespace KinopoiskAPI.Services
             var comment = await _unitOfWork.Comments.Get(info.Id);
             await _unitOfWork.Comments.Delete(comment);
             var comments = await _unitOfWork.Comments.GetAllByMovie(info.MovieId);
-            return await MapComments(comments);
+            var mappedComments = _mapper.Map<List<Comment>, List<CommentInfoDto>>(comments);
+            return mappedComments;
         }
     }
 }
