@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Data_Access_Layer.Entity;
 using KinopoiskAPI.Hubs.Messages;
@@ -15,9 +16,9 @@ namespace KinopoiskAPI.Hubs
     {
         private readonly IUserService _userService;
 
-        private static readonly List<string> AdminConnections = new();
-
         private static readonly List<Connection> Connections = new();
+
+        private const string AdminGroupName = "Admins";
 
         public ChatHub(IUserService userService)
         {
@@ -33,8 +34,6 @@ namespace KinopoiskAPI.Hubs
         public override async Task<Task> OnDisconnectedAsync(Exception exception)
         {
             Connections.Remove(Connections.First(c => c.ConnectionId.Equals(Context.ConnectionId)));
-            if (AdminConnections.Any(admin => admin.Equals(Context.ConnectionId)))
-                AdminConnections.Remove(Context.ConnectionId);
             await GetAdminInformation();
             return base.OnDisconnectedAsync(exception);
         }
@@ -48,24 +47,8 @@ namespace KinopoiskAPI.Hubs
                 connection.IsMessagesSend = true;
                 connection.IsReplied = false;
                 connection.Messages.Add(message);
-            }
-
-            if (AdminConnections.Count == 0)
-            {
-                await Clients.Caller.SendAsync(HubMethods.ReceiveMessage, new ChatMessage
-                {
-                    Sender = "Server",
-                    Receiver = message.Sender,
-                    Message = "There's no admins online",
-                });
-            }
-            else
-            {
-                foreach (var admin in AdminConnections)
-                {
-                    await Clients.Client(admin).SendAsync(HubMethods.UpdateAdminInformation);
-                    await Clients.Client(admin).SendAsync(HubMethods.ReceiveMessages, connection?.Messages);
-                }
+                await Clients.Group(AdminGroupName).SendAsync(HubMethods.UpdateAdminInformation);
+                await Clients.Group(AdminGroupName).SendAsync(HubMethods.ReceiveMessages, connection.Messages);
             }
         }
 
@@ -90,9 +73,9 @@ namespace KinopoiskAPI.Hubs
 
             if (user != null && (user.Role.Equals(Role.Admin.ToString())))
             {
-                if (Connections.Any(c => c.ConnectionId.Equals(Context.ConnectionId)) && !AdminConnections.Contains(Context.ConnectionId))
+                if (Connections.Any(c => c.ConnectionId.Equals(Context.ConnectionId)))
                 {
-                    AdminConnections.Add(Context.ConnectionId);
+                    await Groups.AddToGroupAsync(Context.ConnectionId, AdminGroupName);
                 }
             }
         }
@@ -100,10 +83,7 @@ namespace KinopoiskAPI.Hubs
         public async Task GetAdminInformation()
         {
             var connections = Connections.Where(connection => connection.IsMessagesSend);
-            foreach (var admin in AdminConnections)
-            {
-                await Clients.Client(admin).SendAsync(HubMethods.ReceiveAdminInformation, connections);
-            }
+            await Clients.Group(AdminGroupName).SendAsync(HubMethods.ReceiveAdminInformation, connections);
         }
     }
 }
