@@ -15,8 +15,6 @@ namespace Data_Access_Layer.Repositories
         public async Task<Rating> GetByMovieAndUser(int movieId, int userId)
         {
             return await Db.Ratings.AsNoTracking()
-                //.Include(r => r.User)
-                //.Include(r => r.Movie)
                 .Where(r => r.MovieId == movieId && r.UserId == userId).FirstOrDefaultAsync(); ;
         }
     }
