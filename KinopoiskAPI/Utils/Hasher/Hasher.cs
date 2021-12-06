@@ -8,7 +8,7 @@ namespace KinopoiskAPI.Utils.Hasher
     {
         public static byte[] GetSalt()
         {
-            var salt = new byte[128 / 8];
+            var salt = new byte[16];
             using var rngCsp = new RNGCryptoServiceProvider();
             rngCsp.GetNonZeroBytes(salt);
             return salt;
@@ -17,11 +17,11 @@ namespace KinopoiskAPI.Utils.Hasher
         public static string GetHash(string password, byte[] salt)
         {
             return Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                    password: password,
-                    salt: salt,
+                    password,
+                    salt,
                     prf: KeyDerivationPrf.HMACSHA256,
                     iterationCount: 100000,
-                    numBytesRequested: 256 / 8
+                    numBytesRequested: 32
                 ));
         }
 
