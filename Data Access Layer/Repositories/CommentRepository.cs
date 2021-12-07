@@ -15,7 +15,7 @@ namespace Data_Access_Layer.Repositories
 
         public async Task<List<Comment>> GetAllByMovie(int id)
         {
-            return await Db.Comments.AsNoTracking().Where(c => c.MovieId == id).ToListAsync();
+            return await Db.Comments.Where(c => c.MovieId == id).ToListAsync();
         }
     }
 }

@@ -15,12 +15,12 @@ namespace Data_Access_Layer.Repositories
 
         public async Task<CreditCard> GetByNumber(string number)
         {
-            return await Db.CreditCards.AsNoTracking().FirstOrDefaultAsync(c => c.Number.Equals(number));
+            return await Db.CreditCards.FirstOrDefaultAsync(c => c.Number.Equals(number));
         }
 
         public async Task<List<CreditCard>> GetAllByUserId(int userId)
         {
-            return await Db.CreditCards.AsNoTracking().Where(c => c.UserId == userId).ToListAsync();
+            return await Db.CreditCards.Where(c => c.UserId == userId).ToListAsync();
         }
     }
 }
